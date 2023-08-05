@@ -1,7 +1,11 @@
-*.DS_Store
+# build
+.DS_Store
 *.empty
 .empty
 .DS_Store
 /build
 # Other
-.DS_Store
+
+./*/.DS_Store
+./*/*/.DS_Store
+./*/*/*/.DS_Store
