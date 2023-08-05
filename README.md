@@ -24,10 +24,17 @@ OpenCore华南金牌x99黑苹果
 2.  xxxx
 3.  xxxx
 
-#### 使用说明
+#### 关于CPU E5-26xx V3 V4变频数据
 
-1.  xxxx
-2.  xxxx
+##### V3: 
+`Kernel -> Emulate`
+- Cpuid1Data: `C3060300 00000000 00000000 00000000`
+- Cpuid1Mask: `FFFFFFFF 00000000 00000000 00000000`
+##### V4:
+`Kernel -> Emulate`
+- Cpuid1Data: `D4060300 00000000 00000000 00000000`
+- Cpuid1Mask: `FFFFFFFF 00000000 00000000 00000000`
+
 3.  xxxx
 
 #### 参与贡献
