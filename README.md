@@ -20,15 +20,15 @@ OpenCore华南金牌x99黑苹果
 
 #### 安装教程
 ##### A)主板bios设置
-1、`IntelRCSetup-->Processor Configuration-->MSR Lock control 配置 Disable`
-2、`Setup-->Advanced-->NCT5532D Super IO Configuration-->Serial Port 配置 Disable`
-3、`Setup-->CSM Configuration-->CSM Support 配置 Disable`如何配置请自行查阅相关教程
-4、 `Above 4G Decoding`可以开启也可以不开启
+- 1、`IntelRCSetup-->Processor Configuration-->MSR Lock control 配置 Disable`
+- 2、`Setup-->Advanced-->NCT5532D Super IO Configuration-->Serial Port 配置 Disable`
+- 3、`Setup-->CSM Configuration-->CSM Support 配置 Disable`如何配置请自行查阅相关教程
+- 4、 `Above 4G Decoding`可以开启也可以不开启
 
 ##### B)制作安装U盘
-1. 
-2. 
-3. 
+- 1. 
+- 2. 
+- 3. 
 
 #### 关于CPU E5-26xx V3 V4变频数据
 
