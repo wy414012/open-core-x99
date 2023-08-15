@@ -19,10 +19,16 @@ OpenCore华南金牌x99黑苹果
 
 
 #### 安装教程
+##### A)主板bios设置
+1、`IntelRCSetup-->Processor Configuration-->MSR Lock control 配置 Disable`
+2、`Setup-->Advanced-->NCT5532D Super IO Configuration-->Serial Port 配置 Disable`
+3、`Setup-->CSM Configuration-->CSM Support 配置 Disable`如何配置请自行查阅相关教程
+4、 `Above 4G Decoding`可以开启也可以不开启
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+##### B)制作安装U盘
+1. 
+2. 
+3. 
 
 #### 关于CPU E5-26xx V3 V4变频数据
 
@@ -34,8 +40,9 @@ OpenCore华南金牌x99黑苹果
 `Kernel -> Emulate`
 - Cpuid1Data: `D4060300 00000000 00000000 00000000`
 - Cpuid1Mask: `FFFFFFFF 00000000 00000000 00000000`
-
-3.  xxxx
+#### 关于自定义内存分布序号
+|  |  |  |  |  |
+|:---:|:---:|
 
 #### 参与贡献
 
@@ -48,8 +55,4 @@ OpenCore华南金牌x99黑苹果
 #### 特技
 
 1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+
