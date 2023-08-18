@@ -73,9 +73,24 @@ EFI|
 ---|----|Microsoft
 ```
 #### 关于自定义内存分布序号
-|  |  |  |  |  |
-|:---:|:---:|
+|       |       |       |       |       |
+| :---: | :---: | :---: | :---: | :---: |
+| 内存组 | 插槽 | 设备位置 | 对应Mac Pro插槽位置 | 通道 |
+| 0 | BANK 0 | ChannelF-DIMM0 | 8 | F |
+| 0 | BANK 1 | ChannelF-DIMM1 | 7 | F |
+| 0 | BANK 2 | ChannelE-DIMM0 | 10 | E |
+| 0 | BANK 3 | ChannelE-DIMM1 | 9 | E |
+| 0 | BANK 4 | ChannelD-DIMM0 | 12 | D |
+| 0 | BANK 5 | ChannelD-DIMM1 | 11 | D |
+| 1 | BANK 6 | ChannelA-DIMM0 | 5 | A |
+| 1 | BANK 7 | ChannelA-DIMM1 | 6 | A |
+| 1 | BANK 8 | ChannelB-DIMM0 | 3 | B |
+| 1 | BANK 9 | ChannelB-DIMM1 | 4 | B |
+| 1 | BANK 10 | ChannelC-DIMM0 | 1 | C |
+| 1 | BANK 11 | ChannelC-DIMM1 | 2 | C |
 
+#### 关于不同内存数量配置
+ 
 #### 参与贡献
 
 1.  Fork 本仓库
