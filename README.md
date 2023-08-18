@@ -19,16 +19,39 @@ OpenCore华南金牌x99黑苹果
 
 
 #### 安装教程
-##### A)主板bios设置
+##### 1)主板bios设置
 - 1、`IntelRCSetup-->Processor Configuration-->MSR Lock control 配置 Disable`
 - 2、`Setup-->Advanced-->NCT5532D Super IO Configuration-->Serial Port 配置 Disable`
 - 3、`Setup-->CSM Configuration-->CSM Support 配置 Disable`如何配置请自行查阅相关教程
 - 4、 `Above 4G Decoding`可以开启也可以不开启
 
-##### B)制作安装U盘
-- 1. 
-- 2. 
-- 3. 
+##### 2)制作安装U盘
+##### mac下制作制作安装U盘
+
+[macOS Ventura :](https://apps.apple.com/cn/app/macos-ventura/id1638787999?mt=12)
+```bash
+sudo /Applications/Install\ macOS\ Ventura.app/Contents/Resources/createinstallmedia --volume /Volumes/MyVolume
+```
+[macOS Monterey:](https://apps.apple.com/cn/app/macos-monterey/id1576738294?mt=12)
+```bash
+sudo /Applications/Install\ macOS\ Monterey.app/Contents/Resources/createinstallmedia --volume /Volumes/MyVolume
+```
+[macOS BigSur:](https://apps.apple.com/cn/app/macos-big-sur/id1526878132?mt=12)
+```bash
+sudo /Applications/Install\ macOS\ Big\ Sur.app/Contents/Resources/createinstallmedia --volume /Volumes/MyVolume
+```
+[macOS Catalina:](https://itunes.apple.com/cn/app/macos-catalina/id1466841314?ls=1&mt=12)
+```bash
+sudo /Applications/Install\ macOS\ Catalina.app/Contents/Resources/createinstallmedia --volume /Volumes/MyVolume
+```
+[macOS Mojave:](https://itunes.apple.com/cn/app/macos-mojave/id1398502828?ls=1&mt=12)
+```bash
+sudo /Applications/Install\ macOS\ Mojave.app/Contents/Resources/createinstallmedia --volume /Volumes/MyVolume
+```
+[macOS El Capitan:](http://updates-http.cdn-apple.com/2019/cert/061-41424-20191024-218af9ec-cf50-4516-9011-228c78eda3d2/InstallMacOSX.dmg)
+```bash
+sudo /Applications/Install\ OS\ X\ El\ Capitan.app/Contents/Resources/createinstallmedia --volume /Volumes/MyVolume --applicationpath /Applications/Install\ OS\ X\ El\ Capitan.app
+```
 
 #### 关于CPU E5-26xx V3 V4变频数据
 
