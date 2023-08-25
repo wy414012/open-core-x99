@@ -1,22 +1,22 @@
 /*
  * Intel ACPI Component Architecture
- * AML/ASL+ Disassembler version 20211217 (64-bit version)
- * Copyright (c) 2000 - 2021 Intel Corporation
+ * AML/ASL+ Disassembler version 20230331 (64-bit version)
+ * Copyright (c) 2000 - 2023 Intel Corporation
  * 
  * Disassembling to symbolic ASL+ operators
  *
- * Disassembly of iASLSNtpMz.aml, Mon Aug  7 20:09:21 2023
+ * Disassembly of Section_Raw_PlatformAcpiTable_body.aml, Thu Aug 24 23:42:16 2023
  *
  * Original Table Header:
  *     Signature        "DSDT"
- *     Length           0x00030D7C (200060)
+ *     Length           0x0003128E (201358)
  *     Revision         0x02
- *     Checksum         0xDA
+ *     Checksum         0x7D
  *     OEM ID           "ALASKA"
  *     OEM Table ID     "A M I "
  *     OEM Revision     0x01072009 (17244169)
  *     Compiler ID      "INTL"
- *     Compiler Version 0x20091013 (537464851)
+ *     Compiler Version 0x20230331 (539165489)
  */
 DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
 {
@@ -348,12 +348,12 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
         DBG9,   16
     }
 
-    Name (SS1, Zero)
+    Name (SS1, One)
     Name (SS2, Zero)
-    Name (SS3, Zero)
+    Name (SS3, One)
     Name (SS4, One)
-    Name (IOST, 0x4401)
-    Name (TOPM, 0x00000000)
+    Name (IOST, 0xFFFF)
+    Name (TOPM, 0x000FFFFF)
     Name (ROMS, 0xFFE00000)
     Name (VGAF, One)
     Name (OSHF, Zero)
@@ -495,14 +495,14 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
         }
     }
 
-    Name (BBI0, 0x00000000)
-    Name (BBI1, 0x00000000)
-    Name (BBI2, 0x00000000)
-    Name (BBI3, 0x00000000)
-    Name (BBU0, 0x000000FF)
-    Name (BBU1, 0x000000FF)
-    Name (BBU2, 0x000000FF)
-    Name (BBU3, 0x000000FF)
+    Name (BBI0, 0x4C584946)
+    Name (BBI1, 0x4D584946)
+    Name (BBI2, 0x4E584946)
+    Name (BBI3, 0x4F584946)
+    Name (BBU0, 0x50584946)
+    Name (BBU1, 0x51584946)
+    Name (BBU2, 0x52584946)
+    Name (BBU3, 0x53584946)
     OperationRegion (DBG0, SystemIO, 0x80, 0x02)
     Field (DBG0, ByteAcc, NoLock, Preserve)
     {
@@ -532,7 +532,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
         RASI,   1
     }
 
-    OperationRegion (PSYS, SystemMemory, 0x77069000, 0x0400)
+    OperationRegion (PSYS, SystemMemory, 0x30584946, 0x0400)
     Field (PSYS, ByteAcc, NoLock, Preserve)
     {
         PLAT,   32, 
@@ -2119,7 +2119,6 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                 Return (BBU3) /* \BBU3 */
             }
 
-            Name (_ADR, Zero)  // _ADR: Address
             Name (_EJD, "\\_SB.SCK3")  // _EJD: Ejection Dependent Device
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
@@ -2265,7 +2264,6 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                 Return (BBU2) /* \BBU2 */
             }
 
-            Name (_ADR, Zero)  // _ADR: Address
             Name (_EJD, "\\_SB.SCK2")  // _EJD: Ejection Dependent Device
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
@@ -2411,7 +2409,6 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                 Return (BBU1) /* \BBU1 */
             }
 
-            Name (_ADR, Zero)  // _ADR: Address
             Name (_EJD, "\\_SB.SCK1")  // _EJD: Ejection Dependent Device
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
@@ -2565,7 +2562,6 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                 Return (BBU0) /* \BBU0 */
             }
 
-            Name (_ADR, Zero)  // _ADR: Address
             Name (_EJD, "\\_SB.SCK0")  // _EJD: Ejection Dependent Device
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
@@ -2757,10 +2753,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
 
             Name (APTC, Buffer (0x30)
             {
-                /* 0000 */  0x00, 0x02, 0x04, 0x06, 0x08, 0x0A, 0x10, 0x12,  // ........
-                /* 0008 */  0x14, 0x16, 0x18, 0x1A, 0x01, 0x03, 0x05, 0x07,  // ........
-                /* 0010 */  0x09, 0x0B, 0x11, 0x13, 0x15, 0x17, 0x19, 0x1B,  // ........
-                /* 0018 */  0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,  // ........
+                /* 0000 */  0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,  // ........
+                /* 0008 */  0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F,  // ........
+                /* 0010 */  0x20, 0x21, 0x22, 0x23, 0x24, 0x25, 0x26, 0x27,  //  !"#$%&'
+                /* 0018 */  0x28, 0x29, 0x2A, 0x2B, 0x2C, 0x2D, 0x2E, 0x2F,  // ()*+,-./
                 /* 0020 */  0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,  // ........
                 /* 0028 */  0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF   // ........
             })
@@ -2910,7 +2906,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Return ((Zero | Local0))
                 }
 
-                Processor (CP00, 0x00, 0x00000410, 0x06)
+                Processor (CP00, 0x25, 0x00000000, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, Zero)  // _UID: Unique ID
@@ -2960,7 +2956,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP01, 0x02, 0x00000410, 0x06)
+                Processor (CP01, 0x25, 0x00000001, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, One)  // _UID: Unique ID
@@ -3010,7 +3006,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP02, 0x04, 0x00000410, 0x06)
+                Processor (CP02, 0x25, 0x00000002, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x02)  // _UID: Unique ID
@@ -3060,7 +3056,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP03, 0x06, 0x00000410, 0x06)
+                Processor (CP03, 0x25, 0x00000003, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x03)  // _UID: Unique ID
@@ -3110,7 +3106,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP04, 0x08, 0x00000410, 0x06)
+                Processor (CP04, 0x25, 0x00000004, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x04)  // _UID: Unique ID
@@ -3160,7 +3156,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP05, 0x0A, 0x00000410, 0x06)
+                Processor (CP05, 0x25, 0x00000005, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x05)  // _UID: Unique ID
@@ -3210,7 +3206,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP06, 0x10, 0x00000410, 0x06)
+                Processor (CP06, 0x25, 0x00000006, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x06)  // _UID: Unique ID
@@ -3260,7 +3256,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP07, 0x12, 0x00000410, 0x06)
+                Processor (CP07, 0x25, 0x00000007, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x07)  // _UID: Unique ID
@@ -3310,7 +3306,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP08, 0x14, 0x00000410, 0x06)
+                Processor (CP08, 0x25, 0x00000008, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x08)  // _UID: Unique ID
@@ -3360,7 +3356,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP09, 0x16, 0x00000410, 0x06)
+                Processor (CP09, 0x25, 0x00000009, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x09)  // _UID: Unique ID
@@ -3410,7 +3406,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP0A, 0x18, 0x00000410, 0x06)
+                Processor (CP0A, 0x25, 0x0000000A, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x0A)  // _UID: Unique ID
@@ -3460,7 +3456,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP0B, 0x1A, 0x00000410, 0x06)
+                Processor (CP0B, 0x25, 0x0000000B, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x0B)  // _UID: Unique ID
@@ -3510,7 +3506,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP0C, 0x01, 0x00000410, 0x06)
+                Processor (CP0C, 0x25, 0x0000000C, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x0C)  // _UID: Unique ID
@@ -3560,7 +3556,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP0D, 0x03, 0x00000410, 0x06)
+                Processor (CP0D, 0x25, 0x0000000D, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x0D)  // _UID: Unique ID
@@ -3610,7 +3606,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP0E, 0x05, 0x00000410, 0x06)
+                Processor (CP0E, 0x25, 0x0000000E, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x0E)  // _UID: Unique ID
@@ -3660,7 +3656,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP0F, 0x07, 0x00000410, 0x06)
+                Processor (CP0F, 0x25, 0x0000000F, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x0F)  // _UID: Unique ID
@@ -3710,7 +3706,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP10, 0x09, 0x00000410, 0x06)
+                Processor (CP10, 0x25, 0x00000010, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x10)  // _UID: Unique ID
@@ -3760,7 +3756,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP11, 0x0B, 0x00000410, 0x06)
+                Processor (CP11, 0x25, 0x00000011, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x11)  // _UID: Unique ID
@@ -3810,7 +3806,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP12, 0x11, 0x00000410, 0x06)
+                Processor (CP12, 0x25, 0x00000012, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x12)  // _UID: Unique ID
@@ -3860,7 +3856,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP13, 0x13, 0x00000410, 0x06)
+                Processor (CP13, 0x25, 0x00000013, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x13)  // _UID: Unique ID
@@ -3910,7 +3906,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP14, 0x15, 0x00000410, 0x06)
+                Processor (CP14, 0x25, 0x00000014, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x14)  // _UID: Unique ID
@@ -3960,7 +3956,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP15, 0x17, 0x00000410, 0x06)
+                Processor (CP15, 0x25, 0x00000015, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x15)  // _UID: Unique ID
@@ -4010,7 +4006,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP16, 0x19, 0x00000410, 0x06)
+                Processor (CP16, 0x25, 0x00000016, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x16)  // _UID: Unique ID
@@ -4060,7 +4056,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP17, 0x1B, 0x00000410, 0x06)
+                Processor (CP17, 0x25, 0x00000017, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x17)  // _UID: Unique ID
@@ -4110,7 +4106,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP18, 0xFF, 0x00000410, 0x06)
+                Processor (CP18, 0x25, 0x00000018, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x18)  // _UID: Unique ID
@@ -4160,7 +4156,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP19, 0xFF, 0x00000410, 0x06)
+                Processor (CP19, 0x25, 0x00000019, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x19)  // _UID: Unique ID
@@ -4210,7 +4206,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP1A, 0xFF, 0x00000410, 0x06)
+                Processor (CP1A, 0x25, 0x0000001A, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x1A)  // _UID: Unique ID
@@ -4260,7 +4256,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP1B, 0xFF, 0x00000410, 0x06)
+                Processor (CP1B, 0x25, 0x0000001B, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x1B)  // _UID: Unique ID
@@ -4310,7 +4306,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP1C, 0xFF, 0x00000410, 0x06)
+                Processor (CP1C, 0x25, 0x0000001C, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x1C)  // _UID: Unique ID
@@ -4360,7 +4356,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP1D, 0xFF, 0x00000410, 0x06)
+                Processor (CP1D, 0x25, 0x0000001D, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x1D)  // _UID: Unique ID
@@ -4410,7 +4406,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP1E, 0xFF, 0x00000410, 0x06)
+                Processor (CP1E, 0x25, 0x0000001E, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x1E)  // _UID: Unique ID
@@ -4460,7 +4456,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP1F, 0xFF, 0x00000410, 0x06)
+                Processor (CP1F, 0x25, 0x0000001F, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x1F)  // _UID: Unique ID
@@ -4510,7 +4506,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP20, 0xFF, 0x00000410, 0x06)
+                Processor (CP20, 0x25, 0x00000020, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x20)  // _UID: Unique ID
@@ -4560,7 +4556,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP21, 0xFF, 0x00000410, 0x06)
+                Processor (CP21, 0x25, 0x00000021, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x21)  // _UID: Unique ID
@@ -4610,7 +4606,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP22, 0xFF, 0x00000410, 0x06)
+                Processor (CP22, 0x25, 0x00000022, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x22)  // _UID: Unique ID
@@ -4660,7 +4656,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP23, 0xFF, 0x00000410, 0x06)
+                Processor (CP23, 0x25, 0x00000023, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x23)  // _UID: Unique ID
@@ -4710,7 +4706,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP24, 0xFF, 0x00000410, 0x06)
+                Processor (CP24, 0x25, 0x00000024, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x24)  // _UID: Unique ID
@@ -4760,7 +4756,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP25, 0xFF, 0x00000410, 0x06)
+                Processor (CP25, 0x25, 0x00000025, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x25)  // _UID: Unique ID
@@ -4810,7 +4806,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP26, 0xFF, 0x00000410, 0x06)
+                Processor (CP26, 0x25, 0x00000026, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x26)  // _UID: Unique ID
@@ -4860,7 +4856,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP27, 0xFF, 0x00000410, 0x06)
+                Processor (CP27, 0x25, 0x00000027, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x27)  // _UID: Unique ID
@@ -4910,7 +4906,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP28, 0xFF, 0x00000410, 0x06)
+                Processor (CP28, 0x25, 0x00000028, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x28)  // _UID: Unique ID
@@ -4960,7 +4956,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP29, 0xFF, 0x00000410, 0x06)
+                Processor (CP29, 0x25, 0x00000029, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x29)  // _UID: Unique ID
@@ -5010,7 +5006,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP2A, 0xFF, 0x00000410, 0x06)
+                Processor (CP2A, 0x25, 0x0000002A, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x2A)  // _UID: Unique ID
@@ -5060,7 +5056,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP2B, 0xFF, 0x00000410, 0x06)
+                Processor (CP2B, 0x25, 0x0000002B, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x2B)  // _UID: Unique ID
@@ -5110,7 +5106,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP2C, 0xFF, 0x00000410, 0x06)
+                Processor (CP2C, 0x25, 0x0000002C, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x2C)  // _UID: Unique ID
@@ -5160,7 +5156,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP2D, 0xFF, 0x00000410, 0x06)
+                Processor (CP2D, 0x25, 0x0000002D, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x2D)  // _UID: Unique ID
@@ -5210,7 +5206,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP2E, 0xFF, 0x00000410, 0x06)
+                Processor (CP2E, 0x25, 0x0000002E, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x2E)  // _UID: Unique ID
@@ -5260,7 +5256,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP2F, 0xFF, 0x00000410, 0x06)
+                Processor (CP2F, 0x25, 0x0000002F, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x2F)  // _UID: Unique ID
@@ -5363,7 +5359,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Return ((0x0100 | Local0))
                 }
 
-                Processor (CP00, 0xFF, 0x00000410, 0x06)
+                Processor (CP00, 0x25, 0x00000100, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, Zero)  // _UID: Unique ID
@@ -5413,7 +5409,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP01, 0xFF, 0x00000410, 0x06)
+                Processor (CP01, 0x25, 0x00000101, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, One)  // _UID: Unique ID
@@ -5463,7 +5459,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP02, 0xFF, 0x00000410, 0x06)
+                Processor (CP02, 0x25, 0x00000102, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x02)  // _UID: Unique ID
@@ -5513,7 +5509,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP03, 0xFF, 0x00000410, 0x06)
+                Processor (CP03, 0x25, 0x00000103, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x03)  // _UID: Unique ID
@@ -5563,7 +5559,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP04, 0xFF, 0x00000410, 0x06)
+                Processor (CP04, 0x25, 0x00000104, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x04)  // _UID: Unique ID
@@ -5613,7 +5609,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP05, 0xFF, 0x00000410, 0x06)
+                Processor (CP05, 0x25, 0x00000105, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x05)  // _UID: Unique ID
@@ -5663,7 +5659,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP06, 0xFF, 0x00000410, 0x06)
+                Processor (CP06, 0x25, 0x00000106, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x06)  // _UID: Unique ID
@@ -5713,7 +5709,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP07, 0xFF, 0x00000410, 0x06)
+                Processor (CP07, 0x25, 0x00000107, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x07)  // _UID: Unique ID
@@ -5763,7 +5759,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP08, 0xFF, 0x00000410, 0x06)
+                Processor (CP08, 0x25, 0x00000108, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x08)  // _UID: Unique ID
@@ -5813,7 +5809,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP09, 0xFF, 0x00000410, 0x06)
+                Processor (CP09, 0x25, 0x00000109, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x09)  // _UID: Unique ID
@@ -5863,7 +5859,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP0A, 0xFF, 0x00000410, 0x06)
+                Processor (CP0A, 0x25, 0x0000010A, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x0A)  // _UID: Unique ID
@@ -5913,7 +5909,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP0B, 0xFF, 0x00000410, 0x06)
+                Processor (CP0B, 0x25, 0x0000010B, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x0B)  // _UID: Unique ID
@@ -5963,7 +5959,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP0C, 0xFF, 0x00000410, 0x06)
+                Processor (CP0C, 0x25, 0x0000010C, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x0C)  // _UID: Unique ID
@@ -6013,7 +6009,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP0D, 0xFF, 0x00000410, 0x06)
+                Processor (CP0D, 0x25, 0x0000010D, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x0D)  // _UID: Unique ID
@@ -6063,7 +6059,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP0E, 0xFF, 0x00000410, 0x06)
+                Processor (CP0E, 0x25, 0x0000010E, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x0E)  // _UID: Unique ID
@@ -6113,7 +6109,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP0F, 0xFF, 0x00000410, 0x06)
+                Processor (CP0F, 0x25, 0x0000010F, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x0F)  // _UID: Unique ID
@@ -6163,7 +6159,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP10, 0xFF, 0x00000410, 0x06)
+                Processor (CP10, 0x25, 0x00000110, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x10)  // _UID: Unique ID
@@ -6213,7 +6209,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP11, 0xFF, 0x00000410, 0x06)
+                Processor (CP11, 0x25, 0x00000111, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x11)  // _UID: Unique ID
@@ -6263,7 +6259,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP12, 0xFF, 0x00000410, 0x06)
+                Processor (CP12, 0x25, 0x00000112, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x12)  // _UID: Unique ID
@@ -6313,7 +6309,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP13, 0xFF, 0x00000410, 0x06)
+                Processor (CP13, 0x25, 0x00000113, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x13)  // _UID: Unique ID
@@ -6363,7 +6359,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP14, 0xFF, 0x00000410, 0x06)
+                Processor (CP14, 0x25, 0x00000114, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x14)  // _UID: Unique ID
@@ -6413,7 +6409,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP15, 0xFF, 0x00000410, 0x06)
+                Processor (CP15, 0x25, 0x00000115, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x15)  // _UID: Unique ID
@@ -6463,7 +6459,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP16, 0xFF, 0x00000410, 0x06)
+                Processor (CP16, 0x25, 0x00000116, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x16)  // _UID: Unique ID
@@ -6513,7 +6509,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP17, 0xFF, 0x00000410, 0x06)
+                Processor (CP17, 0x25, 0x00000117, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x17)  // _UID: Unique ID
@@ -6563,7 +6559,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP18, 0xFF, 0x00000410, 0x06)
+                Processor (CP18, 0x25, 0x00000118, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x18)  // _UID: Unique ID
@@ -6613,7 +6609,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP19, 0xFF, 0x00000410, 0x06)
+                Processor (CP19, 0x25, 0x00000119, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x19)  // _UID: Unique ID
@@ -6663,7 +6659,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP1A, 0xFF, 0x00000410, 0x06)
+                Processor (CP1A, 0x25, 0x0000011A, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x1A)  // _UID: Unique ID
@@ -6713,7 +6709,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP1B, 0xFF, 0x00000410, 0x06)
+                Processor (CP1B, 0x25, 0x0000011B, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x1B)  // _UID: Unique ID
@@ -6763,7 +6759,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP1C, 0xFF, 0x00000410, 0x06)
+                Processor (CP1C, 0x25, 0x0000011C, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x1C)  // _UID: Unique ID
@@ -6813,7 +6809,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP1D, 0xFF, 0x00000410, 0x06)
+                Processor (CP1D, 0x25, 0x0000011D, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x1D)  // _UID: Unique ID
@@ -6863,7 +6859,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP1E, 0xFF, 0x00000410, 0x06)
+                Processor (CP1E, 0x25, 0x0000011E, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x1E)  // _UID: Unique ID
@@ -6913,7 +6909,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP1F, 0xFF, 0x00000410, 0x06)
+                Processor (CP1F, 0x25, 0x0000011F, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x1F)  // _UID: Unique ID
@@ -6963,7 +6959,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP20, 0xFF, 0x00000410, 0x06)
+                Processor (CP20, 0x25, 0x00000120, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x20)  // _UID: Unique ID
@@ -7013,7 +7009,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP21, 0xFF, 0x00000410, 0x06)
+                Processor (CP21, 0x25, 0x00000121, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x21)  // _UID: Unique ID
@@ -7063,7 +7059,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP22, 0xFF, 0x00000410, 0x06)
+                Processor (CP22, 0x25, 0x00000122, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x22)  // _UID: Unique ID
@@ -7113,7 +7109,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP23, 0xFF, 0x00000410, 0x06)
+                Processor (CP23, 0x25, 0x00000123, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x23)  // _UID: Unique ID
@@ -7163,7 +7159,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP24, 0xFF, 0x00000410, 0x06)
+                Processor (CP24, 0x25, 0x00000124, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x24)  // _UID: Unique ID
@@ -7213,7 +7209,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP25, 0xFF, 0x00000410, 0x06)
+                Processor (CP25, 0x25, 0x00000125, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x25)  // _UID: Unique ID
@@ -7263,7 +7259,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP26, 0xFF, 0x00000410, 0x06)
+                Processor (CP26, 0x25, 0x00000126, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x26)  // _UID: Unique ID
@@ -7313,7 +7309,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP27, 0xFF, 0x00000410, 0x06)
+                Processor (CP27, 0x25, 0x00000127, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x27)  // _UID: Unique ID
@@ -7363,7 +7359,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP28, 0xFF, 0x00000410, 0x06)
+                Processor (CP28, 0x25, 0x00000128, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x28)  // _UID: Unique ID
@@ -7413,7 +7409,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP29, 0xFF, 0x00000410, 0x06)
+                Processor (CP29, 0x25, 0x00000129, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x29)  // _UID: Unique ID
@@ -7463,7 +7459,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP2A, 0xFF, 0x00000410, 0x06)
+                Processor (CP2A, 0x25, 0x0000012A, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x2A)  // _UID: Unique ID
@@ -7513,7 +7509,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP2B, 0xFF, 0x00000410, 0x06)
+                Processor (CP2B, 0x25, 0x0000012B, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x2B)  // _UID: Unique ID
@@ -7563,7 +7559,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP2C, 0xFF, 0x00000410, 0x06)
+                Processor (CP2C, 0x25, 0x0000012C, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x2C)  // _UID: Unique ID
@@ -7613,7 +7609,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP2D, 0xFF, 0x00000410, 0x06)
+                Processor (CP2D, 0x25, 0x0000012D, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x2D)  // _UID: Unique ID
@@ -7663,7 +7659,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP2E, 0xFF, 0x00000410, 0x06)
+                Processor (CP2E, 0x25, 0x0000012E, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x2E)  // _UID: Unique ID
@@ -7713,7 +7709,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP2F, 0xFF, 0x00000410, 0x06)
+                Processor (CP2F, 0x25, 0x0000012F, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x2F)  // _UID: Unique ID
@@ -7799,7 +7795,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Return ((0x0200 | Local0))
                 }
 
-                Processor (CP00, 0xFF, 0x00000410, 0x06)
+                Processor (CP00, 0x25, 0x00000200, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, Zero)  // _UID: Unique ID
@@ -7849,7 +7845,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP01, 0xFF, 0x00000410, 0x06)
+                Processor (CP01, 0x25, 0x00000201, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, One)  // _UID: Unique ID
@@ -7899,7 +7895,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP02, 0xFF, 0x00000410, 0x06)
+                Processor (CP02, 0x25, 0x00000202, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x02)  // _UID: Unique ID
@@ -7949,7 +7945,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP03, 0xFF, 0x00000410, 0x06)
+                Processor (CP03, 0x25, 0x00000203, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x03)  // _UID: Unique ID
@@ -7999,7 +7995,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP04, 0xFF, 0x00000410, 0x06)
+                Processor (CP04, 0x25, 0x00000204, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x04)  // _UID: Unique ID
@@ -8049,7 +8045,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP05, 0xFF, 0x00000410, 0x06)
+                Processor (CP05, 0x25, 0x00000205, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x05)  // _UID: Unique ID
@@ -8099,7 +8095,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP06, 0xFF, 0x00000410, 0x06)
+                Processor (CP06, 0x25, 0x00000206, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x06)  // _UID: Unique ID
@@ -8149,7 +8145,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP07, 0xFF, 0x00000410, 0x06)
+                Processor (CP07, 0x25, 0x00000207, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x07)  // _UID: Unique ID
@@ -8199,7 +8195,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP08, 0xFF, 0x00000410, 0x06)
+                Processor (CP08, 0x25, 0x00000208, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x08)  // _UID: Unique ID
@@ -8249,7 +8245,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP09, 0xFF, 0x00000410, 0x06)
+                Processor (CP09, 0x25, 0x00000209, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x09)  // _UID: Unique ID
@@ -8299,7 +8295,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP0A, 0xFF, 0x00000410, 0x06)
+                Processor (CP0A, 0x25, 0x0000020A, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x0A)  // _UID: Unique ID
@@ -8349,7 +8345,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP0B, 0xFF, 0x00000410, 0x06)
+                Processor (CP0B, 0x25, 0x0000020B, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x0B)  // _UID: Unique ID
@@ -8399,7 +8395,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP0C, 0xFF, 0x00000410, 0x06)
+                Processor (CP0C, 0x25, 0x0000020C, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x0C)  // _UID: Unique ID
@@ -8449,7 +8445,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP0D, 0xFF, 0x00000410, 0x06)
+                Processor (CP0D, 0x25, 0x0000020D, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x0D)  // _UID: Unique ID
@@ -8499,7 +8495,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP0E, 0xFF, 0x00000410, 0x06)
+                Processor (CP0E, 0x25, 0x0000020E, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x0E)  // _UID: Unique ID
@@ -8549,7 +8545,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP0F, 0xFF, 0x00000410, 0x06)
+                Processor (CP0F, 0x25, 0x0000020F, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x0F)  // _UID: Unique ID
@@ -8599,7 +8595,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP10, 0xFF, 0x00000410, 0x06)
+                Processor (CP10, 0x25, 0x00000210, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x10)  // _UID: Unique ID
@@ -8649,7 +8645,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP11, 0xFF, 0x00000410, 0x06)
+                Processor (CP11, 0x25, 0x00000211, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x11)  // _UID: Unique ID
@@ -8699,7 +8695,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP12, 0xFF, 0x00000410, 0x06)
+                Processor (CP12, 0x25, 0x00000212, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x12)  // _UID: Unique ID
@@ -8749,7 +8745,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP13, 0xFF, 0x00000410, 0x06)
+                Processor (CP13, 0x25, 0x00000213, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x13)  // _UID: Unique ID
@@ -8799,7 +8795,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP14, 0xFF, 0x00000410, 0x06)
+                Processor (CP14, 0x25, 0x00000214, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x14)  // _UID: Unique ID
@@ -8849,7 +8845,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP15, 0xFF, 0x00000410, 0x06)
+                Processor (CP15, 0x25, 0x00000215, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x15)  // _UID: Unique ID
@@ -8899,7 +8895,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP16, 0xFF, 0x00000410, 0x06)
+                Processor (CP16, 0x25, 0x00000216, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x16)  // _UID: Unique ID
@@ -8949,7 +8945,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP17, 0xFF, 0x00000410, 0x06)
+                Processor (CP17, 0x25, 0x00000217, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x17)  // _UID: Unique ID
@@ -8999,7 +8995,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP18, 0xFF, 0x00000410, 0x06)
+                Processor (CP18, 0x25, 0x00000218, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x18)  // _UID: Unique ID
@@ -9049,7 +9045,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP19, 0xFF, 0x00000410, 0x06)
+                Processor (CP19, 0x25, 0x00000219, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x19)  // _UID: Unique ID
@@ -9099,7 +9095,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP1A, 0xFF, 0x00000410, 0x06)
+                Processor (CP1A, 0x25, 0x0000021A, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x1A)  // _UID: Unique ID
@@ -9149,7 +9145,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP1B, 0xFF, 0x00000410, 0x06)
+                Processor (CP1B, 0x25, 0x0000021B, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x1B)  // _UID: Unique ID
@@ -9199,7 +9195,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP1C, 0xFF, 0x00000410, 0x06)
+                Processor (CP1C, 0x25, 0x0000021C, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x1C)  // _UID: Unique ID
@@ -9249,7 +9245,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP1D, 0xFF, 0x00000410, 0x06)
+                Processor (CP1D, 0x25, 0x0000021D, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x1D)  // _UID: Unique ID
@@ -9299,7 +9295,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP1E, 0xFF, 0x00000410, 0x06)
+                Processor (CP1E, 0x25, 0x0000021E, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x1E)  // _UID: Unique ID
@@ -9349,7 +9345,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP1F, 0xFF, 0x00000410, 0x06)
+                Processor (CP1F, 0x25, 0x0000021F, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x1F)  // _UID: Unique ID
@@ -9399,7 +9395,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP20, 0xFF, 0x00000410, 0x06)
+                Processor (CP20, 0x25, 0x00000220, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x20)  // _UID: Unique ID
@@ -9449,7 +9445,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP21, 0xFF, 0x00000410, 0x06)
+                Processor (CP21, 0x25, 0x00000221, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x21)  // _UID: Unique ID
@@ -9499,7 +9495,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP22, 0xFF, 0x00000410, 0x06)
+                Processor (CP22, 0x25, 0x00000222, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x22)  // _UID: Unique ID
@@ -9549,7 +9545,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP23, 0xFF, 0x00000410, 0x06)
+                Processor (CP23, 0x25, 0x00000223, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x23)  // _UID: Unique ID
@@ -9599,7 +9595,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP24, 0xFF, 0x00000410, 0x06)
+                Processor (CP24, 0x25, 0x00000224, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x24)  // _UID: Unique ID
@@ -9649,7 +9645,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP25, 0xFF, 0x00000410, 0x06)
+                Processor (CP25, 0x25, 0x00000225, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x25)  // _UID: Unique ID
@@ -9699,7 +9695,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP26, 0xFF, 0x00000410, 0x06)
+                Processor (CP26, 0x25, 0x00000226, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x26)  // _UID: Unique ID
@@ -9749,7 +9745,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP27, 0xFF, 0x00000410, 0x06)
+                Processor (CP27, 0x25, 0x00000227, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x27)  // _UID: Unique ID
@@ -9799,7 +9795,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP28, 0xFF, 0x00000410, 0x06)
+                Processor (CP28, 0x25, 0x00000228, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x28)  // _UID: Unique ID
@@ -9849,7 +9845,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP29, 0xFF, 0x00000410, 0x06)
+                Processor (CP29, 0x25, 0x00000229, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x29)  // _UID: Unique ID
@@ -9899,7 +9895,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP2A, 0xFF, 0x00000410, 0x06)
+                Processor (CP2A, 0x25, 0x0000022A, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x2A)  // _UID: Unique ID
@@ -9949,7 +9945,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP2B, 0xFF, 0x00000410, 0x06)
+                Processor (CP2B, 0x25, 0x0000022B, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x2B)  // _UID: Unique ID
@@ -9999,7 +9995,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP2C, 0xFF, 0x00000410, 0x06)
+                Processor (CP2C, 0x25, 0x0000022C, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x2C)  // _UID: Unique ID
@@ -10049,7 +10045,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP2D, 0xFF, 0x00000410, 0x06)
+                Processor (CP2D, 0x25, 0x0000022D, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x2D)  // _UID: Unique ID
@@ -10099,7 +10095,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP2E, 0xFF, 0x00000410, 0x06)
+                Processor (CP2E, 0x25, 0x0000022E, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x2E)  // _UID: Unique ID
@@ -10149,7 +10145,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP2F, 0xFF, 0x00000410, 0x06)
+                Processor (CP2F, 0x25, 0x0000022F, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x2F)  // _UID: Unique ID
@@ -10235,7 +10231,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Return ((0x0300 | Local0))
                 }
 
-                Processor (CP00, 0xFF, 0x00000410, 0x06)
+                Processor (CP00, 0x25, 0x00000300, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, Zero)  // _UID: Unique ID
@@ -10285,7 +10281,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP01, 0xFF, 0x00000410, 0x06)
+                Processor (CP01, 0x25, 0x00000301, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, One)  // _UID: Unique ID
@@ -10335,7 +10331,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP02, 0xFF, 0x00000410, 0x06)
+                Processor (CP02, 0x25, 0x00000302, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x02)  // _UID: Unique ID
@@ -10385,7 +10381,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP03, 0xFF, 0x00000410, 0x06)
+                Processor (CP03, 0x25, 0x00000303, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x03)  // _UID: Unique ID
@@ -10435,7 +10431,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP04, 0xFF, 0x00000410, 0x06)
+                Processor (CP04, 0x25, 0x00000304, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x04)  // _UID: Unique ID
@@ -10485,7 +10481,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP05, 0xFF, 0x00000410, 0x06)
+                Processor (CP05, 0x25, 0x00000305, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x05)  // _UID: Unique ID
@@ -10535,7 +10531,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP06, 0xFF, 0x00000410, 0x06)
+                Processor (CP06, 0x25, 0x00000306, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x06)  // _UID: Unique ID
@@ -10585,7 +10581,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP07, 0xFF, 0x00000410, 0x06)
+                Processor (CP07, 0x25, 0x00000307, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x07)  // _UID: Unique ID
@@ -10635,7 +10631,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP08, 0xFF, 0x00000410, 0x06)
+                Processor (CP08, 0x25, 0x00000308, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x08)  // _UID: Unique ID
@@ -10685,7 +10681,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP09, 0xFF, 0x00000410, 0x06)
+                Processor (CP09, 0x25, 0x00000309, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x09)  // _UID: Unique ID
@@ -10735,7 +10731,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP0A, 0xFF, 0x00000410, 0x06)
+                Processor (CP0A, 0x25, 0x0000030A, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x0A)  // _UID: Unique ID
@@ -10785,7 +10781,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP0B, 0xFF, 0x00000410, 0x06)
+                Processor (CP0B, 0x25, 0x0000030B, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x0B)  // _UID: Unique ID
@@ -10835,7 +10831,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP0C, 0xFF, 0x00000410, 0x06)
+                Processor (CP0C, 0x25, 0x0000030C, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x0C)  // _UID: Unique ID
@@ -10885,7 +10881,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP0D, 0xFF, 0x00000410, 0x06)
+                Processor (CP0D, 0x25, 0x0000030D, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x0D)  // _UID: Unique ID
@@ -10935,7 +10931,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP0E, 0xFF, 0x00000410, 0x06)
+                Processor (CP0E, 0x25, 0x0000030E, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x0E)  // _UID: Unique ID
@@ -10985,7 +10981,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP0F, 0xFF, 0x00000410, 0x06)
+                Processor (CP0F, 0x25, 0x0000030F, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x0F)  // _UID: Unique ID
@@ -11035,7 +11031,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP10, 0xFF, 0x00000410, 0x06)
+                Processor (CP10, 0x25, 0x00000310, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x10)  // _UID: Unique ID
@@ -11085,7 +11081,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP11, 0xFF, 0x00000410, 0x06)
+                Processor (CP11, 0x25, 0x00000311, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x11)  // _UID: Unique ID
@@ -11135,7 +11131,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP12, 0xFF, 0x00000410, 0x06)
+                Processor (CP12, 0x25, 0x00000312, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x12)  // _UID: Unique ID
@@ -11185,7 +11181,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP13, 0xFF, 0x00000410, 0x06)
+                Processor (CP13, 0x25, 0x00000313, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x13)  // _UID: Unique ID
@@ -11235,7 +11231,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP14, 0xFF, 0x00000410, 0x06)
+                Processor (CP14, 0x25, 0x00000314, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x14)  // _UID: Unique ID
@@ -11285,7 +11281,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP15, 0xFF, 0x00000410, 0x06)
+                Processor (CP15, 0x25, 0x00000315, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x15)  // _UID: Unique ID
@@ -11335,7 +11331,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP16, 0xFF, 0x00000410, 0x06)
+                Processor (CP16, 0x25, 0x00000316, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x16)  // _UID: Unique ID
@@ -11385,7 +11381,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP17, 0xFF, 0x00000410, 0x06)
+                Processor (CP17, 0x25, 0x00000317, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x17)  // _UID: Unique ID
@@ -11435,7 +11431,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP18, 0xFF, 0x00000410, 0x06)
+                Processor (CP18, 0x25, 0x00000318, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x18)  // _UID: Unique ID
@@ -11485,7 +11481,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP19, 0xFF, 0x00000410, 0x06)
+                Processor (CP19, 0x25, 0x00000319, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x19)  // _UID: Unique ID
@@ -11535,7 +11531,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP1A, 0xFF, 0x00000410, 0x06)
+                Processor (CP1A, 0x25, 0x0000031A, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x1A)  // _UID: Unique ID
@@ -11585,7 +11581,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP1B, 0xFF, 0x00000410, 0x06)
+                Processor (CP1B, 0x25, 0x0000031B, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x1B)  // _UID: Unique ID
@@ -11635,7 +11631,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP1C, 0xFF, 0x00000410, 0x06)
+                Processor (CP1C, 0x25, 0x0000031C, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x1C)  // _UID: Unique ID
@@ -11685,7 +11681,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP1D, 0xFF, 0x00000410, 0x06)
+                Processor (CP1D, 0x25, 0x0000031D, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x1D)  // _UID: Unique ID
@@ -11735,7 +11731,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP1E, 0xFF, 0x00000410, 0x06)
+                Processor (CP1E, 0x25, 0x0000031E, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x1E)  // _UID: Unique ID
@@ -11785,7 +11781,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP1F, 0xFF, 0x00000410, 0x06)
+                Processor (CP1F, 0x25, 0x0000031F, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x1F)  // _UID: Unique ID
@@ -11835,7 +11831,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP20, 0xFF, 0x00000410, 0x06)
+                Processor (CP20, 0x25, 0x00000320, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x20)  // _UID: Unique ID
@@ -11885,7 +11881,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP21, 0xFF, 0x00000410, 0x06)
+                Processor (CP21, 0x25, 0x00000321, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x21)  // _UID: Unique ID
@@ -11935,7 +11931,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP22, 0xFF, 0x00000410, 0x06)
+                Processor (CP22, 0x25, 0x00000322, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x22)  // _UID: Unique ID
@@ -11985,7 +11981,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP23, 0xFF, 0x00000410, 0x06)
+                Processor (CP23, 0x25, 0x00000323, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x23)  // _UID: Unique ID
@@ -12035,7 +12031,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP24, 0xFF, 0x00000410, 0x06)
+                Processor (CP24, 0x25, 0x00000324, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x24)  // _UID: Unique ID
@@ -12085,7 +12081,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP25, 0xFF, 0x00000410, 0x06)
+                Processor (CP25, 0x25, 0x00000325, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x25)  // _UID: Unique ID
@@ -12135,7 +12131,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP26, 0xFF, 0x00000410, 0x06)
+                Processor (CP26, 0x25, 0x00000326, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x26)  // _UID: Unique ID
@@ -12185,7 +12181,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP27, 0xFF, 0x00000410, 0x06)
+                Processor (CP27, 0x25, 0x00000327, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x27)  // _UID: Unique ID
@@ -12235,7 +12231,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP28, 0xFF, 0x00000410, 0x06)
+                Processor (CP28, 0x25, 0x00000328, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x28)  // _UID: Unique ID
@@ -12285,7 +12281,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP29, 0xFF, 0x00000410, 0x06)
+                Processor (CP29, 0x25, 0x00000329, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x29)  // _UID: Unique ID
@@ -12335,7 +12331,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP2A, 0xFF, 0x00000410, 0x06)
+                Processor (CP2A, 0x25, 0x0000032A, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x2A)  // _UID: Unique ID
@@ -12385,7 +12381,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP2B, 0xFF, 0x00000410, 0x06)
+                Processor (CP2B, 0x25, 0x0000032B, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x2B)  // _UID: Unique ID
@@ -12435,7 +12431,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP2C, 0xFF, 0x00000410, 0x06)
+                Processor (CP2C, 0x25, 0x0000032C, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x2C)  // _UID: Unique ID
@@ -12485,7 +12481,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP2D, 0xFF, 0x00000410, 0x06)
+                Processor (CP2D, 0x25, 0x0000032D, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x2D)  // _UID: Unique ID
@@ -12535,7 +12531,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP2E, 0xFF, 0x00000410, 0x06)
+                Processor (CP2E, 0x25, 0x0000032E, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x2E)  // _UID: Unique ID
@@ -12585,7 +12581,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP2F, 0xFF, 0x00000410, 0x06)
+                Processor (CP2F, 0x25, 0x0000032F, 0x06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
                     Name (_UID, 0x2F)  // _UID: Unique ID
@@ -15420,10 +15416,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     ,, _Y00, AddressRangeMemory, TypeStatic)
                 QWordMemory (ResourceProducer, PosDecode, MinFixed, MaxFixed, NonCacheable, ReadWrite,
                     0x0000000000000000, // Granularity
-                    0x0000000000000000, // Range Minimum
-                    0x0000000000000000, // Range Maximum
+                    0x0000380000000000, // Range Minimum
+                    0x0000383FFFFFFFFF, // Range Maximum
                     0x0000000000000000, // Translation Offset
-                    0x0000000000000000, // Length
+                    0x0000004000000000, // Length
                     ,, , AddressRangeMemory, TypeStatic)
             })
             OperationRegion (TMEM, PCI_Config, Zero, 0x0100)
@@ -16369,7 +16365,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Mutex (MUT0, 0x00)
                     Method (ENFG, 1, NotSerialized)
                     {
-                        Acquire (MUT0, 0x0FFF)
+                        Acquire (MUT0, 0xFFFF)
                         INDX = ENTK /* \ENTK */
                         INDX = ENTK /* \ENTK */
                         LDN = Arg0
@@ -16591,7 +16587,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                             {}
                     })
                     CreateWordField (CRS3, \_SB.PCI0.LPC0.SIO1._Y0E._INT, IRQT)  // _INT: Interrupts
-                    CreateByteField (CRS3, \_SB.PCI0.LPC0.SIO1._Y0E._HE, IRQS)  // _HE_: High-Edge
+                    CreateBitField (CRS3, \_SB.PCI0.LPC0.SIO1._Y0E._HE, IRQS)  // _HE_: High-Edge
                     CreateByteField (CRS3, \_SB.PCI0.LPC0.SIO1._Y0F._DMA, DMAT)  // _DMA: Direct Memory Access
                     CreateWordField (CRS3, \_SB.PCI0.LPC0.SIO1._Y10._MIN, IO41)  // _MIN: Minimum Base Address
                     CreateWordField (CRS3, \_SB.PCI0.LPC0.SIO1._Y10._MAX, IO42)  // _MAX: Maximum Base Address
@@ -22496,7 +22492,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                 }
             }
 
-            Device (HECI)
+            Device (IMEI)
             {
                 Name (_ADR, 0x00160000)  // _ADR: Address
             }
@@ -22860,16 +22856,22 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Name (_ADR, Zero)  // _ADR: Address
                     Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
                     {
-                        Local0 = Package (0x02)
+                        If ((Arg2 == Zero))
+                        {
+                            Return (Buffer (One)
                             {
-                                "built-in", 
-                                Buffer (0x02)
-                                {
-                                    "1"
-                                }
+                                 0x03                                             // .
+                            })
+                        }
+
+                        Return (Package (0x02)
+                        {
+                            "built-in", 
+                            Buffer (0x0A)
+                            {
+                                "1"
                             }
-                        DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
-                        Return (Local0)
+                        })
                     }
 
                     Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
@@ -23118,16 +23120,22 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Name (_ADR, Zero)  // _ADR: Address
                     Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
                     {
-                        Local0 = Package (0x02)
+                        If ((Arg2 == Zero))
+                        {
+                            Return (Buffer (One)
                             {
-                                "built-in", 
-                                Buffer (0x02)
-                                {
-                                    "1"
-                                }
+                                 0x03                                             // .
+                            })
+                        }
+
+                        Return (Package (0x02)
+                        {
+                            "built-in", 
+                            Buffer (0x0A)
+                            {
+                                "1"
                             }
-                        DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
-                        Return (Local0)
+                        })
                     }
 
                     Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
@@ -23891,7 +23899,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Device (BR1A)
             {
                 Name (_ADR, 0x00010000)  // _ADR: Address
-                OperationRegion (MCTL, SystemMemory, 0x80000188, 0x04)
+                OperationRegion (MCTL, SystemMemory, 0x54584946, 0x04)
                 Field (MCTL, ByteAcc, NoLock, Preserve)
                 {
                         ,   3, 
@@ -24385,6 +24393,26 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     {
                         Return (SNUM ())
                     }
+
+                    Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
+                    {
+                        If ((Arg2 == Zero))
+                        {
+                            Return (Buffer (One)
+                            {
+                                 0x03                                             // .
+                            })
+                        }
+
+                        Return (Package (0x02)
+                        {
+                            "built-in", 
+                            Buffer (0x0A)
+                            {
+                                "NVMe SSD"
+                            }
+                        })
+                    }
                 }
 
                 Device (H001)
@@ -24550,7 +24578,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Device (BR1B)
             {
                 Name (_ADR, 0x00010001)  // _ADR: Address
-                OperationRegion (MCTL, SystemMemory, 0x80008188, 0x04)
+                OperationRegion (MCTL, SystemMemory, 0x54584946, 0x04)
                 Field (MCTL, ByteAcc, NoLock, Preserve)
                 {
                         ,   3, 
@@ -25037,12 +25065,32 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Return (Local0)
                 }
 
-                Device (H000)
+                Device (NVME)
                 {
                     Name (_ADR, Zero)  // _ADR: Address
                     Method (_SUN, 0, NotSerialized)  // _SUN: Slot User Number
                     {
                         Return (SNUM ())
+                    }
+
+                    Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
+                    {
+                        If ((Arg2 == Zero))
+                        {
+                            Return (Buffer (One)
+                            {
+                                 0x03                                             // .
+                            })
+                        }
+
+                        Return (Package (0x02)
+                        {
+                            "built-in", 
+                            Buffer (0x0A)
+                            {
+                                "NVMe SSD"
+                            }
+                        })
                     }
                 }
 
@@ -25189,7 +25237,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Device (BR2A)
             {
                 Name (_ADR, 0x00020000)  // _ADR: Address
-                OperationRegion (MCTL, SystemMemory, 0x80009188, 0x04)
+                OperationRegion (MCTL, SystemMemory, 0x54584946, 0x04)
                 Field (MCTL, ByteAcc, NoLock, Preserve)
                 {
                         ,   3, 
@@ -25676,21 +25724,155 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Return (Local0)
                 }
 
-                Device (H000)
+                Device (GFX0)
                 {
                     Name (_ADR, Zero)  // _ADR: Address
                     Method (_SUN, 0, NotSerialized)  // _SUN: Slot User Number
                     {
                         Return (SNUM ())
                     }
+
+                    Name (ATIB, Buffer (0x0100){})
+                    Method (ATIF, 2, Serialized)
+                    {
+                        If ((Arg0 == Zero))
+                        {
+                            Return (AF00 ())
+                        }
+
+                        If ((Arg0 == One))
+                        {
+                            Return (AF01 ())
+                        }
+
+                        If ((Arg0 == 0x02))
+                        {
+                            Return (AF02 ())
+                        }
+                        Else
+                        {
+                            CreateWordField (ATIB, Zero, SSZE)
+                            CreateWordField (ATIB, 0x02, VERN)
+                            CreateDWordField (ATIB, 0x04, NMSK)
+                            CreateDWordField (ATIB, 0x08, SFUN)
+                            SSZE = Zero
+                            VERN = Zero
+                            NMSK = Zero
+                            SFUN = Zero
+                            Return (ATIB) /* \_SB_.PCI0.BR2A.GFX0.ATIB */
+                        }
+                    }
+
+                    Method (AF00, 0, NotSerialized)
+                    {
+                        CreateWordField (ATIB, Zero, SSZE)
+                        CreateWordField (ATIB, 0x02, VERN)
+                        CreateDWordField (ATIB, 0x04, NMSK)
+                        CreateDWordField (ATIB, 0x08, SFUN)
+                        SSZE = 0x0C
+                        VERN = One
+                        NMSK = 0x0C
+                        SFUN = 0x03
+                        Return (ATIB) /* \_SB_.PCI0.BR2A.GFX0.ATIB */
+                    }
+
+                    Method (AF01, 0, NotSerialized)
+                    {
+                        CreateWordField (ATIB, Zero, SSZE)
+                        CreateDWordField (ATIB, 0x02, VMSK)
+                        CreateDWordField (ATIB, 0x06, FLGS)
+                        SSZE = 0x0A
+                        VMSK = 0x03
+                        FLGS = One
+                        Return (ATIB) /* \_SB_.PCI0.BR2A.GFX0.ATIB */
+                    }
+
+                    Method (AF02, 0, NotSerialized)
+                    {
+                        CreateWordField (ATIB, Zero, SSZE)
+                        CreateDWordField (ATIB, 0x02, PSBI)
+                        CreateByteField (ATIB, 0x09, FPWR)
+                        CreateByteField (ATIB, 0x0A, FPID)
+                        SSZE = 0x0D
+                        PSBI = 0x08
+                        FPWR = Zero
+                        FPID = 0x08
+                        Return (ATIB) /* \_SB_.PCI0.BR2A.GFX0.ATIB */
+                    }
+
+                    Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
+                    {
+                        Return (GPRW (0x09, 0x04))
+                    }
+
+                    OperationRegion (PEGH, PCI_Config, Zero, 0x40)
+                    Field (PEGH, ByteAcc, NoLock, Preserve)
+                    {
+                        VID0,   16, 
+                        DID0,   16, 
+                        GCMD,   8, 
+                        Offset (0x24), 
+                        BAR4,   32
+                    }
+
+                    Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
+                    {
+                        If ((Arg0 == ToUUID ("a0b5b7c6-1318-441c-b0c9-fe695eaf949b") /* Unknown UUID */))
+                        {
+                            If (((VID0 & 0xFFFF) != 0xFFFF))
+                            {
+                                Local0 = Package (0x02)
+                                    {
+                                        "hda-gfx", 
+                                        Buffer (0x0A)
+                                        {
+                                            "onboard-1"
+                                        }
+                                    }
+                                DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
+                                Return (Local0)
+                            }
+                        }
+
+                        Return (0x80000002)
+                    }
                 }
 
-                Device (H001)
+                Device (HDAU)
                 {
                     Name (_ADR, One)  // _ADR: Address
                     Method (_SUN, 0, NotSerialized)  // _SUN: Slot User Number
                     {
                         Return (SNUM ())
+                    }
+
+                    OperationRegion (HDAH, PCI_Config, Zero, 0x40)
+                    Field (HDAH, ByteAcc, NoLock, Preserve)
+                    {
+                        VID0,   16, 
+                        DID0,   16
+                    }
+
+                    Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
+                    {
+                        If ((Arg0 == ToUUID ("a0b5b7c6-1318-441c-b0c9-fe695eaf949b") /* Unknown UUID */))
+                        {
+                            If (((VID0 & 0xFFFF) != 0xFFFF))
+                            {
+                                Local0 = Package (0x02)
+                                    {
+                                        "hda-gfx", 
+                                        Buffer (0x0A)
+                                        {
+                                            "onboard-1"
+                                        }
+                                    }
+                                DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
+                                Return (Local0)
+                            }
+                        }
+
+                        Return (0x80000002)
                     }
                 }
 
@@ -25828,7 +26010,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Device (BR2B)
             {
                 Name (_ADR, 0x00020001)  // _ADR: Address
-                OperationRegion (MCTL, SystemMemory, 0x80010188, 0x04)
+                OperationRegion (MCTL, SystemMemory, 0x54584946, 0x04)
                 Field (MCTL, ByteAcc, NoLock, Preserve)
                 {
                         ,   3, 
@@ -26467,7 +26649,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Device (BR2C)
             {
                 Name (_ADR, 0x00020002)  // _ADR: Address
-                OperationRegion (MCTL, SystemMemory, 0x80011188, 0x04)
+                OperationRegion (MCTL, SystemMemory, 0x54584946, 0x04)
                 Field (MCTL, ByteAcc, NoLock, Preserve)
                 {
                         ,   3, 
@@ -27106,7 +27288,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Device (BR2D)
             {
                 Name (_ADR, 0x00020003)  // _ADR: Address
-                OperationRegion (MCTL, SystemMemory, 0x80012188, 0x04)
+                OperationRegion (MCTL, SystemMemory, 0x54584946, 0x04)
                 Field (MCTL, ByteAcc, NoLock, Preserve)
                 {
                         ,   3, 
@@ -27745,7 +27927,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Device (BR3A)
             {
                 Name (_ADR, 0x00030000)  // _ADR: Address
-                OperationRegion (MCTL, SystemMemory, 0x80013188, 0x04)
+                OperationRegion (MCTL, SystemMemory, 0x54584946, 0x04)
                 Field (MCTL, ByteAcc, NoLock, Preserve)
                 {
                         ,   3, 
@@ -28239,6 +28421,111 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     {
                         Return (SNUM ())
                     }
+
+                    Name (ATIB, Buffer (0x0100){})
+                    Method (ATIF, 2, Serialized)
+                    {
+                        If ((Arg0 == Zero))
+                        {
+                            Return (AF00 ())
+                        }
+
+                        If ((Arg0 == One))
+                        {
+                            Return (AF01 ())
+                        }
+
+                        If ((Arg0 == 0x02))
+                        {
+                            Return (AF02 ())
+                        }
+                        Else
+                        {
+                            CreateWordField (ATIB, Zero, SSZE)
+                            CreateWordField (ATIB, 0x02, VERN)
+                            CreateDWordField (ATIB, 0x04, NMSK)
+                            CreateDWordField (ATIB, 0x08, SFUN)
+                            SSZE = Zero
+                            VERN = Zero
+                            NMSK = Zero
+                            SFUN = Zero
+                            Return (ATIB) /* \_SB_.PCI0.BR3A.GFX0.ATIB */
+                        }
+                    }
+
+                    Method (AF00, 0, NotSerialized)
+                    {
+                        CreateWordField (ATIB, Zero, SSZE)
+                        CreateWordField (ATIB, 0x02, VERN)
+                        CreateDWordField (ATIB, 0x04, NMSK)
+                        CreateDWordField (ATIB, 0x08, SFUN)
+                        SSZE = 0x0C
+                        VERN = One
+                        NMSK = 0x0C
+                        SFUN = 0x03
+                        Return (ATIB) /* \_SB_.PCI0.BR3A.GFX0.ATIB */
+                    }
+
+                    Method (AF01, 0, NotSerialized)
+                    {
+                        CreateWordField (ATIB, Zero, SSZE)
+                        CreateDWordField (ATIB, 0x02, VMSK)
+                        CreateDWordField (ATIB, 0x06, FLGS)
+                        SSZE = 0x0A
+                        VMSK = 0x03
+                        FLGS = One
+                        Return (ATIB) /* \_SB_.PCI0.BR3A.GFX0.ATIB */
+                    }
+
+                    Method (AF02, 0, NotSerialized)
+                    {
+                        CreateWordField (ATIB, Zero, SSZE)
+                        CreateDWordField (ATIB, 0x02, PSBI)
+                        CreateByteField (ATIB, 0x09, FPWR)
+                        CreateByteField (ATIB, 0x0A, FPID)
+                        SSZE = 0x0D
+                        PSBI = 0x08
+                        FPWR = Zero
+                        FPID = 0x08
+                        Return (ATIB) /* \_SB_.PCI0.BR3A.GFX0.ATIB */
+                    }
+
+                    Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
+                    {
+                        Return (GPRW (0x09, 0x04))
+                    }
+
+                    OperationRegion (PEGH, PCI_Config, Zero, 0x40)
+                    Field (PEGH, ByteAcc, NoLock, Preserve)
+                    {
+                        VID0,   16, 
+                        DID0,   16, 
+                        GCMD,   8, 
+                        Offset (0x24), 
+                        BAR4,   32
+                    }
+
+                    Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
+                    {
+                        If ((Arg0 == ToUUID ("a0b5b7c6-1318-441c-b0c9-fe695eaf949b") /* Unknown UUID */))
+                        {
+                            If (((VID0 & 0xFFFF) != 0xFFFF))
+                            {
+                                Local0 = Package (0x02)
+                                    {
+                                        "hda-gfx", 
+                                        Buffer (0x0A)
+                                        {
+                                            "onboard-1"
+                                        }
+                                    }
+                                DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
+                                Return (Local0)
+                            }
+                        }
+
+                        Return (0x80000002)
+                    }
                 }
 
                 Device (HDAU)
@@ -28247,6 +28534,35 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Method (_SUN, 0, NotSerialized)  // _SUN: Slot User Number
                     {
                         Return (SNUM ())
+                    }
+
+                    OperationRegion (HDAH, PCI_Config, Zero, 0x40)
+                    Field (HDAH, ByteAcc, NoLock, Preserve)
+                    {
+                        VID0,   16, 
+                        DID0,   16
+                    }
+
+                    Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
+                    {
+                        If ((Arg0 == ToUUID ("a0b5b7c6-1318-441c-b0c9-fe695eaf949b") /* Unknown UUID */))
+                        {
+                            If (((VID0 & 0xFFFF) != 0xFFFF))
+                            {
+                                Local0 = Package (0x02)
+                                    {
+                                        "hda-gfx", 
+                                        Buffer (0x0A)
+                                        {
+                                            "onboard-1"
+                                        }
+                                    }
+                                DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
+                                Return (Local0)
+                            }
+                        }
+
+                        Return (0x80000002)
                     }
                 }
 
@@ -28384,7 +28700,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Device (BR3B)
             {
                 Name (_ADR, 0x00030001)  // _ADR: Address
-                OperationRegion (MCTL, SystemMemory, 0x80018188, 0x04)
+                OperationRegion (MCTL, SystemMemory, 0x54584946, 0x04)
                 Field (MCTL, ByteAcc, NoLock, Preserve)
                 {
                         ,   3, 
@@ -29023,7 +29339,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Device (BR3C)
             {
                 Name (_ADR, 0x00030002)  // _ADR: Address
-                OperationRegion (MCTL, SystemMemory, 0x80019188, 0x04)
+                OperationRegion (MCTL, SystemMemory, 0x54584946, 0x04)
                 Field (MCTL, ByteAcc, NoLock, Preserve)
                 {
                         ,   3, 
@@ -29662,7 +29978,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Device (BR3D)
             {
                 Name (_ADR, 0x00030003)  // _ADR: Address
-                OperationRegion (MCTL, SystemMemory, 0x8001A188, 0x04)
+                OperationRegion (MCTL, SystemMemory, 0x54584946, 0x04)
                 Field (MCTL, ByteAcc, NoLock, Preserve)
                 {
                         ,   3, 
@@ -30761,47 +31077,46 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     0x0000,             // Translation Offset
                     0x00FF,             // Length
                     ,, )
+                IO (Decode16,
+                    0x0CF8,             // Range Minimum
+                    0x0CF8,             // Range Maximum
+                    0x01,               // Alignment
+                    0x08,               // Length
+                    )
+                WordIO (ResourceProducer, MinFixed, MaxFixed, PosDecode, EntireRange,
+                    0x0000,             // Granularity
+                    0x0000,             // Range Minimum
+                    0x0CF7,             // Range Maximum
+                    0x0000,             // Translation Offset
+                    0x0CF8,             // Length
+                    ,, , TypeStatic, DenseTranslation)
+                WordIO (ResourceProducer, MinFixed, MaxFixed, PosDecode, EntireRange,
+                    0x0000,             // Granularity
+                    0x1000,             // Range Minimum
+                    0xFFFF,             // Range Maximum
+                    0x0000,             // Translation Offset
+                    0xF000,             // Length
+                    ,, , TypeStatic, DenseTranslation)
                 DWordMemory (ResourceProducer, PosDecode, MinFixed, MaxFixed, Cacheable, ReadWrite,
                     0x00000000,         // Granularity
-                    0x00000000,         // Range Minimum
-                    0x00000000,         // Range Maximum
+                    0x000A0000,         // Range Minimum
+                    0x000BFFFF,         // Range Maximum
                     0x00000000,         // Translation Offset
-                    0x00000000,         // Length
+                    0x00020000,         // Length
                     ,, , AddressRangeMemory, TypeStatic)
-                WordIO (ResourceProducer, MinFixed, MaxFixed, PosDecode, EntireRange,
-                    0x0000,             // Granularity
-                    0x4158,             // Range Minimum
-                    0x0000,             // Range Maximum
-                    0x0000,             // Translation Offset
-                    0x0001,             // Length
-                    ,, , TypeStatic, DenseTranslation)
-                WordIO (ResourceProducer, MinFixed, MaxFixed, PosDecode, EntireRange,
-                    0x0000,             // Granularity
-                    0x5758,             // Range Minimum
-                    0x0000,             // Range Maximum
-                    0x0000,             // Translation Offset
-                    0x0000,             // Length
-                    ,, , TypeStatic, DenseTranslation)
-                WordIO (ResourceProducer, MinFixed, MaxFixed, PosDecode, EntireRange,
-                    0x0000,             // Granularity
-                    0x5858,             // Range Minimum
-                    0x0000,             // Range Maximum
-                    0x0000,             // Translation Offset
-                    0x0000,             // Length
-                    ,, , TypeStatic, DenseTranslation)
                 DWordMemory (ResourceProducer, PosDecode, MinFixed, MaxFixed, NonCacheable, ReadWrite,
                     0x00000000,         // Granularity
-                    0x00000000,         // Range Minimum
-                    0x00000000,         // Range Maximum
+                    0x90000000,         // Range Minimum
+                    0xFBFFBFFF,         // Range Maximum
                     0x00000000,         // Translation Offset
-                    0x00000000,         // Length
+                    0x6BFFC000,         // Length
                     ,, , AddressRangeMemory, TypeStatic)
                 QWordMemory (ResourceProducer, PosDecode, MinFixed, MaxFixed, NonCacheable, ReadWrite,
                     0x0000000000000000, // Granularity
-                    0x0000000000000000, // Range Minimum
-                    0x0000000000000000, // Range Maximum
+                    0x0000380000000000, // Range Minimum
+                    0x0000383FFFFFFFFF, // Range Maximum
                     0x0000000000000000, // Translation Offset
-                    0x0000000000000000, // Length
+                    0x0000004000000000, // Length
                     ,, , AddressRangeMemory, TypeStatic)
             })
             Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
@@ -30835,7 +31150,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Device (QRP0)
             {
                 Name (_ADR, Zero)  // _ADR: Address
-                OperationRegion (MCTL, SystemMemory, 0x8001B188, 0x04)
+                OperationRegion (MCTL, SystemMemory, 0x54584946, 0x04)
                 Field (MCTL, ByteAcc, NoLock, Preserve)
                 {
                         ,   3, 
@@ -31460,7 +31775,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Device (QR1A)
             {
                 Name (_ADR, 0x00010000)  // _ADR: Address
-                OperationRegion (MCTL, SystemMemory, 0x80000188, 0x04)
+                OperationRegion (MCTL, SystemMemory, 0x54584946, 0x04)
                 Field (MCTL, ByteAcc, NoLock, Preserve)
                 {
                         ,   3, 
@@ -32085,7 +32400,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Device (QR1B)
             {
                 Name (_ADR, 0x00010001)  // _ADR: Address
-                OperationRegion (MCTL, SystemMemory, 0x80008188, 0x04)
+                OperationRegion (MCTL, SystemMemory, 0x54584946, 0x04)
                 Field (MCTL, ByteAcc, NoLock, Preserve)
                 {
                         ,   3, 
@@ -32710,7 +33025,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Device (QR2A)
             {
                 Name (_ADR, 0x00020000)  // _ADR: Address
-                OperationRegion (MCTL, SystemMemory, 0x80009188, 0x04)
+                OperationRegion (MCTL, SystemMemory, 0x54584946, 0x04)
                 Field (MCTL, ByteAcc, NoLock, Preserve)
                 {
                         ,   3, 
@@ -33335,7 +33650,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Device (QR2B)
             {
                 Name (_ADR, 0x00020001)  // _ADR: Address
-                OperationRegion (MCTL, SystemMemory, 0x80010188, 0x04)
+                OperationRegion (MCTL, SystemMemory, 0x54584946, 0x04)
                 Field (MCTL, ByteAcc, NoLock, Preserve)
                 {
                         ,   3, 
@@ -33960,7 +34275,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Device (QR2C)
             {
                 Name (_ADR, 0x00020002)  // _ADR: Address
-                OperationRegion (MCTL, SystemMemory, 0x80011188, 0x04)
+                OperationRegion (MCTL, SystemMemory, 0x54584946, 0x04)
                 Field (MCTL, ByteAcc, NoLock, Preserve)
                 {
                         ,   3, 
@@ -34585,7 +34900,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Device (QR2D)
             {
                 Name (_ADR, 0x00020003)  // _ADR: Address
-                OperationRegion (MCTL, SystemMemory, 0x80012188, 0x04)
+                OperationRegion (MCTL, SystemMemory, 0x54584946, 0x04)
                 Field (MCTL, ByteAcc, NoLock, Preserve)
                 {
                         ,   3, 
@@ -35210,7 +35525,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Device (QR3A)
             {
                 Name (_ADR, 0x00030000)  // _ADR: Address
-                OperationRegion (MCTL, SystemMemory, 0x80013188, 0x04)
+                OperationRegion (MCTL, SystemMemory, 0x54584946, 0x04)
                 Field (MCTL, ByteAcc, NoLock, Preserve)
                 {
                         ,   3, 
@@ -35835,7 +36150,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Device (QR3B)
             {
                 Name (_ADR, 0x00030001)  // _ADR: Address
-                OperationRegion (MCTL, SystemMemory, 0x80018188, 0x04)
+                OperationRegion (MCTL, SystemMemory, 0x54584946, 0x04)
                 Field (MCTL, ByteAcc, NoLock, Preserve)
                 {
                         ,   3, 
@@ -36460,7 +36775,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Device (QR3C)
             {
                 Name (_ADR, 0x00030002)  // _ADR: Address
-                OperationRegion (MCTL, SystemMemory, 0x80019188, 0x04)
+                OperationRegion (MCTL, SystemMemory, 0x54584946, 0x04)
                 Field (MCTL, ByteAcc, NoLock, Preserve)
                 {
                         ,   3, 
@@ -37085,7 +37400,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Device (QR3D)
             {
                 Name (_ADR, 0x00030003)  // _ADR: Address
-                OperationRegion (MCTL, SystemMemory, 0x8001A188, 0x04)
+                OperationRegion (MCTL, SystemMemory, 0x54584946, 0x04)
                 Field (MCTL, ByteAcc, NoLock, Preserve)
                 {
                         ,   3, 
@@ -38120,47 +38435,46 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     0x0000,             // Translation Offset
                     0x00FF,             // Length
                     ,, )
+                IO (Decode16,
+                    0x0CF8,             // Range Minimum
+                    0x0CF8,             // Range Maximum
+                    0x01,               // Alignment
+                    0x08,               // Length
+                    )
+                WordIO (ResourceProducer, MinFixed, MaxFixed, PosDecode, EntireRange,
+                    0x0000,             // Granularity
+                    0x0000,             // Range Minimum
+                    0x0CF7,             // Range Maximum
+                    0x0000,             // Translation Offset
+                    0x0CF8,             // Length
+                    ,, , TypeStatic, DenseTranslation)
+                WordIO (ResourceProducer, MinFixed, MaxFixed, PosDecode, EntireRange,
+                    0x0000,             // Granularity
+                    0x1000,             // Range Minimum
+                    0xFFFF,             // Range Maximum
+                    0x0000,             // Translation Offset
+                    0xF000,             // Length
+                    ,, , TypeStatic, DenseTranslation)
                 DWordMemory (ResourceProducer, PosDecode, MinFixed, MaxFixed, Cacheable, ReadWrite,
                     0x00000000,         // Granularity
-                    0x00000000,         // Range Minimum
-                    0x00000000,         // Range Maximum
+                    0x000A0000,         // Range Minimum
+                    0x000BFFFF,         // Range Maximum
                     0x00000000,         // Translation Offset
-                    0x00000000,         // Length
+                    0x00020000,         // Length
                     ,, , AddressRangeMemory, TypeStatic)
-                WordIO (ResourceProducer, MinFixed, MaxFixed, PosDecode, EntireRange,
-                    0x0000,             // Granularity
-                    0x4558,             // Range Minimum
-                    0x0000,             // Range Maximum
-                    0x0000,             // Translation Offset
-                    0x0001,             // Length
-                    ,, , TypeStatic, DenseTranslation)
-                WordIO (ResourceProducer, MinFixed, MaxFixed, PosDecode, EntireRange,
-                    0x0000,             // Granularity
-                    0x4259,             // Range Minimum
-                    0x0000,             // Range Maximum
-                    0x0000,             // Translation Offset
-                    0x0000,             // Length
-                    ,, , TypeStatic, DenseTranslation)
-                WordIO (ResourceProducer, MinFixed, MaxFixed, PosDecode, EntireRange,
-                    0x0000,             // Granularity
-                    0x4359,             // Range Minimum
-                    0x0000,             // Range Maximum
-                    0x0000,             // Translation Offset
-                    0x0000,             // Length
-                    ,, , TypeStatic, DenseTranslation)
                 DWordMemory (ResourceProducer, PosDecode, MinFixed, MaxFixed, NonCacheable, ReadWrite,
                     0x00000000,         // Granularity
-                    0x00000000,         // Range Minimum
-                    0x00000000,         // Range Maximum
+                    0x90000000,         // Range Minimum
+                    0xFBFFBFFF,         // Range Maximum
                     0x00000000,         // Translation Offset
-                    0x00000000,         // Length
+                    0x6BFFC000,         // Length
                     ,, , AddressRangeMemory, TypeStatic)
                 QWordMemory (ResourceProducer, PosDecode, MinFixed, MaxFixed, NonCacheable, ReadWrite,
                     0x0000000000000000, // Granularity
-                    0x0000000000000000, // Range Minimum
-                    0x0000000000000000, // Range Maximum
+                    0x0000380000000000, // Range Minimum
+                    0x0000383FFFFFFFFF, // Range Maximum
                     0x0000000000000000, // Translation Offset
-                    0x0000000000000000, // Length
+                    0x0000004000000000, // Length
                     ,, , AddressRangeMemory, TypeStatic)
             })
             Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
@@ -38194,7 +38508,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Device (RRP0)
             {
                 Name (_ADR, Zero)  // _ADR: Address
-                OperationRegion (MCTL, SystemMemory, 0x8001B188, 0x04)
+                OperationRegion (MCTL, SystemMemory, 0x54584946, 0x04)
                 Field (MCTL, ByteAcc, NoLock, Preserve)
                 {
                         ,   3, 
@@ -38819,7 +39133,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Device (RR1A)
             {
                 Name (_ADR, 0x00010000)  // _ADR: Address
-                OperationRegion (MCTL, SystemMemory, 0x80000188, 0x04)
+                OperationRegion (MCTL, SystemMemory, 0x54584946, 0x04)
                 Field (MCTL, ByteAcc, NoLock, Preserve)
                 {
                         ,   3, 
@@ -39444,7 +39758,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Device (RR1B)
             {
                 Name (_ADR, 0x00010001)  // _ADR: Address
-                OperationRegion (MCTL, SystemMemory, 0x80008188, 0x04)
+                OperationRegion (MCTL, SystemMemory, 0x54584946, 0x04)
                 Field (MCTL, ByteAcc, NoLock, Preserve)
                 {
                         ,   3, 
@@ -40069,7 +40383,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Device (RR2A)
             {
                 Name (_ADR, 0x00020000)  // _ADR: Address
-                OperationRegion (MCTL, SystemMemory, 0x80009188, 0x04)
+                OperationRegion (MCTL, SystemMemory, 0x54584946, 0x04)
                 Field (MCTL, ByteAcc, NoLock, Preserve)
                 {
                         ,   3, 
@@ -40694,7 +41008,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Device (RR2B)
             {
                 Name (_ADR, 0x00020001)  // _ADR: Address
-                OperationRegion (MCTL, SystemMemory, 0x80010188, 0x04)
+                OperationRegion (MCTL, SystemMemory, 0x54584946, 0x04)
                 Field (MCTL, ByteAcc, NoLock, Preserve)
                 {
                         ,   3, 
@@ -41319,7 +41633,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Device (RR2C)
             {
                 Name (_ADR, 0x00020002)  // _ADR: Address
-                OperationRegion (MCTL, SystemMemory, 0x80011188, 0x04)
+                OperationRegion (MCTL, SystemMemory, 0x54584946, 0x04)
                 Field (MCTL, ByteAcc, NoLock, Preserve)
                 {
                         ,   3, 
@@ -41944,7 +42258,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Device (RR2D)
             {
                 Name (_ADR, 0x00020003)  // _ADR: Address
-                OperationRegion (MCTL, SystemMemory, 0x80012188, 0x04)
+                OperationRegion (MCTL, SystemMemory, 0x54584946, 0x04)
                 Field (MCTL, ByteAcc, NoLock, Preserve)
                 {
                         ,   3, 
@@ -42569,7 +42883,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Device (RR3A)
             {
                 Name (_ADR, 0x00030000)  // _ADR: Address
-                OperationRegion (MCTL, SystemMemory, 0x80013188, 0x04)
+                OperationRegion (MCTL, SystemMemory, 0x54584946, 0x04)
                 Field (MCTL, ByteAcc, NoLock, Preserve)
                 {
                         ,   3, 
@@ -43194,7 +43508,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Device (RR3B)
             {
                 Name (_ADR, 0x00030001)  // _ADR: Address
-                OperationRegion (MCTL, SystemMemory, 0x80018188, 0x04)
+                OperationRegion (MCTL, SystemMemory, 0x54584946, 0x04)
                 Field (MCTL, ByteAcc, NoLock, Preserve)
                 {
                         ,   3, 
@@ -43819,7 +44133,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Device (RR3C)
             {
                 Name (_ADR, 0x00030002)  // _ADR: Address
-                OperationRegion (MCTL, SystemMemory, 0x80019188, 0x04)
+                OperationRegion (MCTL, SystemMemory, 0x54584946, 0x04)
                 Field (MCTL, ByteAcc, NoLock, Preserve)
                 {
                         ,   3, 
@@ -44444,7 +44758,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Device (RR3D)
             {
                 Name (_ADR, 0x00030003)  // _ADR: Address
-                OperationRegion (MCTL, SystemMemory, 0x8001A188, 0x04)
+                OperationRegion (MCTL, SystemMemory, 0x54584946, 0x04)
                 Field (MCTL, ByteAcc, NoLock, Preserve)
                 {
                         ,   3, 
@@ -45479,47 +45793,46 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     0x0000,             // Translation Offset
                     0x00FF,             // Length
                     ,, )
+                IO (Decode16,
+                    0x0CF8,             // Range Minimum
+                    0x0CF8,             // Range Maximum
+                    0x01,               // Alignment
+                    0x08,               // Length
+                    )
+                WordIO (ResourceProducer, MinFixed, MaxFixed, PosDecode, EntireRange,
+                    0x0000,             // Granularity
+                    0x0000,             // Range Minimum
+                    0x0CF7,             // Range Maximum
+                    0x0000,             // Translation Offset
+                    0x0CF8,             // Length
+                    ,, , TypeStatic, DenseTranslation)
+                WordIO (ResourceProducer, MinFixed, MaxFixed, PosDecode, EntireRange,
+                    0x0000,             // Granularity
+                    0x1000,             // Range Minimum
+                    0xFFFF,             // Range Maximum
+                    0x0000,             // Translation Offset
+                    0xF000,             // Length
+                    ,, , TypeStatic, DenseTranslation)
                 DWordMemory (ResourceProducer, PosDecode, MinFixed, MaxFixed, Cacheable, ReadWrite,
                     0x00000000,         // Granularity
-                    0x00000000,         // Range Minimum
-                    0x00000000,         // Range Maximum
+                    0x000A0000,         // Range Minimum
+                    0x000BFFFF,         // Range Maximum
                     0x00000000,         // Translation Offset
-                    0x00000000,         // Length
+                    0x00020000,         // Length
                     ,, , AddressRangeMemory, TypeStatic)
-                WordIO (ResourceProducer, MinFixed, MaxFixed, PosDecode, EntireRange,
-                    0x0000,             // Granularity
-                    0x4958,             // Range Minimum
-                    0x0000,             // Range Maximum
-                    0x0000,             // Translation Offset
-                    0x0001,             // Length
-                    ,, , TypeStatic, DenseTranslation)
-                WordIO (ResourceProducer, MinFixed, MaxFixed, PosDecode, EntireRange,
-                    0x0000,             // Granularity
-                    0x4559,             // Range Minimum
-                    0x0000,             // Range Maximum
-                    0x0000,             // Translation Offset
-                    0x0000,             // Length
-                    ,, , TypeStatic, DenseTranslation)
-                WordIO (ResourceProducer, MinFixed, MaxFixed, PosDecode, EntireRange,
-                    0x0000,             // Granularity
-                    0x4659,             // Range Minimum
-                    0x0000,             // Range Maximum
-                    0x0000,             // Translation Offset
-                    0x0000,             // Length
-                    ,, , TypeStatic, DenseTranslation)
                 DWordMemory (ResourceProducer, PosDecode, MinFixed, MaxFixed, NonCacheable, ReadWrite,
                     0x00000000,         // Granularity
-                    0x00000000,         // Range Minimum
-                    0x00000000,         // Range Maximum
+                    0x90000000,         // Range Minimum
+                    0xFBFFBFFF,         // Range Maximum
                     0x00000000,         // Translation Offset
-                    0x00000000,         // Length
+                    0x6BFFC000,         // Length
                     ,, , AddressRangeMemory, TypeStatic)
                 QWordMemory (ResourceProducer, PosDecode, MinFixed, MaxFixed, NonCacheable, ReadWrite,
                     0x0000000000000000, // Granularity
-                    0x0000000000000000, // Range Minimum
-                    0x0000000000000000, // Range Maximum
+                    0x0000380000000000, // Range Minimum
+                    0x0000383FFFFFFFFF, // Range Maximum
                     0x0000000000000000, // Translation Offset
-                    0x0000000000000000, // Length
+                    0x0000004000000000, // Length
                     ,, , AddressRangeMemory, TypeStatic)
             })
             Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
@@ -45553,7 +45866,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Device (SRP0)
             {
                 Name (_ADR, Zero)  // _ADR: Address
-                OperationRegion (MCTL, SystemMemory, 0x8001B188, 0x04)
+                OperationRegion (MCTL, SystemMemory, 0x54584946, 0x04)
                 Field (MCTL, ByteAcc, NoLock, Preserve)
                 {
                         ,   3, 
@@ -46178,7 +46491,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Device (SR1A)
             {
                 Name (_ADR, 0x00010000)  // _ADR: Address
-                OperationRegion (MCTL, SystemMemory, 0x80000188, 0x04)
+                OperationRegion (MCTL, SystemMemory, 0x54584946, 0x04)
                 Field (MCTL, ByteAcc, NoLock, Preserve)
                 {
                         ,   3, 
@@ -46803,7 +47116,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Device (SR1B)
             {
                 Name (_ADR, 0x00010001)  // _ADR: Address
-                OperationRegion (MCTL, SystemMemory, 0x80008188, 0x04)
+                OperationRegion (MCTL, SystemMemory, 0x54584946, 0x04)
                 Field (MCTL, ByteAcc, NoLock, Preserve)
                 {
                         ,   3, 
@@ -47428,7 +47741,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Device (SR2A)
             {
                 Name (_ADR, 0x00020000)  // _ADR: Address
-                OperationRegion (MCTL, SystemMemory, 0x80009188, 0x04)
+                OperationRegion (MCTL, SystemMemory, 0x54584946, 0x04)
                 Field (MCTL, ByteAcc, NoLock, Preserve)
                 {
                         ,   3, 
@@ -48053,7 +48366,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Device (SR2B)
             {
                 Name (_ADR, 0x00020001)  // _ADR: Address
-                OperationRegion (MCTL, SystemMemory, 0x80010188, 0x04)
+                OperationRegion (MCTL, SystemMemory, 0x54584946, 0x04)
                 Field (MCTL, ByteAcc, NoLock, Preserve)
                 {
                         ,   3, 
@@ -48678,7 +48991,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Device (SR2C)
             {
                 Name (_ADR, 0x00020002)  // _ADR: Address
-                OperationRegion (MCTL, SystemMemory, 0x80011188, 0x04)
+                OperationRegion (MCTL, SystemMemory, 0x54584946, 0x04)
                 Field (MCTL, ByteAcc, NoLock, Preserve)
                 {
                         ,   3, 
@@ -49303,7 +49616,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Device (SR2D)
             {
                 Name (_ADR, 0x00020003)  // _ADR: Address
-                OperationRegion (MCTL, SystemMemory, 0x80012188, 0x04)
+                OperationRegion (MCTL, SystemMemory, 0x54584946, 0x04)
                 Field (MCTL, ByteAcc, NoLock, Preserve)
                 {
                         ,   3, 
@@ -49928,7 +50241,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Device (SR3A)
             {
                 Name (_ADR, 0x00030000)  // _ADR: Address
-                OperationRegion (MCTL, SystemMemory, 0x80013188, 0x04)
+                OperationRegion (MCTL, SystemMemory, 0x54584946, 0x04)
                 Field (MCTL, ByteAcc, NoLock, Preserve)
                 {
                         ,   3, 
@@ -50553,7 +50866,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Device (SR3B)
             {
                 Name (_ADR, 0x00030001)  // _ADR: Address
-                OperationRegion (MCTL, SystemMemory, 0x80018188, 0x04)
+                OperationRegion (MCTL, SystemMemory, 0x54584946, 0x04)
                 Field (MCTL, ByteAcc, NoLock, Preserve)
                 {
                         ,   3, 
@@ -51178,7 +51491,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Device (SR3C)
             {
                 Name (_ADR, 0x00030002)  // _ADR: Address
-                OperationRegion (MCTL, SystemMemory, 0x80019188, 0x04)
+                OperationRegion (MCTL, SystemMemory, 0x54584946, 0x04)
                 Field (MCTL, ByteAcc, NoLock, Preserve)
                 {
                         ,   3, 
@@ -51803,7 +52116,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Device (SR3D)
             {
                 Name (_ADR, 0x00030003)  // _ADR: Address
-                OperationRegion (MCTL, SystemMemory, 0x8001A188, 0x04)
+                OperationRegion (MCTL, SystemMemory, 0x54584946, 0x04)
                 Field (MCTL, ByteAcc, NoLock, Preserve)
                 {
                         ,   3, 
@@ -52502,7 +52815,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
         Zero, 
         Zero
     })
-    Name (XS3, Package (0x04)
+    Name (_S3, Package (0x04)  // _S3_: S3 System State
     {
         0x05, 
         Zero, 
@@ -52589,7 +52902,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             If ((Local0 != 0xFF))
             {
                 Local1 = 0x02
-                Notify (\_SB.PCI0.BR1B.H000, Local0)
+                Notify (\_SB.PCI0.BR1B.NVME, Local0)
                 Notify (\_SB.PCI0.BR1B.H001, Local0)
                 Notify (\_SB.PCI0.BR1B.H002, Local0)
                 Notify (\_SB.PCI0.BR1B.H003, Local0)
@@ -52611,8 +52924,8 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             If ((Local0 != 0xFF))
             {
                 Local1 = 0x03
-                Notify (\_SB.PCI0.BR2A.H000, Local0)
-                Notify (\_SB.PCI0.BR2A.H001, Local0)
+                Notify (\_SB.PCI0.BR2A.GFX0, Local0)
+                Notify (\_SB.PCI0.BR2A.HDAU, Local0)
                 Notify (\_SB.PCI0.BR2A.H002, Local0)
                 Notify (\_SB.PCI0.BR2A.H003, Local0)
                 Notify (\_SB.PCI0.BR2A.H004, Local0)
@@ -54250,7 +54563,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
         Mutex (MUTE, 0x00)
         Method (RBPE, 1, NotSerialized)
         {
-            Acquire (MUTE, 0x03E8)
+            Acquire (MUTE, 0xFFFF)
             Local0 = (Arg0 + PEBS) /* \PEBS */
             OperationRegion (PCFG, SystemMemory, Local0, One)
             Field (PCFG, ByteAcc, NoLock, Preserve)
@@ -54264,7 +54577,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
 
         Method (RWPE, 1, NotSerialized)
         {
-            Acquire (MUTE, 0x03E8)
+            Acquire (MUTE, 0xFFFF)
             Arg0 &= 0xFFFFFFFE
             Local0 = (Arg0 + PEBS) /* \PEBS */
             OperationRegion (PCFG, SystemMemory, Local0, 0x02)
@@ -54279,7 +54592,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
 
         Method (RDPE, 1, NotSerialized)
         {
-            Acquire (MUTE, 0x03E8)
+            Acquire (MUTE, 0xFFFF)
             Arg0 &= 0xFFFFFFFC
             Local0 = (Arg0 + PEBS) /* \PEBS */
             OperationRegion (PCFG, SystemMemory, Local0, 0x04)
@@ -54294,7 +54607,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
 
         Method (WBPE, 2, NotSerialized)
         {
-            Acquire (MUTE, 0x0FFF)
+            Acquire (MUTE, 0xFFFF)
             Local0 = (Arg0 + PEBS) /* \PEBS */
             OperationRegion (PCFG, SystemMemory, Local0, One)
             Field (PCFG, ByteAcc, NoLock, Preserve)
@@ -54308,7 +54621,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
 
         Method (WWPE, 2, NotSerialized)
         {
-            Acquire (MUTE, 0x03E8)
+            Acquire (MUTE, 0xFFFF)
             Arg0 &= 0xFFFFFFFE
             Local0 = (Arg0 + PEBS) /* \PEBS */
             OperationRegion (PCFG, SystemMemory, Local0, 0x02)
@@ -54323,7 +54636,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
 
         Method (WDPE, 2, NotSerialized)
         {
-            Acquire (MUTE, 0x03E8)
+            Acquire (MUTE, 0xFFFF)
             Arg0 &= 0xFFFFFFFC
             Local0 = (Arg0 + PEBS) /* \PEBS */
             OperationRegion (PCFG, SystemMemory, Local0, 0x04)
@@ -54338,7 +54651,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
 
         Method (RWDP, 3, NotSerialized)
         {
-            Acquire (MUTE, 0x03E8)
+            Acquire (MUTE, 0xFFFF)
             Arg0 &= 0xFFFFFFFC
             Local0 = (Arg0 + PEBS) /* \PEBS */
             OperationRegion (PCFG, SystemMemory, Local0, 0x04)
