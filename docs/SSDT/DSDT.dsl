@@ -5,13 +5,13 @@
  * 
  * Disassembling to symbolic ASL+ operators
  *
- * Disassembly of Section_Raw_PlatformAcpiTable_body.aml, Thu Aug 24 23:42:16 2023
+ * Disassembly of Section_Raw_PlatformAcpiTable_body.aml, Tue Aug 29 22:12:11 2023
  *
  * Original Table Header:
  *     Signature        "DSDT"
- *     Length           0x0003128E (201358)
+ *     Length           0x0003136B (201579)
  *     Revision         0x02
- *     Checksum         0x7D
+ *     Checksum         0xF4
  *     OEM ID           "ALASKA"
  *     OEM Table ID     "A M I "
  *     OEM Revision     0x01072009 (17244169)
@@ -61,6 +61,9 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
     Name (SMBL, 0x20)
     Name (SHPC, Zero)
     Name (PICM, Zero)
+    Name (WOWE, Zero)
+    Name (TAPD, Zero)
+    Name (GP41, Zero)
     Method (_PIC, 1, NotSerialized)  // _PIC: Interrupt Model
     {
         If (Arg0)
@@ -219,6 +222,11 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             If (_OSI ("Windows 2023"))
             {
                 OSVR = 0x1D
+            }
+
+            If (_OSI ("Darwin"))
+            {
+                OSVR = 0x2710
             }
         }
         Else
@@ -18602,6 +18610,33 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Return (GPRW (0x0D, 0x04))
                 }
 
+                Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
+                {
+                    Local0 = Package (0x0F)
+                        {
+                            "AAPL,current-available", 
+                            0x0834, 
+                            "AAPL,current-extra", 
+                            0x0A8C, 
+                            "AAPL,current-extra-in-sleep", 
+                            0x0A8C, 
+                            "AAPL,max-port-current-in-sleep", 
+                            0x0834, 
+                            "AAPL,device-internal", 
+                            Zero, 
+                            "AAPL,root-hub-depth", 
+                            0x0A, 
+                            "AAPL,xhci-clock-id", 
+                            One, 
+                            Buffer (One)
+                            {
+                                 0x00                                             // .
+                            }
+                        }
+                    DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
+                    Return (Local0)
+                }
+
                 Name (OPAC, Zero)
                 Name (XRST, Zero)
                 Name (XUSB, Zero)
@@ -22854,29 +22889,53 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                 Device (ARPT)
                 {
                     Name (_ADR, Zero)  // _ADR: Address
-                    Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
+                    OperationRegion (ARE2, PCI_Config, Zero, 0xFF)
+                    Field (ARE2, ByteAcc, NoLock, Preserve)
                     {
-                        If ((Arg2 == Zero))
-                        {
-                            Return (Buffer (One)
-                            {
-                                 0x03                                             // .
-                            })
-                        }
+                        AVND,   16, 
+                        ADID,   16, 
+                        Offset (0x44), 
+                        PSTA,   2
+                    }
 
-                        Return (Package (0x02)
-                        {
-                            "built-in", 
-                            Buffer (0x0A)
-                            {
-                                "1"
-                            }
-                        })
+                    Method (_STA, 0, NotSerialized)  // _STA: Status
+                    {
+                        Return (0x0F)
                     }
 
                     Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
                     {
-                        Return (GPRW (0x0D, 0x04))
+                        If (OSFL ())
+                        {
+                            Return (Package (0x02)
+                            {
+                                0x09, 
+                                0x04
+                            })
+                        }
+                        Else
+                        {
+                            Return (Package (0x02)
+                            {
+                                0x09, 
+                                0x04
+                            })
+                        }
+                    }
+
+                    Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
+                    {
+                        Return (Zero)
+                    }
+
+                    Method (WWEN, 1, NotSerialized)
+                    {
+                        WOWE = Arg0
+                    }
+
+                    Method (PDEN, 1, NotSerialized)
+                    {
+                        TAPD = Arg0
                     }
                 }
             }
@@ -23118,29 +23177,66 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                 Device (ETH0)
                 {
                     Name (_ADR, Zero)  // _ADR: Address
+                    OperationRegion (ARE0, PCI_Config, Zero, 0x04)
+                    Field (ARE0, ByteAcc, NoLock, Preserve)
+                    {
+                        AVND,   16
+                    }
+
                     Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
                     {
-                        If ((Arg2 == Zero))
-                        {
-                            Return (Buffer (One)
+                        Local0 = Package (0x02)
                             {
-                                 0x03                                             // .
-                            })
-                        }
-
-                        Return (Package (0x02)
-                        {
-                            "built-in", 
-                            Buffer (0x0A)
-                            {
-                                "1"
+                                "location", 
+                                Buffer (0x02)
+                                {
+                                    "1"
+                                }
                             }
-                        })
+                        DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
+                        Return (Local0)
+                    }
+
+                    Method (_STA, 0, NotSerialized)  // _STA: Status
+                    {
+                        Return (0x0F)
                     }
 
                     Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
                     {
-                        Return (GPRW (0x0D, 0x04))
+                        If (OSFL ())
+                        {
+                            Return (Package (0x02)
+                            {
+                                0x09, 
+                                0x04
+                            })
+                        }
+                        Else
+                        {
+                            Return (Package (0x02)
+                            {
+                                0x09, 
+                                0x04
+                            })
+                        }
+                    }
+
+                    Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
+                    {
+                        Return (Zero)
+                    }
+
+                    Method (_PSW, 1, NotSerialized)  // _PSW: Power State Wake
+                    {
+                        If (Arg0)
+                        {
+                            GP41 = One
+                        }
+                        Else
+                        {
+                            GP41 = Zero
+                        }
                     }
                 }
 
@@ -54774,39 +54870,6 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     0x04,               // Length
                     )
             })
-            Method (_STA, 0, NotSerialized)  // _STA: Status
-            {
-                If (_OSI ("Darwin"))
-                {
-                    Return (0x0F)
-                }
-                Else
-                {
-                    Return (Zero)
-                }
-            }
-        }
-
-        Device (USBX)
-        {
-            Name (_ADR, Zero)  // _ADR: Address
-            Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
-            {
-                Local0 = Package (0x08)
-                    {
-                        "kUSBSleepPowerSupply", 
-                        0x13EC, 
-                        "kUSBSleepPortCurrentLimit", 
-                        0x0834, 
-                        "kUSBWakePowerSupply", 
-                        0x13EC, 
-                        "kUSBWakePortCurrentLimit", 
-                        0x0834
-                    }
-                DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
-                Return (Local0)
-            }
-
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
                 If (_OSI ("Darwin"))
