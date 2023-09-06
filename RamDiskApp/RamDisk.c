@@ -18,30 +18,12 @@
 #include <Library/BaseLib.h>
 #include <Library/UefiLib.h>
 #include <Library/PrintLib.h>
-// #include <Library/ShellCEntryLib.h>
 #include <Protocol/RamDisk.h>
 #include <Protocol/DevicePathToText.h>
-// #include <Protocol/EfiShell.h>
-// #include <Library/ShellLib.h>
 #include "diskimage-16MB.h"
 
 extern EFI_BOOT_SERVICES         *gBS;
-/*
-EFI_GUID gEfiVirtualDiskGuid =
-           { 0x77AB535A, 0x45FC, 0x624B,
-                {0x55, 0x60, 0xF7, 0xB2, 0x81, 0xD1, 0xF9, 0x6E }};
-   */
-/**
-  The user Entry Point for Application. The user code starts with this function
-  as the real entry point for the application.
 
-  @param[in] ImageHandle    The firmware allocated handle for the EFI image.  
-  @param[in] SystemTable    A pointer to the EFI System Table.
-  
-  @retval EFI_SUCCESS       The entry point is executed successfully.
-  @retval other             Some error occurs when executing this entry point.
-
-**/
 EFI_STATUS
 EFIAPI
 UefiMain (
@@ -53,11 +35,11 @@ UefiMain (
       EFI_RAM_DISK_PROTOCOL    *RamDiskApp;
       EFI_DEVICE_PATH_PROTOCOL *DevicePath;
 
-      // Look for Ram Disk Protocol
+      // 寻找Ram-Disk协议
       Status = gBS->LocateProtocol (
                       &gEfiRamDiskProtocolGuid,
                       NULL,
-                      &RamDiskApp
+                      (VOID **)&RamDiskApp
                );
       if (EFI_ERROR (Status)) {
           Print(L"Couldn't find RamDiskProtocol\n");
@@ -65,7 +47,7 @@ UefiMain (
       }
 
       //
-      // Register the newly created RAM disk.
+      // 注册新的RAM 磁盘驱动
       //
       Status = RamDiskApp->Register (
            ((UINT64)(UINTN) hda_img),
