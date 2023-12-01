@@ -7,9 +7,9 @@
 		<key>Build-Type</key>
 		<string>OpenCore</string>
 		<key>Build-Version</key>
-		<string>20230804-v1.0</string>
+		<string>20231201-v1.0</string>
 		<key>OpenCore-Version</key>
-		<string>0.9.4</string>
+		<string>0.9.7</string>
 		<key>Original-Model</key>
 		<string>MacPro7,1</string>
 		<key>Spoofed-Model</key>
@@ -104,6 +104,8 @@
 			<true/>
 			<key>EnableWriteUnprotector</key>
 			<true/>
+			<key>FixupAppleEfiImages</key>
+			<false/>
 			<key>ForceBooterSignature</key>
 			<false/>
 			<key>ForceExitBootServices</key>
@@ -1202,6 +1204,8 @@
 			<key>ResizeGpuBars</key>
 			<integer>-1</integer>
 			<key>ResizeUsePciRbIo</key>
+			<false/>
+			<key>ShimRetainProtocol</key>
 			<false/>
 			<key>TscSyncTimeout</key>
 			<integer>0</integer>
