@@ -5,13 +5,13 @@
  * 
  * Disassembling to symbolic ASL+ operators
  *
- * Disassembly of Section_Raw_PlatformAcpiTable_body.aml, Tue Aug 29 22:12:11 2023
+ * Disassembly of DSDT.aml, Tue Dec  5 12:35:28 2023
  *
  * Original Table Header:
  *     Signature        "DSDT"
- *     Length           0x0003136B (201579)
+ *     Length           0x00031342 (201538)
  *     Revision         0x02
- *     Checksum         0xF4
+ *     Checksum         0x67
  *     OEM ID           "ALASKA"
  *     OEM Table ID     "A M I "
  *     OEM Revision     0x01072009 (17244169)
@@ -23989,7 +23989,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
 
             Device (DMI0)
             {
-                Name (_ADR, Zero)  // _ADR: Address
+                Name (_ADR, One)  // _ADR: Address
             }
 
             Device (BR1A)
@@ -30756,22 +30756,6 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                 Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
                 {
                     Return (GPRW (0x0D, 0x04))
-                }
-            }
-
-            Device (MCHC)
-            {
-                Name (_ADR, Zero)  // _ADR: Address
-                Method (_STA, 0, NotSerialized)  // _STA: Status
-                {
-                    If (_OSI ("Darwin"))
-                    {
-                        Return (0x0F)
-                    }
-                    Else
-                    {
-                        Return (Zero)
-                    }
                 }
             }
 
