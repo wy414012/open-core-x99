@@ -5,13 +5,13 @@
  * 
  * Disassembling to symbolic ASL+ operators
  *
- * Disassembly of DSDT.aml, Tue Dec  5 12:35:28 2023
+ * Disassembly of Section_Raw_PlatformAcpiTable_body.aml, Sun Dec 10 12:47:20 2023
  *
  * Original Table Header:
  *     Signature        "DSDT"
- *     Length           0x00031342 (201538)
+ *     Length           0x000308CF (198863)
  *     Revision         0x02
- *     Checksum         0x67
+ *     Checksum         0x77
  *     OEM ID           "ALASKA"
  *     OEM Table ID     "A M I "
  *     OEM Revision     0x01072009 (17244169)
@@ -61,9 +61,6 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
     Name (SMBL, 0x20)
     Name (SHPC, Zero)
     Name (PICM, Zero)
-    Name (WOWE, Zero)
-    Name (TAPD, Zero)
-    Name (GP41, Zero)
     Method (_PIC, 1, NotSerialized)  // _PIC: Interrupt Model
     {
         If (Arg0)
@@ -94,12 +91,12 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
         OSVR = 0x03
         If (CondRefOf (\_OSI))
         {
-            If (_OSI ("Windows 2000"))
+            If (_OSI ("Windows 2001"))
             {
                 OSVR = 0x04
             }
 
-            If (_OSI ("Windows 2001"))
+            If (_OSI ("Windows 2001.1"))
             {
                 OSVR = 0x05
             }
@@ -124,109 +121,39 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                 OSVR = 0x09
             }
 
-            If (_OSI ("Windows 2001.1"))
+            If (_OSI ("Windows 2001 SP2"))
             {
                 OSVR = 0x0A
             }
 
-            If (_OSI ("Windows 2001 SP2"))
+            If (_OSI ("Windows 2001 SP3"))
             {
                 OSVR = 0x0B
             }
 
-            If (_OSI ("Windows 2001.1 SP1"))
+            If (_OSI ("Windows 2006"))
             {
                 OSVR = 0x0C
             }
 
-            If (_OSI ("Windows 2006"))
+            If (_OSI ("Windows 2006 SP1"))
             {
                 OSVR = 0x0D
             }
 
-            If (_OSI ("Windows 2006 SP1"))
+            If (_OSI ("Windows 2009"))
             {
                 OSVR = 0x0E
             }
 
-            If (_OSI ("Windows 2006.1"))
+            If (_OSI ("Windows 2012"))
             {
                 OSVR = 0x0F
             }
 
-            If (_OSI ("Windows 2009"))
-            {
-                OSVR = 0x10
-            }
-
-            If (_OSI ("Windows 2012"))
-            {
-                OSVR = 0x11
-            }
-
             If (_OSI ("Windows 2013"))
             {
-                OSVR = 0x12
-            }
-
-            If (_OSI ("Windows 2015"))
-            {
-                OSVR = 0x13
-            }
-
-            If (_OSI ("Windows 2016"))
-            {
-                OSVR = 0x14
-            }
-
-            If (_OSI ("Windows 2017"))
-            {
-                OSVR = 0x15
-            }
-
-            If (_OSI ("Windows 2017.2"))
-            {
-                OSVR = 0x16
-            }
-
-            If (_OSI ("Windows 2018"))
-            {
-                OSVR = 0x17
-            }
-
-            If (_OSI ("Windows 2018.2"))
-            {
-                OSVR = 0x18
-            }
-
-            If (_OSI ("Windows 2019"))
-            {
-                OSVR = 0x19
-            }
-
-            If (_OSI ("Windows 2020"))
-            {
-                OSVR = 0x1A
-            }
-
-            If (_OSI ("Windows 2021"))
-            {
-                OSVR = 0x1B
-            }
-
-            If (_OSI ("Windows 2022"))
-            {
-                OSVR = 0x1C
-            }
-
-            If (_OSI ("Windows 2023"))
-            {
-                OSVR = 0x1D
-            }
-
-            If (_OSI ("Darwin"))
-            {
-                OSVR = 0x2710
+                OSVR = 0x10
             }
         }
         Else
@@ -12667,28 +12594,12 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
         Alias (PRSA, PRSF)
         Alias (PRSA, PRSG)
         Alias (PRSA, PRSH)
-        Name (PG10, Package (0x04)
+        Name (PG12, Package (0x04)
         {
             Package (0x04)
             {
                 0xFFFF, 
                 Zero, 
-                LNKA, 
-                Zero
-            }, 
-
-            Package (0x04)
-            {
-                0xFFFF, 
-                One, 
-                LNKB, 
-                Zero
-            }, 
-
-            Package (0x04)
-            {
-                0xFFFF, 
-                0x02, 
                 LNKC, 
                 Zero
             }, 
@@ -12696,33 +12607,33 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Package (0x04)
             {
                 0xFFFF, 
-                0x03, 
+                One, 
                 LNKD, 
                 Zero
-            }
-        })
-        Name (AG10, Package (0x04)
-        {
-            Package (0x04)
-            {
-                0xFFFF, 
-                Zero, 
-                Zero, 
-                0x10
-            }, 
-
-            Package (0x04)
-            {
-                0xFFFF, 
-                One, 
-                Zero, 
-                0x11
             }, 
 
             Package (0x04)
             {
                 0xFFFF, 
                 0x02, 
+                LNKA, 
+                Zero
+            }, 
+
+            Package (0x04)
+            {
+                0xFFFF, 
+                0x03, 
+                LNKB, 
+                Zero
+            }
+        })
+        Name (AG12, Package (0x04)
+        {
+            Package (0x04)
+            {
+                0xFFFF, 
+                Zero, 
                 Zero, 
                 0x12
             }, 
@@ -12730,17 +12641,49 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Package (0x04)
             {
                 0xFFFF, 
-                0x03, 
+                One, 
                 Zero, 
                 0x13
+            }, 
+
+            Package (0x04)
+            {
+                0xFFFF, 
+                0x02, 
+                Zero, 
+                0x10
+            }, 
+
+            Package (0x04)
+            {
+                0xFFFF, 
+                0x03, 
+                Zero, 
+                0x11
             }
         })
-        Name (PG15, Package (0x04)
+        Name (PG13, Package (0x04)
         {
             Package (0x04)
             {
                 0xFFFF, 
                 Zero, 
+                LNKD, 
+                Zero
+            }, 
+
+            Package (0x04)
+            {
+                0xFFFF, 
+                One, 
+                LNKA, 
+                Zero
+            }, 
+
+            Package (0x04)
+            {
+                0xFFFF, 
+                0x02, 
                 LNKB, 
                 Zero
             }, 
@@ -12748,49 +12691,17 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Package (0x04)
             {
                 0xFFFF, 
-                One, 
-                LNKC, 
-                Zero
-            }, 
-
-            Package (0x04)
-            {
-                0xFFFF, 
-                0x02, 
-                LNKD, 
-                Zero
-            }, 
-
-            Package (0x04)
-            {
-                0xFFFF, 
                 0x03, 
-                LNKA, 
+                LNKC, 
                 Zero
             }
         })
-        Name (AG15, Package (0x04)
+        Name (AG13, Package (0x04)
         {
             Package (0x04)
             {
                 0xFFFF, 
                 Zero, 
-                Zero, 
-                0x11
-            }, 
-
-            Package (0x04)
-            {
-                0xFFFF, 
-                One, 
-                Zero, 
-                0x12
-            }, 
-
-            Package (0x04)
-            {
-                0xFFFF, 
-                0x02, 
                 Zero, 
                 0x13
             }, 
@@ -12798,9 +12709,25 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Package (0x04)
             {
                 0xFFFF, 
-                0x03, 
+                One, 
                 Zero, 
                 0x10
+            }, 
+
+            Package (0x04)
+            {
+                0xFFFF, 
+                0x02, 
+                Zero, 
+                0x11
+            }, 
+
+            Package (0x04)
+            {
+                0xFFFF, 
+                0x03, 
+                Zero, 
+                0x12
             }
         })
         Name (PG16, Package (0x04)
@@ -12871,75 +12798,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                 0x11
             }
         })
-        Name (PG17, Package (0x04)
-        {
-            Package (0x04)
-            {
-                0xFFFF, 
-                Zero, 
-                LNKD, 
-                Zero
-            }, 
-
-            Package (0x04)
-            {
-                0xFFFF, 
-                One, 
-                LNKA, 
-                Zero
-            }, 
-
-            Package (0x04)
-            {
-                0xFFFF, 
-                0x02, 
-                LNKB, 
-                Zero
-            }, 
-
-            Package (0x04)
-            {
-                0xFFFF, 
-                0x03, 
-                LNKC, 
-                Zero
-            }
-        })
-        Name (AG17, Package (0x04)
-        {
-            Package (0x04)
-            {
-                0xFFFF, 
-                Zero, 
-                Zero, 
-                0x13
-            }, 
-
-            Package (0x04)
-            {
-                0xFFFF, 
-                One, 
-                Zero, 
-                0x10
-            }, 
-
-            Package (0x04)
-            {
-                0xFFFF, 
-                0x02, 
-                Zero, 
-                0x11
-            }, 
-
-            Package (0x04)
-            {
-                0xFFFF, 
-                0x03, 
-                Zero, 
-                0x12
-            }
-        })
-        Name (PR00, Package (0x25)
+        Name (PD00, Package (0x24)
         {
             Package (0x04)
             {
@@ -13227,17 +13086,9 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                 0x03, 
                 LNKD, 
                 Zero
-            }, 
-
-            Package (0x04)
-            {
-                0x0019FFFF, 
-                Zero, 
-                LNKE, 
-                Zero
             }
         })
-        Name (AR00, Package (0x25)
+        Name (AR00, Package (0x24)
         {
             Package (0x04)
             {
@@ -13525,14 +13376,6 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                 0x03, 
                 Zero, 
                 0x27
-            }, 
-
-            Package (0x04)
-            {
-                0x0019FFFF, 
-                Zero, 
-                Zero, 
-                0x14
             }
         })
         Name (PG20, Package (0x04)
@@ -14215,7 +14058,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                 0x2D
             }
         })
-        Name (PR80, Package (0x14)
+        Name (PD80, Package (0x14)
         {
             Package (0x04)
             {
@@ -14539,7 +14382,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                 0x3F
             }
         })
-        Name (PRC0, Package (0x14)
+        Name (PDC0, Package (0x14)
         {
             Package (0x04)
             {
@@ -14863,7 +14706,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                 0x57
             }
         })
-        Name (PRE0, Package (0x14)
+        Name (PDE0, Package (0x14)
         {
             Package (0x04)
             {
@@ -15214,7 +15057,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Return (AR00) /* \_SB_.AR00 */
                 }
 
-                Return (PR00) /* \_SB_.PR00 */
+                Return (PD00) /* \_SB_.PD00 */
             }
 
             Method (_OSC, 4, Serialized)  // _OSC: Operating System Capabilities
@@ -15662,7 +15505,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     })
                 }
 
-                Device (RTC)
+                Device (RTC0)
                 {
                     Name (_HID, EisaId ("PNP0B00") /* AT Real-Time Clock */)  // _HID: Hardware ID
                     Name (_CRS, ResourceTemplate ()  // _CRS: Current Resource Settings
@@ -16373,7 +16216,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Mutex (MUT0, 0x00)
                     Method (ENFG, 1, NotSerialized)
                     {
-                        Acquire (MUT0, 0xFFFF)
+                        Acquire (MUT0, 0x0FFF)
                         INDX = ENTK /* \ENTK */
                         INDX = ENTK /* \ENTK */
                         LDN = Arg0
@@ -17114,17 +16957,6 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                         Return (Zero)
                     }
                 }
-
-                Device (CIRW)
-                {
-                    Name (_HID, EisaId ("PNP0C08") /* ACPI Core Hardware */)  // _HID: Hardware ID
-                    Name (_UID, 0x02)  // _UID: Unique ID
-                    Name (LDN, 0x0E)
-                    Method (_STA, 0, NotSerialized)  // _STA: Status
-                    {
-                        Return (Zero)
-                    }
-                }
             }
 
             Device (IP2P)
@@ -17854,20 +17686,6 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                             Return (ATA1) /* \_SB_.PCI0.SAT1.SECD.SLAV._GTF.ATA1 */
                         }
                     }
-                }
-
-                Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
-                {
-                    Local0 = Package (0x02)
-                        {
-                            "built-in", 
-                            Buffer (0x02)
-                            {
-                                "1"
-                            }
-                        }
-                    DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
-                    Return (Local0)
                 }
             }
 
@@ -18608,33 +18426,6 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                 Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
                 {
                     Return (GPRW (0x0D, 0x04))
-                }
-
-                Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
-                {
-                    Local0 = Package (0x0F)
-                        {
-                            "AAPL,current-available", 
-                            0x0834, 
-                            "AAPL,current-extra", 
-                            0x0A8C, 
-                            "AAPL,current-extra-in-sleep", 
-                            0x0A8C, 
-                            "AAPL,max-port-current-in-sleep", 
-                            0x0834, 
-                            "AAPL,device-internal", 
-                            Zero, 
-                            "AAPL,root-hub-depth", 
-                            0x0A, 
-                            "AAPL,xhci-clock-id", 
-                            One, 
-                            Buffer (One)
-                            {
-                                 0x00                                             // .
-                            }
-                        }
-                    DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
-                    Return (Local0)
                 }
 
                 Name (OPAC, Zero)
@@ -22610,21 +22401,6 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                 {
                     Return (GPRW (0x09, 0x04))
                 }
-
-                Method (_PRT, 0, NotSerialized)  // _PRT: PCI Routing Table
-                {
-                    If (PICM)
-                    {
-                        Return (AG10) /* \_SB_.AG10 */
-                    }
-
-                    Return (PG10) /* \_SB_.PG10 */
-                }
-
-                Device (D073)
-                {
-                    Name (_ADR, 0xFF)  // _ADR: Address
-                }
             }
 
             Device (RP02)
@@ -22755,6 +22531,21 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                 {
                     Return (GPRW (0x09, 0x04))
                 }
+
+                Method (_PRT, 0, NotSerialized)  // _PRT: PCI Routing Table
+                {
+                    If (PICM)
+                    {
+                        Return (AG12) /* \_SB_.AG12 */
+                    }
+
+                    Return (PG12) /* \_SB_.PG12 */
+                }
+
+                Device (D07A)
+                {
+                    Name (_ADR, Zero)  // _ADR: Address
+                }
             }
 
             Device (RP04)
@@ -22819,6 +22610,21 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                 Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
                 {
                     Return (GPRW (0x09, 0x04))
+                }
+
+                Method (_PRT, 0, NotSerialized)  // _PRT: PCI Routing Table
+                {
+                    If (PICM)
+                    {
+                        Return (AG13) /* \_SB_.AG13 */
+                    }
+
+                    Return (PG13) /* \_SB_.PG13 */
+                }
+
+                Device (D07B)
+                {
+                    Name (_ADR, Zero)  // _ADR: Address
                 }
             }
 
@@ -22885,59 +22691,6 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                 {
                     Return (GPRW (0x09, 0x04))
                 }
-
-                Device (ARPT)
-                {
-                    Name (_ADR, Zero)  // _ADR: Address
-                    OperationRegion (ARE2, PCI_Config, Zero, 0xFF)
-                    Field (ARE2, ByteAcc, NoLock, Preserve)
-                    {
-                        AVND,   16, 
-                        ADID,   16, 
-                        Offset (0x44), 
-                        PSTA,   2
-                    }
-
-                    Method (_STA, 0, NotSerialized)  // _STA: Status
-                    {
-                        Return (0x0F)
-                    }
-
-                    Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
-                    {
-                        If (OSFL ())
-                        {
-                            Return (Package (0x02)
-                            {
-                                0x09, 
-                                0x04
-                            })
-                        }
-                        Else
-                        {
-                            Return (Package (0x02)
-                            {
-                                0x09, 
-                                0x04
-                            })
-                        }
-                    }
-
-                    Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
-                    {
-                        Return (Zero)
-                    }
-
-                    Method (WWEN, 1, NotSerialized)
-                    {
-                        WOWE = Arg0
-                    }
-
-                    Method (PDEN, 1, NotSerialized)
-                    {
-                        TAPD = Arg0
-                    }
-                }
             }
 
             Device (RP06)
@@ -23002,21 +22755,6 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                 Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
                 {
                     Return (GPRW (0x09, 0x04))
-                }
-
-                Method (_PRT, 0, NotSerialized)  // _PRT: PCI Routing Table
-                {
-                    If (PICM)
-                    {
-                        Return (AG15) /* \_SB_.AG15 */
-                    }
-
-                    Return (PG15) /* \_SB_.PG15 */
-                }
-
-                Device (D072)
-                {
-                    Name (_ADR, 0xFF)  // _ADR: Address
                 }
             }
 
@@ -23094,9 +22832,9 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Return (PG16) /* \_SB_.PG16 */
                 }
 
-                Device (D074)
+                Device (D07C)
                 {
-                    Name (_ADR, 0xFFFF)  // _ADR: Address
+                    Name (_ADR, 0xFF)  // _ADR: Address
                 }
             }
 
@@ -23163,87 +22901,6 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                 {
                     Return (GPRW (0x09, 0x04))
                 }
-
-                Method (_PRT, 0, NotSerialized)  // _PRT: PCI Routing Table
-                {
-                    If (PICM)
-                    {
-                        Return (AG17) /* \_SB_.AG17 */
-                    }
-
-                    Return (PG17) /* \_SB_.PG17 */
-                }
-
-                Device (ETH0)
-                {
-                    Name (_ADR, Zero)  // _ADR: Address
-                    OperationRegion (ARE0, PCI_Config, Zero, 0x04)
-                    Field (ARE0, ByteAcc, NoLock, Preserve)
-                    {
-                        AVND,   16
-                    }
-
-                    Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
-                    {
-                        Local0 = Package (0x02)
-                            {
-                                "location", 
-                                Buffer (0x02)
-                                {
-                                    "1"
-                                }
-                            }
-                        DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
-                        Return (Local0)
-                    }
-
-                    Method (_STA, 0, NotSerialized)  // _STA: Status
-                    {
-                        Return (0x0F)
-                    }
-
-                    Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
-                    {
-                        If (OSFL ())
-                        {
-                            Return (Package (0x02)
-                            {
-                                0x09, 
-                                0x04
-                            })
-                        }
-                        Else
-                        {
-                            Return (Package (0x02)
-                            {
-                                0x09, 
-                                0x04
-                            })
-                        }
-                    }
-
-                    Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
-                    {
-                        Return (Zero)
-                    }
-
-                    Method (_PSW, 1, NotSerialized)  // _PSW: Power State Wake
-                    {
-                        If (Arg0)
-                        {
-                            GP41 = One
-                        }
-                        Else
-                        {
-                            GP41 = Zero
-                        }
-                    }
-                }
-
-                Device (D071)
-                {
-                    Name (_ADR, 0xFF)  // _ADR: Address
-                }
             }
 
             Device (EVMR)
@@ -23251,22 +22908,22 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                 Name (_ADR, 0x00110000)  // _ADR: Address
             }
 
-            Device (SSD1)
+            Device (EVS0)
             {
                 Name (_ADR, 0x00110001)  // _ADR: Address
             }
 
-            Device (SSD2)
+            Device (EVS1)
             {
                 Name (_ADR, 0x00110002)  // _ADR: Address
             }
 
-            Device (SSD3)
+            Device (EVS2)
             {
                 Name (_ADR, 0x00110003)  // _ADR: Address
             }
 
-            Device (SSD4)
+            Device (EVSS)
             {
                 Name (_ADR, 0x00110004)  // _ADR: Address
                 OperationRegion (IDER, PCI_Config, 0x40, 0x20)
@@ -23394,7 +23051,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     CreateByteField (PBUF, 0x04, PIOT)
                     If (((Arg0 == Zero) || (Arg0 == 0xFFFFFFFF)))
                     {
-                        Return (PBUF) /* \_SB_.PCI0.SSD4.SPIO.PBUF */
+                        Return (PBUF) /* \_SB_.PCI0.EVSS.SPIO.PBUF */
                     }
 
                     If ((Arg0 > 0xF0))
@@ -23428,7 +23085,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                         }
                     }
 
-                    Return (PBUF) /* \_SB_.PCI0.SSD4.SPIO.PBUF */
+                    Return (PBUF) /* \_SB_.PCI0.EVSS.SPIO.PBUF */
                 }
 
                 Method (SDMA, 3, NotSerialized)
@@ -23444,7 +23101,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     CreateByteField (PBUF, 0x04, DMAT)
                     If (((Arg0 == Zero) || (Arg0 == 0xFFFFFFFF)))
                     {
-                        Return (PBUF) /* \_SB_.PCI0.SSD4.SDMA.PBUF */
+                        Return (PBUF) /* \_SB_.PCI0.EVSS.SDMA.PBUF */
                     }
 
                     If ((Arg0 <= 0x78))
@@ -23495,7 +23152,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                         }
                     }
 
-                    Return (PBUF) /* \_SB_.PCI0.SSD4.SDMA.PBUF */
+                    Return (PBUF) /* \_SB_.PCI0.EVSS.SDMA.PBUF */
                 }
 
                 Device (PRID)
@@ -23530,32 +23187,32 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
 
                         If ((PIO0 == 0xFFFFFFFF))
                         {
-                            DMA0 = PIO0 /* \_SB_.PCI0.SSD4.PRID._GTM.PIO0 */
+                            DMA0 = PIO0 /* \_SB_.PCI0.EVSS.PRID._GTM.PIO0 */
                         }
                         Else
                         {
                             DMA0 = GDMA (UDM0, PUM0, PCB0, (PCCR & One), PCT0)
                             If ((DMA0 > PIO0))
                             {
-                                DMA0 = PIO0 /* \_SB_.PCI0.SSD4.PRID._GTM.PIO0 */
+                                DMA0 = PIO0 /* \_SB_.PCI0.EVSS.PRID._GTM.PIO0 */
                             }
                         }
 
                         If ((PIO1 == 0xFFFFFFFF))
                         {
-                            DMA1 = PIO1 /* \_SB_.PCI0.SSD4.PRID._GTM.PIO1 */
+                            DMA1 = PIO1 /* \_SB_.PCI0.EVSS.PRID._GTM.PIO1 */
                         }
                         Else
                         {
                             DMA1 = GDMA (UDM1, PUM1, PCB1, (PCCR & 0x02), PCT1)
                             If ((DMA1 > PIO1))
                             {
-                                DMA1 = PIO1 /* \_SB_.PCI0.SSD4.PRID._GTM.PIO1 */
+                                DMA1 = PIO1 /* \_SB_.PCI0.EVSS.PRID._GTM.PIO1 */
                             }
                         }
 
                         FLAG = SFLG (PIE0, UDM0, PIE1, UDM1, One)
-                        Return (PBUF) /* \_SB_.PCI0.SSD4.PRID._GTM.PBUF */
+                        Return (PBUF) /* \_SB_.PCI0.EVSS.PRID._GTM.PBUF */
                     }
 
                     Method (_STM, 3, NotSerialized)  // _STM: Set Timing Mode
@@ -23597,39 +23254,39 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                         IOTM = SPIO (PIO0, RPS0, IOM0)
                         If ((DMAE | FAST))
                         {
-                            PRT0 = RCT /* \_SB_.PCI0.SSD4.PRID._STM.RCT_ */
-                            PIP0 = ISP /* \_SB_.PCI0.SSD4.PRID._STM.ISP_ */
-                            PFT0 = FAST /* \_SB_.PCI0.SSD4.PRID._STM.FAST */
-                            PDE0 = DMAE /* \_SB_.PCI0.SSD4.PRID._STM.DMAE */
-                            TPI0 = TPIO /* \_SB_.PCI0.SSD4.PRID._STM.TPIO */
+                            PRT0 = RCT /* \_SB_.PCI0.EVSS.PRID._STM.RCT_ */
+                            PIP0 = ISP /* \_SB_.PCI0.EVSS.PRID._STM.ISP_ */
+                            PFT0 = FAST /* \_SB_.PCI0.EVSS.PRID._STM.FAST */
+                            PDE0 = DMAE /* \_SB_.PCI0.EVSS.PRID._STM.DMAE */
+                            TPI0 = TPIO /* \_SB_.PCI0.EVSS.PRID._STM.TPIO */
                         }
 
                         IOTM = SPIO (PIO1, RPS1, IOM1)
                         If ((DMAE | FAST))
                         {
-                            PFT1 = FAST /* \_SB_.PCI0.SSD4.PRID._STM.FAST */
-                            PDE1 = DMAE /* \_SB_.PCI0.SSD4.PRID._STM.DMAE */
-                            TPI1 = TPIO /* \_SB_.PCI0.SSD4.PRID._STM.TPIO */
+                            PFT1 = FAST /* \_SB_.PCI0.EVSS.PRID._STM.FAST */
+                            PDE1 = DMAE /* \_SB_.PCI0.EVSS.PRID._STM.DMAE */
+                            TPI1 = TPIO /* \_SB_.PCI0.EVSS.PRID._STM.TPIO */
                             If ((PSIT & One))
                             {
-                                PRT1 = RCT /* \_SB_.PCI0.SSD4.PRID._STM.RCT_ */
-                                PIP1 = ISP /* \_SB_.PCI0.SSD4.PRID._STM.ISP_ */
+                                PRT1 = RCT /* \_SB_.PCI0.EVSS.PRID._STM.RCT_ */
+                                PIP1 = ISP /* \_SB_.PCI0.EVSS.PRID._STM.ISP_ */
                             }
                             Else
                             {
-                                PRT0 = RCT /* \_SB_.PCI0.SSD4.PRID._STM.RCT_ */
-                                PIP0 = ISP /* \_SB_.PCI0.SSD4.PRID._STM.ISP_ */
+                                PRT0 = RCT /* \_SB_.PCI0.EVSS.PRID._STM.RCT_ */
+                                PIP0 = ISP /* \_SB_.PCI0.EVSS.PRID._STM.ISP_ */
                             }
                         }
 
                         If ((FLAG & One))
                         {
                             DMAT = SDMA (DMA0, RPS0, DMM0)
-                            PCT0 = PCT /* \_SB_.PCI0.SSD4.PRID._STM.PCT_ */
-                            PCB0 = PCB /* \_SB_.PCI0.SSD4.PRID._STM.PCB_ */
-                            UDM0 = UDME /* \_SB_.PCI0.SSD4.PRID._STM.UDME */
-                            PUM0 = UDMT /* \_SB_.PCI0.SSD4.PRID._STM.UDMT */
-                            TDM0 = TDMA /* \_SB_.PCI0.SSD4.PRID._STM.TDMA */
+                            PCT0 = PCT /* \_SB_.PCI0.EVSS.PRID._STM.PCT_ */
+                            PCB0 = PCB /* \_SB_.PCI0.EVSS.PRID._STM.PCB_ */
+                            UDM0 = UDME /* \_SB_.PCI0.EVSS.PRID._STM.UDME */
+                            PUM0 = UDMT /* \_SB_.PCI0.EVSS.PRID._STM.UDMT */
+                            TDM0 = TDMA /* \_SB_.PCI0.EVSS.PRID._STM.TDMA */
                         }
                         Else
                         {
@@ -23639,11 +23296,11 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                         If ((FLAG & 0x04))
                         {
                             DMAT = SDMA (DMA1, RPS1, DMM1)
-                            PCT1 = PCT /* \_SB_.PCI0.SSD4.PRID._STM.PCT_ */
-                            PCB1 = PCB /* \_SB_.PCI0.SSD4.PRID._STM.PCB_ */
-                            UDM1 = UDME /* \_SB_.PCI0.SSD4.PRID._STM.UDME */
-                            PUM1 = UDMT /* \_SB_.PCI0.SSD4.PRID._STM.UDMT */
-                            TDM1 = TDMA /* \_SB_.PCI0.SSD4.PRID._STM.TDMA */
+                            PCT1 = PCT /* \_SB_.PCI0.EVSS.PRID._STM.PCT_ */
+                            PCB1 = PCB /* \_SB_.PCI0.EVSS.PRID._STM.PCB_ */
+                            UDM1 = UDME /* \_SB_.PCI0.EVSS.PRID._STM.UDME */
+                            PUM1 = UDMT /* \_SB_.PCI0.EVSS.PRID._STM.UDMT */
+                            TDM1 = TDMA /* \_SB_.PCI0.EVSS.PRID._STM.TDMA */
                         }
                         Else
                         {
@@ -23673,16 +23330,16 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                             })
                             CreateByteField (ATA0, One, PIO0)
                             CreateByteField (ATA0, 0x08, DMA0)
-                            PIO0 = TPI0 /* \_SB_.PCI0.SSD4.PRID.TPI0 */
+                            PIO0 = TPI0 /* \_SB_.PCI0.EVSS.PRID.TPI0 */
                             PIO0 |= 0x08
                             If ((UDM0 & One))
                             {
-                                DMA0 = TDM0 /* \_SB_.PCI0.SSD4.PRID.TDM0 */
+                                DMA0 = TDM0 /* \_SB_.PCI0.EVSS.PRID.TDM0 */
                                 DMA0 |= 0x40
                             }
                             Else
                             {
-                                DMA0 = TPI0 /* \_SB_.PCI0.SSD4.PRID.TPI0 */
+                                DMA0 = TPI0 /* \_SB_.PCI0.EVSS.PRID.TPI0 */
                                 If ((DMA0 != Zero))
                                 {
                                     DMA0 -= 0x02
@@ -23691,7 +23348,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                                 DMA0 |= 0x20
                             }
 
-                            Return (ATA0) /* \_SB_.PCI0.SSD4.PRID.MAST._GTF.ATA0 */
+                            Return (ATA0) /* \_SB_.PCI0.EVSS.PRID.MAST._GTF.ATA0 */
                         }
                     }
 
@@ -23707,16 +23364,16 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                             })
                             CreateByteField (ATA1, One, PIO1)
                             CreateByteField (ATA1, 0x08, DMA1)
-                            PIO1 = TPI1 /* \_SB_.PCI0.SSD4.PRID.TPI1 */
+                            PIO1 = TPI1 /* \_SB_.PCI0.EVSS.PRID.TPI1 */
                             PIO1 |= 0x08
                             If ((UDM1 & One))
                             {
-                                DMA1 = TDM1 /* \_SB_.PCI0.SSD4.PRID.TDM1 */
+                                DMA1 = TDM1 /* \_SB_.PCI0.EVSS.PRID.TDM1 */
                                 DMA1 |= 0x40
                             }
                             Else
                             {
-                                DMA1 = TPI1 /* \_SB_.PCI0.SSD4.PRID.TPI1 */
+                                DMA1 = TPI1 /* \_SB_.PCI0.EVSS.PRID.TPI1 */
                                 If ((DMA1 != Zero))
                                 {
                                     DMA1 -= 0x02
@@ -23725,7 +23382,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                                 DMA1 |= 0x20
                             }
 
-                            Return (ATA1) /* \_SB_.PCI0.SSD4.PRID.SLAV._GTF.ATA1 */
+                            Return (ATA1) /* \_SB_.PCI0.EVSS.PRID.SLAV._GTF.ATA1 */
                         }
                     }
                 }
@@ -23784,32 +23441,32 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
 
                         If ((PIO0 == 0xFFFFFFFF))
                         {
-                            DMA0 = PIO0 /* \_SB_.PCI0.SSD4.SECD._GTM.PIO0 */
+                            DMA0 = PIO0 /* \_SB_.PCI0.EVSS.SECD._GTM.PIO0 */
                         }
                         Else
                         {
                             DMA0 = GDMA (UDM2, SUM0, SCB0, (SCCR & One), SCT0)
                             If ((DMA0 > PIO0))
                             {
-                                DMA0 = PIO0 /* \_SB_.PCI0.SSD4.SECD._GTM.PIO0 */
+                                DMA0 = PIO0 /* \_SB_.PCI0.EVSS.SECD._GTM.PIO0 */
                             }
                         }
 
                         If ((PIO1 == 0xFFFFFFFF))
                         {
-                            DMA1 = PIO1 /* \_SB_.PCI0.SSD4.SECD._GTM.PIO1 */
+                            DMA1 = PIO1 /* \_SB_.PCI0.EVSS.SECD._GTM.PIO1 */
                         }
                         Else
                         {
                             DMA1 = GDMA (UDM3, SUM1, SCB1, (SCCR & 0x02), SCT1)
                             If ((DMA1 > PIO1))
                             {
-                                DMA1 = PIO1 /* \_SB_.PCI0.SSD4.SECD._GTM.PIO1 */
+                                DMA1 = PIO1 /* \_SB_.PCI0.EVSS.SECD._GTM.PIO1 */
                             }
                         }
 
                         FLAG = SFLG (SIE0, UDM2, SIE1, UDM3, One)
-                        Return (PBUF) /* \_SB_.PCI0.SSD4.SECD._GTM.PBUF */
+                        Return (PBUF) /* \_SB_.PCI0.EVSS.SECD._GTM.PBUF */
                     }
 
                     Method (_STM, 3, NotSerialized)  // _STM: Set Timing Mode
@@ -23852,40 +23509,40 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                         IOTM = SPIO (PIO0, RPS0, IOM0)
                         If ((DMAE | FAST))
                         {
-                            SRT0 = RCT /* \_SB_.PCI0.SSD4.SECD._STM.RCT_ */
-                            SIP0 = ISP /* \_SB_.PCI0.SSD4.SECD._STM.ISP_ */
-                            SFT0 = FAST /* \_SB_.PCI0.SSD4.SECD._STM.FAST */
-                            SDE0 = DMAE /* \_SB_.PCI0.SSD4.SECD._STM.DMAE */
-                            TPI0 = TPIO /* \_SB_.PCI0.SSD4.SECD._STM.TPIO */
+                            SRT0 = RCT /* \_SB_.PCI0.EVSS.SECD._STM.RCT_ */
+                            SIP0 = ISP /* \_SB_.PCI0.EVSS.SECD._STM.ISP_ */
+                            SFT0 = FAST /* \_SB_.PCI0.EVSS.SECD._STM.FAST */
+                            SDE0 = DMAE /* \_SB_.PCI0.EVSS.SECD._STM.DMAE */
+                            TPI0 = TPIO /* \_SB_.PCI0.EVSS.SECD._STM.TPIO */
                         }
 
                         IOTM = SPIO (PIO1, RPS1, IOM1)
-                        POT2 = IOTM /* \_SB_.PCI0.SSD4.SECD._STM.IOTM */
+                        POT2 = IOTM /* \_SB_.PCI0.EVSS.SECD._STM.IOTM */
                         If ((DMAE | FAST))
                         {
-                            SFT1 = FAST /* \_SB_.PCI0.SSD4.SECD._STM.FAST */
-                            SDE1 = DMAE /* \_SB_.PCI0.SSD4.SECD._STM.DMAE */
-                            TPI1 = TPIO /* \_SB_.PCI0.SSD4.SECD._STM.TPIO */
+                            SFT1 = FAST /* \_SB_.PCI0.EVSS.SECD._STM.FAST */
+                            SDE1 = DMAE /* \_SB_.PCI0.EVSS.SECD._STM.DMAE */
+                            TPI1 = TPIO /* \_SB_.PCI0.EVSS.SECD._STM.TPIO */
                             If ((SSIT & One))
                             {
-                                SRT1 = RCT /* \_SB_.PCI0.SSD4.SECD._STM.RCT_ */
-                                SIP1 = ISP /* \_SB_.PCI0.SSD4.SECD._STM.ISP_ */
+                                SRT1 = RCT /* \_SB_.PCI0.EVSS.SECD._STM.RCT_ */
+                                SIP1 = ISP /* \_SB_.PCI0.EVSS.SECD._STM.ISP_ */
                             }
                             Else
                             {
-                                SRT0 = RCT /* \_SB_.PCI0.SSD4.SECD._STM.RCT_ */
-                                SIP0 = ISP /* \_SB_.PCI0.SSD4.SECD._STM.ISP_ */
+                                SRT0 = RCT /* \_SB_.PCI0.EVSS.SECD._STM.RCT_ */
+                                SIP0 = ISP /* \_SB_.PCI0.EVSS.SECD._STM.ISP_ */
                             }
                         }
 
                         If ((FLAG & One))
                         {
                             DMAT = SDMA (DMA0, RPS0, DMM0)
-                            SCT0 = PCT /* \_SB_.PCI0.SSD4.SECD._STM.PCT_ */
-                            SCB0 = PCB /* \_SB_.PCI0.SSD4.SECD._STM.PCB_ */
-                            UDM2 = UDME /* \_SB_.PCI0.SSD4.SECD._STM.UDME */
-                            SUM0 = UDMT /* \_SB_.PCI0.SSD4.SECD._STM.UDMT */
-                            TDM0 = TDMA /* \_SB_.PCI0.SSD4.SECD._STM.TDMA */
+                            SCT0 = PCT /* \_SB_.PCI0.EVSS.SECD._STM.PCT_ */
+                            SCB0 = PCB /* \_SB_.PCI0.EVSS.SECD._STM.PCB_ */
+                            UDM2 = UDME /* \_SB_.PCI0.EVSS.SECD._STM.UDME */
+                            SUM0 = UDMT /* \_SB_.PCI0.EVSS.SECD._STM.UDMT */
+                            TDM0 = TDMA /* \_SB_.PCI0.EVSS.SECD._STM.TDMA */
                         }
                         Else
                         {
@@ -23895,11 +23552,11 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                         If ((FLAG & 0x04))
                         {
                             DMAT = SDMA (DMA1, RPS1, DMM1)
-                            SCT1 = PCT /* \_SB_.PCI0.SSD4.SECD._STM.PCT_ */
-                            SCB1 = PCB /* \_SB_.PCI0.SSD4.SECD._STM.PCB_ */
-                            UDM3 = UDME /* \_SB_.PCI0.SSD4.SECD._STM.UDME */
-                            SUM1 = UDMT /* \_SB_.PCI0.SSD4.SECD._STM.UDMT */
-                            TDM1 = TDMA /* \_SB_.PCI0.SSD4.SECD._STM.TDMA */
+                            SCT1 = PCT /* \_SB_.PCI0.EVSS.SECD._STM.PCT_ */
+                            SCB1 = PCB /* \_SB_.PCI0.EVSS.SECD._STM.PCB_ */
+                            UDM3 = UDME /* \_SB_.PCI0.EVSS.SECD._STM.UDME */
+                            SUM1 = UDMT /* \_SB_.PCI0.EVSS.SECD._STM.UDMT */
+                            TDM1 = TDMA /* \_SB_.PCI0.EVSS.SECD._STM.TDMA */
                         }
                         Else
                         {
@@ -23929,16 +23586,16 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                             })
                             CreateByteField (ATA0, One, PIO0)
                             CreateByteField (ATA0, 0x08, DMA0)
-                            PIO0 = TPI0 /* \_SB_.PCI0.SSD4.SECD.TPI0 */
+                            PIO0 = TPI0 /* \_SB_.PCI0.EVSS.SECD.TPI0 */
                             PIO0 |= 0x08
                             If ((UDM2 & One))
                             {
-                                DMA0 = TDM0 /* \_SB_.PCI0.SSD4.SECD.TDM0 */
+                                DMA0 = TDM0 /* \_SB_.PCI0.EVSS.SECD.TDM0 */
                                 DMA0 |= 0x40
                             }
                             Else
                             {
-                                DMA0 = TPI0 /* \_SB_.PCI0.SSD4.SECD.TPI0 */
+                                DMA0 = TPI0 /* \_SB_.PCI0.EVSS.SECD.TPI0 */
                                 If ((DMA0 != Zero))
                                 {
                                     DMA0 -= 0x02
@@ -23947,7 +23604,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                                 DMA0 |= 0x20
                             }
 
-                            Return (ATA0) /* \_SB_.PCI0.SSD4.SECD.MAST._GTF.ATA0 */
+                            Return (ATA0) /* \_SB_.PCI0.EVSS.SECD.MAST._GTF.ATA0 */
                         }
                     }
 
@@ -23963,16 +23620,16 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                             })
                             CreateByteField (ATA1, One, PIO1)
                             CreateByteField (ATA1, 0x08, DMA1)
-                            PIO1 = TPI1 /* \_SB_.PCI0.SSD4.SECD.TPI1 */
+                            PIO1 = TPI1 /* \_SB_.PCI0.EVSS.SECD.TPI1 */
                             PIO1 |= 0x08
                             If ((UDM3 & One))
                             {
-                                DMA1 = TDM1 /* \_SB_.PCI0.SSD4.SECD.TDM1 */
+                                DMA1 = TDM1 /* \_SB_.PCI0.EVSS.SECD.TDM1 */
                                 DMA1 |= 0x40
                             }
                             Else
                             {
-                                DMA1 = TPI1 /* \_SB_.PCI0.SSD4.SECD.TPI1 */
+                                DMA1 = TPI1 /* \_SB_.PCI0.EVSS.SECD.TPI1 */
                                 If ((DMA1 != Zero))
                                 {
                                     DMA1 -= 0x02
@@ -23981,7 +23638,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                                 DMA1 |= 0x20
                             }
 
-                            Return (ATA1) /* \_SB_.PCI0.SSD4.SECD.SLAV._GTF.ATA1 */
+                            Return (ATA1) /* \_SB_.PCI0.EVSS.SECD.SLAV._GTF.ATA1 */
                         }
                     }
                 }
@@ -23989,7 +23646,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
 
             Device (DMI0)
             {
-                Name (_ADR, One)  // _ADR: Address
+                Name (_ADR, Zero)  // _ADR: Address
             }
 
             Device (BR1A)
@@ -24482,32 +24139,12 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Return (Local0)
                 }
 
-                Device (NVME)
+                Device (H000)
                 {
                     Name (_ADR, Zero)  // _ADR: Address
                     Method (_SUN, 0, NotSerialized)  // _SUN: Slot User Number
                     {
                         Return (SNUM ())
-                    }
-
-                    Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
-                    {
-                        If ((Arg2 == Zero))
-                        {
-                            Return (Buffer (One)
-                            {
-                                 0x03                                             // .
-                            })
-                        }
-
-                        Return (Package (0x02)
-                        {
-                            "built-in", 
-                            Buffer (0x0A)
-                            {
-                                "NVMe SSD"
-                            }
-                        })
                     }
                 }
 
@@ -24517,26 +24154,6 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Method (_SUN, 0, NotSerialized)  // _SUN: Slot User Number
                     {
                         Return (SNUM ())
-                    }
-
-                    Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
-                    {
-                        If ((Arg2 == Zero))
-                        {
-                            Return (Buffer (One)
-                            {
-                                 0x03                                             // .
-                            })
-                        }
-
-                        Return (Package (0x02)
-                        {
-                            "built-in", 
-                            Buffer (0x0A)
-                            {
-                                "NVMe SSD"
-                            }
-                        })
                     }
                 }
 
@@ -24665,7 +24282,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Return (PG20) /* \_SB_.PG20 */
                 }
 
-                Device (D079)
+                Device (D074)
                 {
                     Name (_ADR, 0xFFFF)  // _ADR: Address
                 }
@@ -25161,32 +24778,12 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Return (Local0)
                 }
 
-                Device (NVME)
+                Device (H000)
                 {
                     Name (_ADR, Zero)  // _ADR: Address
                     Method (_SUN, 0, NotSerialized)  // _SUN: Slot User Number
                     {
                         Return (SNUM ())
-                    }
-
-                    Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
-                    {
-                        If ((Arg2 == Zero))
-                        {
-                            Return (Buffer (One)
-                            {
-                                 0x03                                             // .
-                            })
-                        }
-
-                        Return (Package (0x02)
-                        {
-                            "built-in", 
-                            Buffer (0x0A)
-                            {
-                                "NVMe SSD"
-                            }
-                        })
                     }
                 }
 
@@ -25324,7 +24921,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Return (PG21) /* \_SB_.PG21 */
                 }
 
-                Device (D07A)
+                Device (D075)
                 {
                     Name (_ADR, 0xFFFF)  // _ADR: Address
                 }
@@ -25820,155 +25417,21 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Return (Local0)
                 }
 
-                Device (GFX0)
+                Device (H000)
                 {
                     Name (_ADR, Zero)  // _ADR: Address
                     Method (_SUN, 0, NotSerialized)  // _SUN: Slot User Number
                     {
                         Return (SNUM ())
                     }
-
-                    Name (ATIB, Buffer (0x0100){})
-                    Method (ATIF, 2, Serialized)
-                    {
-                        If ((Arg0 == Zero))
-                        {
-                            Return (AF00 ())
-                        }
-
-                        If ((Arg0 == One))
-                        {
-                            Return (AF01 ())
-                        }
-
-                        If ((Arg0 == 0x02))
-                        {
-                            Return (AF02 ())
-                        }
-                        Else
-                        {
-                            CreateWordField (ATIB, Zero, SSZE)
-                            CreateWordField (ATIB, 0x02, VERN)
-                            CreateDWordField (ATIB, 0x04, NMSK)
-                            CreateDWordField (ATIB, 0x08, SFUN)
-                            SSZE = Zero
-                            VERN = Zero
-                            NMSK = Zero
-                            SFUN = Zero
-                            Return (ATIB) /* \_SB_.PCI0.BR2A.GFX0.ATIB */
-                        }
-                    }
-
-                    Method (AF00, 0, NotSerialized)
-                    {
-                        CreateWordField (ATIB, Zero, SSZE)
-                        CreateWordField (ATIB, 0x02, VERN)
-                        CreateDWordField (ATIB, 0x04, NMSK)
-                        CreateDWordField (ATIB, 0x08, SFUN)
-                        SSZE = 0x0C
-                        VERN = One
-                        NMSK = 0x0C
-                        SFUN = 0x03
-                        Return (ATIB) /* \_SB_.PCI0.BR2A.GFX0.ATIB */
-                    }
-
-                    Method (AF01, 0, NotSerialized)
-                    {
-                        CreateWordField (ATIB, Zero, SSZE)
-                        CreateDWordField (ATIB, 0x02, VMSK)
-                        CreateDWordField (ATIB, 0x06, FLGS)
-                        SSZE = 0x0A
-                        VMSK = 0x03
-                        FLGS = One
-                        Return (ATIB) /* \_SB_.PCI0.BR2A.GFX0.ATIB */
-                    }
-
-                    Method (AF02, 0, NotSerialized)
-                    {
-                        CreateWordField (ATIB, Zero, SSZE)
-                        CreateDWordField (ATIB, 0x02, PSBI)
-                        CreateByteField (ATIB, 0x09, FPWR)
-                        CreateByteField (ATIB, 0x0A, FPID)
-                        SSZE = 0x0D
-                        PSBI = 0x08
-                        FPWR = Zero
-                        FPID = 0x08
-                        Return (ATIB) /* \_SB_.PCI0.BR2A.GFX0.ATIB */
-                    }
-
-                    Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
-                    {
-                        Return (GPRW (0x09, 0x04))
-                    }
-
-                    OperationRegion (PEGH, PCI_Config, Zero, 0x40)
-                    Field (PEGH, ByteAcc, NoLock, Preserve)
-                    {
-                        VID0,   16, 
-                        DID0,   16, 
-                        GCMD,   8, 
-                        Offset (0x24), 
-                        BAR4,   32
-                    }
-
-                    Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
-                    {
-                        If ((Arg0 == ToUUID ("a0b5b7c6-1318-441c-b0c9-fe695eaf949b") /* Unknown UUID */))
-                        {
-                            If (((VID0 & 0xFFFF) != 0xFFFF))
-                            {
-                                Local0 = Package (0x02)
-                                    {
-                                        "hda-gfx", 
-                                        Buffer (0x0A)
-                                        {
-                                            "onboard-1"
-                                        }
-                                    }
-                                DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
-                                Return (Local0)
-                            }
-                        }
-
-                        Return (0x80000002)
-                    }
                 }
 
-                Device (HDAU)
+                Device (H001)
                 {
                     Name (_ADR, One)  // _ADR: Address
                     Method (_SUN, 0, NotSerialized)  // _SUN: Slot User Number
                     {
                         Return (SNUM ())
-                    }
-
-                    OperationRegion (HDAH, PCI_Config, Zero, 0x40)
-                    Field (HDAH, ByteAcc, NoLock, Preserve)
-                    {
-                        VID0,   16, 
-                        DID0,   16
-                    }
-
-                    Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
-                    {
-                        If ((Arg0 == ToUUID ("a0b5b7c6-1318-441c-b0c9-fe695eaf949b") /* Unknown UUID */))
-                        {
-                            If (((VID0 & 0xFFFF) != 0xFFFF))
-                            {
-                                Local0 = Package (0x02)
-                                    {
-                                        "hda-gfx", 
-                                        Buffer (0x0A)
-                                        {
-                                            "onboard-1"
-                                        }
-                                    }
-                                DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
-                                Return (Local0)
-                            }
-                        }
-
-                        Return (0x80000002)
                     }
                 }
 
@@ -26097,7 +25560,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Return (PG22) /* \_SB_.PG22 */
                 }
 
-                Device (D075)
+                Device (D070)
                 {
                     Name (_ADR, 0xFFFF)  // _ADR: Address
                 }
@@ -26736,7 +26199,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Return (PG23) /* \_SB_.PG23 */
                 }
 
-                Device (D076)
+                Device (D071)
                 {
                     Name (_ADR, 0xFFFF)  // _ADR: Address
                 }
@@ -27375,7 +26838,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Return (PG24) /* \_SB_.PG24 */
                 }
 
-                Device (D077)
+                Device (D072)
                 {
                     Name (_ADR, 0xFFFF)  // _ADR: Address
                 }
@@ -28014,7 +27477,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Return (PG25) /* \_SB_.PG25 */
                 }
 
-                Device (D078)
+                Device (D073)
                 {
                     Name (_ADR, 0xFFFF)  // _ADR: Address
                 }
@@ -28510,155 +27973,21 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Return (Local0)
                 }
 
-                Device (GFX0)
+                Device (H000)
                 {
                     Name (_ADR, Zero)  // _ADR: Address
                     Method (_SUN, 0, NotSerialized)  // _SUN: Slot User Number
                     {
                         Return (SNUM ())
                     }
-
-                    Name (ATIB, Buffer (0x0100){})
-                    Method (ATIF, 2, Serialized)
-                    {
-                        If ((Arg0 == Zero))
-                        {
-                            Return (AF00 ())
-                        }
-
-                        If ((Arg0 == One))
-                        {
-                            Return (AF01 ())
-                        }
-
-                        If ((Arg0 == 0x02))
-                        {
-                            Return (AF02 ())
-                        }
-                        Else
-                        {
-                            CreateWordField (ATIB, Zero, SSZE)
-                            CreateWordField (ATIB, 0x02, VERN)
-                            CreateDWordField (ATIB, 0x04, NMSK)
-                            CreateDWordField (ATIB, 0x08, SFUN)
-                            SSZE = Zero
-                            VERN = Zero
-                            NMSK = Zero
-                            SFUN = Zero
-                            Return (ATIB) /* \_SB_.PCI0.BR3A.GFX0.ATIB */
-                        }
-                    }
-
-                    Method (AF00, 0, NotSerialized)
-                    {
-                        CreateWordField (ATIB, Zero, SSZE)
-                        CreateWordField (ATIB, 0x02, VERN)
-                        CreateDWordField (ATIB, 0x04, NMSK)
-                        CreateDWordField (ATIB, 0x08, SFUN)
-                        SSZE = 0x0C
-                        VERN = One
-                        NMSK = 0x0C
-                        SFUN = 0x03
-                        Return (ATIB) /* \_SB_.PCI0.BR3A.GFX0.ATIB */
-                    }
-
-                    Method (AF01, 0, NotSerialized)
-                    {
-                        CreateWordField (ATIB, Zero, SSZE)
-                        CreateDWordField (ATIB, 0x02, VMSK)
-                        CreateDWordField (ATIB, 0x06, FLGS)
-                        SSZE = 0x0A
-                        VMSK = 0x03
-                        FLGS = One
-                        Return (ATIB) /* \_SB_.PCI0.BR3A.GFX0.ATIB */
-                    }
-
-                    Method (AF02, 0, NotSerialized)
-                    {
-                        CreateWordField (ATIB, Zero, SSZE)
-                        CreateDWordField (ATIB, 0x02, PSBI)
-                        CreateByteField (ATIB, 0x09, FPWR)
-                        CreateByteField (ATIB, 0x0A, FPID)
-                        SSZE = 0x0D
-                        PSBI = 0x08
-                        FPWR = Zero
-                        FPID = 0x08
-                        Return (ATIB) /* \_SB_.PCI0.BR3A.GFX0.ATIB */
-                    }
-
-                    Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
-                    {
-                        Return (GPRW (0x09, 0x04))
-                    }
-
-                    OperationRegion (PEGH, PCI_Config, Zero, 0x40)
-                    Field (PEGH, ByteAcc, NoLock, Preserve)
-                    {
-                        VID0,   16, 
-                        DID0,   16, 
-                        GCMD,   8, 
-                        Offset (0x24), 
-                        BAR4,   32
-                    }
-
-                    Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
-                    {
-                        If ((Arg0 == ToUUID ("a0b5b7c6-1318-441c-b0c9-fe695eaf949b") /* Unknown UUID */))
-                        {
-                            If (((VID0 & 0xFFFF) != 0xFFFF))
-                            {
-                                Local0 = Package (0x02)
-                                    {
-                                        "hda-gfx", 
-                                        Buffer (0x0A)
-                                        {
-                                            "onboard-1"
-                                        }
-                                    }
-                                DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
-                                Return (Local0)
-                            }
-                        }
-
-                        Return (0x80000002)
-                    }
                 }
 
-                Device (HDAU)
+                Device (H001)
                 {
                     Name (_ADR, One)  // _ADR: Address
                     Method (_SUN, 0, NotSerialized)  // _SUN: Slot User Number
                     {
                         Return (SNUM ())
-                    }
-
-                    OperationRegion (HDAH, PCI_Config, Zero, 0x40)
-                    Field (HDAH, ByteAcc, NoLock, Preserve)
-                    {
-                        VID0,   16, 
-                        DID0,   16
-                    }
-
-                    Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
-                    {
-                        If ((Arg0 == ToUUID ("a0b5b7c6-1318-441c-b0c9-fe695eaf949b") /* Unknown UUID */))
-                        {
-                            If (((VID0 & 0xFFFF) != 0xFFFF))
-                            {
-                                Local0 = Package (0x02)
-                                    {
-                                        "hda-gfx", 
-                                        Buffer (0x0A)
-                                        {
-                                            "onboard-1"
-                                        }
-                                    }
-                                DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
-                                Return (Local0)
-                            }
-                        }
-
-                        Return (0x80000002)
                     }
                 }
 
@@ -28787,7 +28116,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Return (PG26) /* \_SB_.PG26 */
                 }
 
-                Device (D07B)
+                Device (D076)
                 {
                     Name (_ADR, 0xFFFF)  // _ADR: Address
                 }
@@ -29426,7 +28755,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Return (PG27) /* \_SB_.PG27 */
                 }
 
-                Device (D07C)
+                Device (D077)
                 {
                     Name (_ADR, 0xFFFF)  // _ADR: Address
                 }
@@ -30065,7 +29394,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Return (PG28) /* \_SB_.PG28 */
                 }
 
-                Device (D07D)
+                Device (D078)
                 {
                     Name (_ADR, 0xFFFF)  // _ADR: Address
                 }
@@ -30704,7 +30033,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Return (PG29) /* \_SB_.PG29 */
                 }
 
-                Device (D07E)
+                Device (D079)
                 {
                     Name (_ADR, 0xFFFF)  // _ADR: Address
                 }
@@ -30748,15 +30077,6 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Device (CB0H)
             {
                 Name (_ADR, 0x00040007)  // _ADR: Address
-            }
-
-            Device (GLAN)
-            {
-                Name (_ADR, 0x00190000)  // _ADR: Address
-                Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
-                {
-                    Return (GPRW (0x0D, 0x04))
-                }
             }
 
             Device (IOC0)
@@ -30808,7 +30128,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Return (AR80) /* \_SB_.AR80 */
                 }
 
-                Return (PR80) /* \_SB_.PR80 */
+                Return (PD80) /* \_SB_.PD80 */
             }
 
             Method (_OSC, 4, Serialized)  // _OSC: Operating System Capabilities
@@ -38166,7 +37486,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Return (ARC0) /* \_SB_.ARC0 */
                 }
 
-                Return (PRC0) /* \_SB_.PRC0 */
+                Return (PDC0) /* \_SB_.PDC0 */
             }
 
             Method (_OSC, 4, Serialized)  // _OSC: Operating System Capabilities
@@ -45524,7 +44844,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Return (ARE0) /* \_SB_.ARE0 */
                 }
 
-                Return (PRE0) /* \_SB_.PRE0 */
+                Return (PDE0) /* \_SB_.PDE0 */
             }
 
             Method (_OSC, 4, Serialized)  // _OSC: Operating System Capabilities
@@ -52873,7 +52193,6 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             Notify (\_SB.PCI0.XHCI, 0x02) // Device Wake
             Notify (\_SB.PCI0.EHC1, 0x02) // Device Wake
             Notify (\_SB.PCI0.EHC2, 0x02) // Device Wake
-            Notify (\_SB.PCI0.GLAN, 0x02) // Device Wake
             Notify (\_SB.PWRB, 0x02) // Device Wake
         }
     }
@@ -52920,6 +52239,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
     {
         If (Arg0)
         {
+            \_SB.PCI0.LPC0.SIO1.SIOS (Arg0)
             \_SB.PCI0.LPC0.SPTS (Arg0)
             IPTS (Arg0)
         }
@@ -52929,6 +52249,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
     {
         IWAK (Arg0)
         \_SB.PCI0.LPC0.SWAK (Arg0)
+        \_SB.PCI0.LPC0.SIO1.SIOW (Arg0)
         Return (WAKP) /* \WAKP */
     }
 
@@ -52960,7 +52281,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             If ((Local0 != 0xFF))
             {
                 Local1 = One
-                Notify (\_SB.PCI0.BR1A.NVME, Local0)
+                Notify (\_SB.PCI0.BR1A.H000, Local0)
                 Notify (\_SB.PCI0.BR1A.H001, Local0)
                 Notify (\_SB.PCI0.BR1A.H002, Local0)
                 Notify (\_SB.PCI0.BR1A.H003, Local0)
@@ -52982,7 +52303,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             If ((Local0 != 0xFF))
             {
                 Local1 = 0x02
-                Notify (\_SB.PCI0.BR1B.NVME, Local0)
+                Notify (\_SB.PCI0.BR1B.H000, Local0)
                 Notify (\_SB.PCI0.BR1B.H001, Local0)
                 Notify (\_SB.PCI0.BR1B.H002, Local0)
                 Notify (\_SB.PCI0.BR1B.H003, Local0)
@@ -53004,8 +52325,8 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             If ((Local0 != 0xFF))
             {
                 Local1 = 0x03
-                Notify (\_SB.PCI0.BR2A.GFX0, Local0)
-                Notify (\_SB.PCI0.BR2A.HDAU, Local0)
+                Notify (\_SB.PCI0.BR2A.H000, Local0)
+                Notify (\_SB.PCI0.BR2A.H001, Local0)
                 Notify (\_SB.PCI0.BR2A.H002, Local0)
                 Notify (\_SB.PCI0.BR2A.H003, Local0)
                 Notify (\_SB.PCI0.BR2A.H004, Local0)
@@ -53092,8 +52413,8 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             If ((Local0 != 0xFF))
             {
                 Local1 = 0x07
-                Notify (\_SB.PCI0.BR3A.GFX0, Local0)
-                Notify (\_SB.PCI0.BR3A.HDAU, Local0)
+                Notify (\_SB.PCI0.BR3A.H000, Local0)
+                Notify (\_SB.PCI0.BR3A.H001, Local0)
                 Notify (\_SB.PCI0.BR3A.H002, Local0)
                 Notify (\_SB.PCI0.BR3A.H003, Local0)
                 Notify (\_SB.PCI0.BR3A.H004, Local0)
@@ -54625,147 +53946,6 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
         }
     }
 
-    Scope (_SB)
-    {
-        Name (XCPD, Zero)
-        Name (XNPT, One)
-        Name (XCAP, 0x02)
-        Name (XDCP, 0x04)
-        Name (XDCT, 0x08)
-        Name (XDST, 0x0A)
-        Name (XLCP, 0x0C)
-        Name (XLCT, 0x10)
-        Name (XLST, 0x12)
-        Name (XSCP, 0x14)
-        Name (XSCT, 0x18)
-        Name (XSST, 0x1A)
-        Name (XRCT, 0x1C)
-        Mutex (MUTE, 0x00)
-        Method (RBPE, 1, NotSerialized)
-        {
-            Acquire (MUTE, 0xFFFF)
-            Local0 = (Arg0 + PEBS) /* \PEBS */
-            OperationRegion (PCFG, SystemMemory, Local0, One)
-            Field (PCFG, ByteAcc, NoLock, Preserve)
-            {
-                XCFG,   8
-            }
-
-            Release (MUTE)
-            Return (XCFG) /* \_SB_.RBPE.XCFG */
-        }
-
-        Method (RWPE, 1, NotSerialized)
-        {
-            Acquire (MUTE, 0xFFFF)
-            Arg0 &= 0xFFFFFFFE
-            Local0 = (Arg0 + PEBS) /* \PEBS */
-            OperationRegion (PCFG, SystemMemory, Local0, 0x02)
-            Field (PCFG, WordAcc, NoLock, Preserve)
-            {
-                XCFG,   16
-            }
-
-            Release (MUTE)
-            Return (XCFG) /* \_SB_.RWPE.XCFG */
-        }
-
-        Method (RDPE, 1, NotSerialized)
-        {
-            Acquire (MUTE, 0xFFFF)
-            Arg0 &= 0xFFFFFFFC
-            Local0 = (Arg0 + PEBS) /* \PEBS */
-            OperationRegion (PCFG, SystemMemory, Local0, 0x04)
-            Field (PCFG, DWordAcc, NoLock, Preserve)
-            {
-                XCFG,   32
-            }
-
-            Release (MUTE)
-            Return (XCFG) /* \_SB_.RDPE.XCFG */
-        }
-
-        Method (WBPE, 2, NotSerialized)
-        {
-            Acquire (MUTE, 0xFFFF)
-            Local0 = (Arg0 + PEBS) /* \PEBS */
-            OperationRegion (PCFG, SystemMemory, Local0, One)
-            Field (PCFG, ByteAcc, NoLock, Preserve)
-            {
-                XCFG,   8
-            }
-
-            XCFG = Arg1
-            Release (MUTE)
-        }
-
-        Method (WWPE, 2, NotSerialized)
-        {
-            Acquire (MUTE, 0xFFFF)
-            Arg0 &= 0xFFFFFFFE
-            Local0 = (Arg0 + PEBS) /* \PEBS */
-            OperationRegion (PCFG, SystemMemory, Local0, 0x02)
-            Field (PCFG, WordAcc, NoLock, Preserve)
-            {
-                XCFG,   16
-            }
-
-            XCFG = Arg1
-            Release (MUTE)
-        }
-
-        Method (WDPE, 2, NotSerialized)
-        {
-            Acquire (MUTE, 0xFFFF)
-            Arg0 &= 0xFFFFFFFC
-            Local0 = (Arg0 + PEBS) /* \PEBS */
-            OperationRegion (PCFG, SystemMemory, Local0, 0x04)
-            Field (PCFG, DWordAcc, NoLock, Preserve)
-            {
-                XCFG,   32
-            }
-
-            XCFG = Arg1
-            Release (MUTE)
-        }
-
-        Method (RWDP, 3, NotSerialized)
-        {
-            Acquire (MUTE, 0xFFFF)
-            Arg0 &= 0xFFFFFFFC
-            Local0 = (Arg0 + PEBS) /* \PEBS */
-            OperationRegion (PCFG, SystemMemory, Local0, 0x04)
-            Field (PCFG, DWordAcc, NoLock, Preserve)
-            {
-                XCFG,   32
-            }
-
-            Local1 = (XCFG & Arg2)
-            XCFG = (Local1 | Arg1)
-            Release (MUTE)
-        }
-
-        Method (RPME, 1, NotSerialized)
-        {
-            Local0 = (Arg0 + 0x84)
-            Local1 = RDPE (Local0)
-            If ((Local1 == 0xFFFFFFFF))
-            {
-                Return (Zero)
-            }
-            Else
-            {
-                If ((Local1 && 0x00010000))
-                {
-                    WDPE (Local0, (Local1 & 0x00010000))
-                    Return (One)
-                }
-
-                Return (Zero)
-            }
-        }
-    }
-
     Method (DTGP, 5, NotSerialized)
     {
         If ((Arg0 == ToUUID ("a0b5b7c6-1318-441c-b0c9-fe695eaf949b") /* Unknown UUID */))
@@ -54793,45 +53973,6 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                  0x00                                             // .
             }
         Return (Zero)
-    }
-
-    Device (_SB.PCI0.SMBS.BUS0)
-    {
-        Name (_CID, "smbus")  // _CID: Compatible ID
-        Name (_ADR, Zero)  // _ADR: Address
-        Device (DVL0)
-        {
-            Name (_ADR, 0x57)  // _ADR: Address
-            Name (_CID, "diagsvault")  // _CID: Compatible ID
-            Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
-            {
-                If (!Arg2)
-                {
-                    Return (Buffer (One)
-                    {
-                         0x57                                             // W
-                    })
-                }
-
-                Return (Package (0x02)
-                {
-                    "address", 
-                    0x57
-                })
-            }
-        }
-
-        Method (_STA, 0, NotSerialized)  // _STA: Status
-        {
-            If (_OSI ("Darwin"))
-            {
-                Return (0x0F)
-            }
-            Else
-            {
-                Return (Zero)
-            }
-        }
     }
 
     Scope (_SB)
@@ -54880,6 +54021,147 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                 {
                     Return (Zero)
                 }
+            }
+        }
+    }
+
+    Scope (_SB)
+    {
+        Name (XCPD, Zero)
+        Name (XNPT, One)
+        Name (XCAP, 0x02)
+        Name (XDCP, 0x04)
+        Name (XDCT, 0x08)
+        Name (XDST, 0x0A)
+        Name (XLCP, 0x0C)
+        Name (XLCT, 0x10)
+        Name (XLST, 0x12)
+        Name (XSCP, 0x14)
+        Name (XSCT, 0x18)
+        Name (XSST, 0x1A)
+        Name (XRCT, 0x1C)
+        Mutex (MUTE, 0x00)
+        Method (RBPE, 1, NotSerialized)
+        {
+            Acquire (MUTE, 0x03E8)
+            Local0 = (Arg0 + PEBS) /* \PEBS */
+            OperationRegion (PCFG, SystemMemory, Local0, One)
+            Field (PCFG, ByteAcc, NoLock, Preserve)
+            {
+                XCFG,   8
+            }
+
+            Release (MUTE)
+            Return (XCFG) /* \_SB_.RBPE.XCFG */
+        }
+
+        Method (RWPE, 1, NotSerialized)
+        {
+            Acquire (MUTE, 0x03E8)
+            Arg0 &= 0xFFFFFFFE
+            Local0 = (Arg0 + PEBS) /* \PEBS */
+            OperationRegion (PCFG, SystemMemory, Local0, 0x02)
+            Field (PCFG, WordAcc, NoLock, Preserve)
+            {
+                XCFG,   16
+            }
+
+            Release (MUTE)
+            Return (XCFG) /* \_SB_.RWPE.XCFG */
+        }
+
+        Method (RDPE, 1, NotSerialized)
+        {
+            Acquire (MUTE, 0x03E8)
+            Arg0 &= 0xFFFFFFFC
+            Local0 = (Arg0 + PEBS) /* \PEBS */
+            OperationRegion (PCFG, SystemMemory, Local0, 0x04)
+            Field (PCFG, DWordAcc, NoLock, Preserve)
+            {
+                XCFG,   32
+            }
+
+            Release (MUTE)
+            Return (XCFG) /* \_SB_.RDPE.XCFG */
+        }
+
+        Method (WBPE, 2, NotSerialized)
+        {
+            Acquire (MUTE, 0x0FFF)
+            Local0 = (Arg0 + PEBS) /* \PEBS */
+            OperationRegion (PCFG, SystemMemory, Local0, One)
+            Field (PCFG, ByteAcc, NoLock, Preserve)
+            {
+                XCFG,   8
+            }
+
+            XCFG = Arg1
+            Release (MUTE)
+        }
+
+        Method (WWPE, 2, NotSerialized)
+        {
+            Acquire (MUTE, 0x03E8)
+            Arg0 &= 0xFFFFFFFE
+            Local0 = (Arg0 + PEBS) /* \PEBS */
+            OperationRegion (PCFG, SystemMemory, Local0, 0x02)
+            Field (PCFG, WordAcc, NoLock, Preserve)
+            {
+                XCFG,   16
+            }
+
+            XCFG = Arg1
+            Release (MUTE)
+        }
+
+        Method (WDPE, 2, NotSerialized)
+        {
+            Acquire (MUTE, 0x03E8)
+            Arg0 &= 0xFFFFFFFC
+            Local0 = (Arg0 + PEBS) /* \PEBS */
+            OperationRegion (PCFG, SystemMemory, Local0, 0x04)
+            Field (PCFG, DWordAcc, NoLock, Preserve)
+            {
+                XCFG,   32
+            }
+
+            XCFG = Arg1
+            Release (MUTE)
+        }
+
+        Method (RWDP, 3, NotSerialized)
+        {
+            Acquire (MUTE, 0x03E8)
+            Arg0 &= 0xFFFFFFFC
+            Local0 = (Arg0 + PEBS) /* \PEBS */
+            OperationRegion (PCFG, SystemMemory, Local0, 0x04)
+            Field (PCFG, DWordAcc, NoLock, Preserve)
+            {
+                XCFG,   32
+            }
+
+            Local1 = (XCFG & Arg2)
+            XCFG = (Local1 | Arg1)
+            Release (MUTE)
+        }
+
+        Method (RPME, 1, NotSerialized)
+        {
+            Local0 = (Arg0 + 0x84)
+            Local1 = RDPE (Local0)
+            If ((Local1 == 0xFFFFFFFF))
+            {
+                Return (Zero)
+            }
+            Else
+            {
+                If ((Local1 && 0x00010000))
+                {
+                    WDPE (Local0, (Local1 & 0x00010000))
+                    Return (One)
+                }
+
+                Return (Zero)
             }
         }
     }
