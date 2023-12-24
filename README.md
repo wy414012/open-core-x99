@@ -30,6 +30,7 @@ OpenCore华南金牌x99黑苹果
 - 2、`Setup-->Advanced-->NCT5532D Super IO Configuration-->Serial Port 配置 Disable`
 - 3、`Setup-->CSM Configuration-->CSM Support 配置 Disable`如何配置请自行查阅相关教程
 - 4、 `Above 4G Decoding`可以开启也可以不开启
+- 5、 如果有`ReBar Support`请设置为关闭，没有请忽略。
 
 ##### 2)制作安装U盘
 ##### mac下制作制作安装U盘
