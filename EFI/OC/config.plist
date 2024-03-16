@@ -7,13 +7,13 @@
 		<key>Build-Type</key>
 		<string>OpenCore</string>
 		<key>Build-Version</key>
-		<string>20231201-v1.0</string>
+		<string>20240316-v1.0.0</string>
 		<key>OpenCore-Version</key>
-		<string>0.9.7</string>
+		<string>1.0.0</string>
 		<key>Original-Model</key>
-		<string>MacPro7,1</string>
+		<string>iMacPro1,1</string>
 		<key>Spoofed-Model</key>
-		<string>MacPro7,1 - None</string>
+		<string>iMacPro1,1 - None</string>
 	</dict>
 	<key>ACPI</key>
 	<dict>
@@ -274,42 +274,6 @@
 			</dict>
 			<dict>
 				<key>BundlePath</key>
-				<string>AppleMCEReporterDisabler.kext</string>
-				<key>Comment</key>
-				<string>AppleMCEReporterDisabler.kext</string>
-				<key>Enabled</key>
-				<true/>
-				<key>ExecutablePath</key>
-				<string></string>
-				<key>Arch</key>
-				<string>Any</string>
-				<key>MaxKernel</key>
-				<string>21.99.99</string>
-				<key>MinKernel</key>
-				<string>20.0.0</string>
-				<key>PlistPath</key>
-				<string>Contents/Info.plist</string>
-			</dict>
-			<dict>
-				<key>BundlePath</key>
-				<string>CtlnaAHCIPort.kext</string>
-				<key>Comment</key>
-				<string>CtlnaAHCIPort.kext</string>
-				<key>Enabled</key>
-				<true/>
-				<key>ExecutablePath</key>
-				<string>Contents/MacOS/CtlnaAHCIPort</string>
-				<key>Arch</key>
-				<string>Any</string>
-				<key>MaxKernel</key>
-				<string>20.99.99</string>
-				<key>MinKernel</key>
-				<string>20.0.0</string>
-				<key>PlistPath</key>
-				<string>Contents/Info.plist</string>
-			</dict>
-			<dict>
-				<key>BundlePath</key>
 				<string>RealtekRTL8111.kext</string>
 				<key>Comment</key>
 				<string>RealtekRTL8111.kext</string>
@@ -317,24 +281,6 @@
 				<true/>
 				<key>ExecutablePath</key>
 				<string>Contents/MacOS/RealtekRTL8111</string>
-				<key>Arch</key>
-				<string>Any</string>
-				<key>MaxKernel</key>
-				<string></string>
-				<key>MinKernel</key>
-				<string></string>
-				<key>PlistPath</key>
-				<string>Contents/Info.plist</string>
-			</dict>
-			<dict>
-				<key>BundlePath</key>
-				<string>XHCI-unsupported.kext</string>
-				<key>Comment</key>
-				<string>XHCI-unsupported.kext</string>
-				<key>Enabled</key>
-				<true/>
-				<key>ExecutablePath</key>
-				<string></string>
 				<key>Arch</key>
 				<string>Any</string>
 				<key>MaxKernel</key>
@@ -371,24 +317,6 @@
 				<true/>
 				<key>ExecutablePath</key>
 				<string>Contents/MacOS/SMCSuperIO</string>
-				<key>Arch</key>
-				<string>Any</string>
-				<key>MaxKernel</key>
-				<string></string>
-				<key>MinKernel</key>
-				<string></string>
-				<key>PlistPath</key>
-				<string>Contents/Info.plist</string>
-			</dict>
-			<dict>
-				<key>BundlePath</key>
-				<string>RestrictEvents.kext</string>
-				<key>Comment</key>
-				<string>RestrictEvents.kext</string>
-				<key>Enabled</key>
-				<true/>
-				<key>ExecutablePath</key>
-				<string>Contents/MacOS/RestrictEvents</string>
 				<key>Arch</key>
 				<string>Any</string>
 				<key>MaxKernel</key>
@@ -689,13 +617,13 @@
 			<key>AdviseFeatures</key>
 			<false/>
 			<key>MLB</key>
-			<string>F5K214500QXK3F71F</string>
+			<string>C02734130J9JG36JA</string>
 			<key>MaxBIOSVersion</key>
 			<false/>
 			<key>ProcessorType</key>
-			<integer>3842</integer>
+			<integer>0</integer>
 			<key>ROM</key>
-			<data>aJxwz6bH</data>
+			<data>AAqVp2gx</data>
 			<key>SpoofVendor</key>
 			<true/>
 			<key>SystemMemoryStatus</key>
@@ -703,245 +631,9 @@
 			<key>SystemProductName</key>
 			<string>MacPro7,1</string>
 			<key>SystemSerialNumber</key>
-			<string>F5KHJ0UZP7QM</string>
+			<string>C02V8CYWHX87</string>
 			<key>SystemUUID</key>
-			<string>D6A47B2F-1F34-47E5-9FF6-C4E2CA82B602</string>
-		</dict>
-		<key>Memory</key>
-		<dict>
-			<key>DataWidth</key>
-			<integer>64</integer>
-			<key>Devices</key>
-			<array>
-				<dict>
-					<key>AssetTag</key>
-					<string>123456789</string>
-					<key>BankLocator</key>
-					<string>BANK 0</string>
-					<key>DeviceLocator</key>
-					<string>ChannelF-DIMM0</string>
-					<key>Manufacturer</key>
-					<string>Samsung</string>
-					<key>PartNumber</key>
-					<string>M386B4G70DM0-CMA4</string>
-					<key>SerialNumber</key>
-					<string>AAA000000001</string>
-					<key>Size</key>
-					<integer>32768</integer>
-					<key>Speed</key>
-					<integer>2133</integer>
-				</dict>
-				<dict>
-					<key>AssetTag</key>
-					<string>123456789</string>
-					<key>BankLocator</key>
-					<string>BANK 1</string>
-					<key>DeviceLocator</key>
-					<string>ChannelF-DIMM1</string>
-					<key>Manufacturer</key>
-					<string>Samsung</string>
-					<key>PartNumber</key>
-					<string>M386B4G70DM0-CMA4</string>
-					<key>SerialNumber</key>
-					<string>AAA000000007</string>
-					<key>Size</key>
-					<integer>32768</integer>
-					<key>Speed</key>
-					<integer>2133</integer>
-				</dict>
-				<dict>
-					<key>AssetTag</key>
-					<string>123456789</string>
-					<key>BankLocator</key>
-					<string>BANK 2</string>
-					<key>DeviceLocator</key>
-					<string>ChannelE-DIMM0</string>
-					<key>Manufacturer</key>
-					<string>Samsung</string>
-					<key>PartNumber</key>
-					<string>M386B4G70DM0-CMA4</string>
-					<key>SerialNumber</key>
-					<string>AAA000000002</string>
-					<key>Size</key>
-					<integer>32768</integer>
-					<key>Speed</key>
-					<integer>2133</integer>
-				</dict>
-				<dict>
-					<key>AssetTag</key>
-					<string>123456789</string>
-					<key>BankLocator</key>
-					<string>BANK 3</string>
-					<key>DeviceLocator</key>
-					<string>ChannelE-DIMM1</string>
-					<key>Manufacturer</key>
-					<string>Samsung</string>
-					<key>PartNumber</key>
-					<string>M386B4G70DM0-CMA4</string>
-					<key>SerialNumber</key>
-					<string>AAA000000005</string>
-					<key>Size</key>
-					<integer>32768</integer>
-					<key>Speed</key>
-					<integer>2133</integer>
-				</dict>
-				<dict>
-					<key>AssetTag</key>
-					<string></string>
-					<key>BankLocator</key>
-					<string>BANK 4</string>
-					<key>DeviceLocator</key>
-					<string>ChannelD-DIMM0</string>
-					<key>Manufacturer</key>
-					<string>NO DIMM</string>
-					<key>PartNumber</key>
-					<string></string>
-					<key>SerialNumber</key>
-					<string></string>
-					<key>Size</key>
-					<integer>0</integer>
-					<key>Speed</key>
-					<integer>0</integer>
-				</dict>
-				<dict>
-					<key>AssetTag</key>
-					<string></string>
-					<key>BankLocator</key>
-					<string>BANK 5</string>
-					<key>DeviceLocator</key>
-					<string>ChannelD-DIMM1</string>
-					<key>Manufacturer</key>
-					<string>NO DIMM</string>
-					<key>PartNumber</key>
-					<string></string>
-					<key>SerialNumber</key>
-					<string></string>
-					<key>Size</key>
-					<integer>0</integer>
-					<key>Speed</key>
-					<integer>0</integer>
-				</dict>
-				<dict>
-					<key>AssetTag</key>
-					<string>123456789</string>
-					<key>BankLocator</key>
-					<string>BANK 6</string>
-					<key>DeviceLocator</key>
-					<string>ChannelA-DIMM0</string>
-					<key>Manufacturer</key>
-					<string>Samsung</string>
-					<key>PartNumber</key>
-					<string>M386B4G70DM0-CMA4</string>
-					<key>SerialNumber</key>
-					<string>AAA000000003</string>
-					<key>Size</key>
-					<integer>32768</integer>
-					<key>Speed</key>
-					<integer>2133</integer>
-				</dict>
-				<dict>
-					<key>AssetTag</key>
-					<string>123456789</string>
-					<key>BankLocator</key>
-					<string>BANK 7</string>
-					<key>DeviceLocator</key>
-					<string>ChannelA-DIMM1</string>
-					<key>Manufacturer</key>
-					<string>Samsung</string>
-					<key>PartNumber</key>
-					<string>M386B4G70DM0-CMA4</string>
-					<key>SerialNumber</key>
-					<string>AAA000000008</string>
-					<key>Size</key>
-					<integer>32768</integer>
-					<key>Speed</key>
-					<integer>2133</integer>
-				</dict>
-				<dict>
-					<key>AssetTag</key>
-					<string>123456789</string>
-					<key>BankLocator</key>
-					<string>BANK 8</string>
-					<key>DeviceLocator</key>
-					<string>ChannelB-DIMM0</string>
-					<key>Manufacturer</key>
-					<string>Samsung</string>
-					<key>PartNumber</key>
-					<string>M386B4G70DM0-CMA4</string>
-					<key>SerialNumber</key>
-					<string>AAA000000004</string>
-					<key>Size</key>
-					<integer>32768</integer>
-					<key>Speed</key>
-					<integer>2133</integer>
-				</dict>
-				<dict>
-					<key>AssetTag</key>
-					<string>123456789</string>
-					<key>BankLocator</key>
-					<string>BANK 9</string>
-					<key>DeviceLocator</key>
-					<string>ChannelB-DIMM1</string>
-					<key>Manufacturer</key>
-					<string>Samsung</string>
-					<key>PartNumber</key>
-					<string>M386B4G70DM0-CMA4</string>
-					<key>SerialNumber</key>
-					<string>AAA000000006</string>
-					<key>Size</key>
-					<integer>32768</integer>
-					<key>Speed</key>
-					<integer>2133</integer>
-				</dict>
-				<dict>
-					<key>AssetTag</key>
-					<string></string>
-					<key>BankLocator</key>
-					<string>BANK 10</string>
-					<key>DeviceLocator</key>
-					<string>ChannelC-DIMM0</string>
-					<key>Manufacturer</key>
-					<string>NO DIMM</string>
-					<key>PartNumber</key>
-					<string></string>
-					<key>SerialNumber</key>
-					<string></string>
-					<key>Size</key>
-					<integer>0</integer>
-					<key>Speed</key>
-					<integer>0</integer>
-				</dict>
-				<dict>
-					<key>AssetTag</key>
-					<string></string>
-					<key>BankLocator</key>
-					<string>BANK 11</string>
-					<key>DeviceLocator</key>
-					<string>ChannelC-DIMM1</string>
-					<key>Manufacturer</key>
-					<string>NO DIMM</string>
-					<key>PartNumber</key>
-					<string></string>
-					<key>SerialNumber</key>
-					<string></string>
-					<key>Size</key>
-					<integer>0</integer>
-					<key>Speed</key>
-					<integer>0</integer>
-				</dict>
-			</array>
-			<key>ErrorCorrection</key>
-			<integer>6</integer>
-			<key>FormFactor</key>
-			<integer>9</integer>
-			<key>MaxCapacity</key>
-			<integer>68719476736</integer>
-			<key>TotalWidth</key>
-			<integer>64</integer>
-			<key>Type</key>
-			<integer>26</integer>
-			<key>TypeDetail</key>
-			<integer>128</integer>
+			<string>0ABF6066-6707-49D4-91BA-B79990DB3980</string>
 		</dict>
 		<key>UpdateDataHub</key>
 		<true/>
