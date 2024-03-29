@@ -1,22 +1,22 @@
 /*
  * Intel ACPI Component Architecture
- * AML/ASL+ Disassembler version 20230331 (64-bit version)
+ * AML/ASL+ Disassembler version 20240322 (64-bit version)
  * Copyright (c) 2000 - 2023 Intel Corporation
  * 
  * Disassembling to symbolic ASL+ operators
  *
- * Disassembly of Section_Raw_PlatformAcpiTable_body.aml, Sun Dec 10 12:47:20 2023
+ * Disassembly of /Users/wumingquan/Desktop/work/x99xiufu-20240304/X99-8D4-Resizable-BAR/x99-f8/DSDT.aml.raw
  *
  * Original Table Header:
  *     Signature        "DSDT"
- *     Length           0x000308CF (198863)
+ *     Length           0x00030C27 (199719)
  *     Revision         0x02
- *     Checksum         0x77
+ *     Checksum         0x08
  *     OEM ID           "ALASKA"
  *     OEM Table ID     "A M I "
  *     OEM Revision     0x01072009 (17244169)
  *     Compiler ID      "INTL"
- *     Compiler Version 0x20230331 (539165489)
+ *     Compiler Version 0x20240322 (539231010)
  */
 DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
 {
@@ -2054,6 +2054,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                 Return (BBU3) /* \BBU3 */
             }
 
+            Name (_ADR, Zero)  // _ADR: Address
             Name (_EJD, "\\_SB.SCK3")  // _EJD: Ejection Dependent Device
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
@@ -2199,6 +2200,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                 Return (BBU2) /* \BBU2 */
             }
 
+            Name (_ADR, Zero)  // _ADR: Address
             Name (_EJD, "\\_SB.SCK2")  // _EJD: Ejection Dependent Device
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
@@ -2344,6 +2346,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                 Return (BBU1) /* \BBU1 */
             }
 
+            Name (_ADR, Zero)  // _ADR: Address
             Name (_EJD, "\\_SB.SCK1")  // _EJD: Ejection Dependent Device
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
@@ -2497,6 +2500,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                 Return (BBU0) /* \BBU0 */
             }
 
+            Name (_ADR, Zero)  // _ADR: Address
             Name (_EJD, "\\_SB.SCK0")  // _EJD: Ejection Dependent Device
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
@@ -2620,8 +2624,8 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             {
                 WordBusNumber (ResourceProducer, MinFixed, MaxFixed, PosDecode,
                     0x0000,             // Granularity
-                    0x00FF,             // Range Minimum
-                    0x00FF,             // Range Maximum
+                    0x007F,             // Range Minimum
+                    0x007F,             // Range Maximum
                     0x0000,             // Translation Offset
                     0x0001,             // Length
                     ,, )
@@ -5240,23 +5244,6 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                         Return (LAPC (Zero, 0x2F))
                     }
                 }
-
-                Scope (CP00)
-                {
-                    If (_OSI ("Darwin"))
-                    {
-                        Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
-                        {
-                            Local0 = Package (0x02)
-                                {
-                                    "plugin-type", 
-                                    One
-                                }
-                            DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
-                            Return (Local0)
-                        }
-                    }
-                }
             }
 
             Device (SCK1)
@@ -5294,10 +5281,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Return ((0x0100 | Local0))
                 }
 
-                Processor (CP00, 0x25, 0x00000100, 0x06)
+                Device (CP00)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, Zero)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP00")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -5344,10 +5331,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP01, 0x25, 0x00000101, 0x06)
+                Device (CP01)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, One)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP01")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -5394,10 +5381,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP02, 0x25, 0x00000102, 0x06)
+                Device (CP02)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x02)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP02")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -5444,10 +5431,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP03, 0x25, 0x00000103, 0x06)
+                Device (CP03)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x03)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP03")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -5494,10 +5481,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP04, 0x25, 0x00000104, 0x06)
+                Device (CP04)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x04)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP04")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -5544,10 +5531,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP05, 0x25, 0x00000105, 0x06)
+                Device (CP05)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x05)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP05")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -5594,10 +5581,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP06, 0x25, 0x00000106, 0x06)
+                Device (CP06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x06)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP06")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -5644,10 +5631,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP07, 0x25, 0x00000107, 0x06)
+                Device (CP07)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x07)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP07")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -5694,10 +5681,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP08, 0x25, 0x00000108, 0x06)
+                Device (CP08)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x08)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP08")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -5744,10 +5731,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP09, 0x25, 0x00000109, 0x06)
+                Device (CP09)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x09)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP09")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -5794,10 +5781,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP0A, 0x25, 0x0000010A, 0x06)
+                Device (CP0A)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x0A)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP0A")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -5844,10 +5831,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP0B, 0x25, 0x0000010B, 0x06)
+                Device (CP0B)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x0B)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP0B")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -5894,10 +5881,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP0C, 0x25, 0x0000010C, 0x06)
+                Device (CP0C)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x0C)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP0C")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -5944,10 +5931,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP0D, 0x25, 0x0000010D, 0x06)
+                Device (CP0D)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x0D)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP0D")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -5994,10 +5981,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP0E, 0x25, 0x0000010E, 0x06)
+                Device (CP0E)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x0E)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP0E")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -6044,10 +6031,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP0F, 0x25, 0x0000010F, 0x06)
+                Device (CP0F)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x0F)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP0F")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -6094,10 +6081,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP10, 0x25, 0x00000110, 0x06)
+                Device (CP10)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x10)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP10")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -6144,10 +6131,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP11, 0x25, 0x00000111, 0x06)
+                Device (CP11)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x11)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP11")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -6194,10 +6181,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP12, 0x25, 0x00000112, 0x06)
+                Device (CP12)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x12)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP12")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -6244,10 +6231,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP13, 0x25, 0x00000113, 0x06)
+                Device (CP13)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x13)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP13")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -6294,10 +6281,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP14, 0x25, 0x00000114, 0x06)
+                Device (CP14)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x14)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP14")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -6344,10 +6331,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP15, 0x25, 0x00000115, 0x06)
+                Device (CP15)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x15)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP15")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -6394,10 +6381,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP16, 0x25, 0x00000116, 0x06)
+                Device (CP16)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x16)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP16")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -6444,10 +6431,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP17, 0x25, 0x00000117, 0x06)
+                Device (CP17)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x17)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP17")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -6494,10 +6481,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP18, 0x25, 0x00000118, 0x06)
+                Device (CP18)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x18)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP18")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -6544,10 +6531,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP19, 0x25, 0x00000119, 0x06)
+                Device (CP19)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x19)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP19")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -6594,10 +6581,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP1A, 0x25, 0x0000011A, 0x06)
+                Device (CP1A)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x1A)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP1A")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -6644,10 +6631,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP1B, 0x25, 0x0000011B, 0x06)
+                Device (CP1B)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x1B)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP1B")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -6694,10 +6681,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP1C, 0x25, 0x0000011C, 0x06)
+                Device (CP1C)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x1C)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP1C")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -6744,10 +6731,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP1D, 0x25, 0x0000011D, 0x06)
+                Device (CP1D)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x1D)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP1D")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -6794,10 +6781,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP1E, 0x25, 0x0000011E, 0x06)
+                Device (CP1E)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x1E)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP1E")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -6844,10 +6831,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP1F, 0x25, 0x0000011F, 0x06)
+                Device (CP1F)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x1F)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP1F")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -6894,10 +6881,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP20, 0x25, 0x00000120, 0x06)
+                Device (CP20)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x20)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP20")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -6944,10 +6931,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP21, 0x25, 0x00000121, 0x06)
+                Device (CP21)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x21)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP21")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -6994,10 +6981,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP22, 0x25, 0x00000122, 0x06)
+                Device (CP22)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x22)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP22")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -7044,10 +7031,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP23, 0x25, 0x00000123, 0x06)
+                Device (CP23)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x23)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP23")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -7094,10 +7081,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP24, 0x25, 0x00000124, 0x06)
+                Device (CP24)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x24)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP24")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -7144,10 +7131,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP25, 0x25, 0x00000125, 0x06)
+                Device (CP25)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x25)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP25")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -7194,10 +7181,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP26, 0x25, 0x00000126, 0x06)
+                Device (CP26)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x26)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP26")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -7244,10 +7231,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP27, 0x25, 0x00000127, 0x06)
+                Device (CP27)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x27)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP27")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -7294,10 +7281,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP28, 0x25, 0x00000128, 0x06)
+                Device (CP28)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x28)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP28")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -7344,10 +7331,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP29, 0x25, 0x00000129, 0x06)
+                Device (CP29)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x29)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP29")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -7394,10 +7381,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP2A, 0x25, 0x0000012A, 0x06)
+                Device (CP2A)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x2A)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP2A")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -7444,10 +7431,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP2B, 0x25, 0x0000012B, 0x06)
+                Device (CP2B)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x2B)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP2B")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -7494,10 +7481,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP2C, 0x25, 0x0000012C, 0x06)
+                Device (CP2C)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x2C)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP2C")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -7544,10 +7531,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP2D, 0x25, 0x0000012D, 0x06)
+                Device (CP2D)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x2D)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP2D")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -7594,10 +7581,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP2E, 0x25, 0x0000012E, 0x06)
+                Device (CP2E)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x2E)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP2E")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -7644,10 +7631,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP2F, 0x25, 0x0000012F, 0x06)
+                Device (CP2F)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x2F)  // _UID: Unique ID
+                    Name (_UID, "SCK1-CP2F")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -7730,10 +7717,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Return ((0x0200 | Local0))
                 }
 
-                Processor (CP00, 0x25, 0x00000200, 0x06)
+                Device (CP00)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, Zero)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP00")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -7780,10 +7767,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP01, 0x25, 0x00000201, 0x06)
+                Device (CP01)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, One)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP01")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -7830,10 +7817,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP02, 0x25, 0x00000202, 0x06)
+                Device (CP02)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x02)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP02")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -7880,10 +7867,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP03, 0x25, 0x00000203, 0x06)
+                Device (CP03)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x03)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP03")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -7930,10 +7917,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP04, 0x25, 0x00000204, 0x06)
+                Device (CP04)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x04)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP04")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -7980,10 +7967,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP05, 0x25, 0x00000205, 0x06)
+                Device (CP05)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x05)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP05")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -8030,10 +8017,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP06, 0x25, 0x00000206, 0x06)
+                Device (CP06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x06)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP06")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -8080,10 +8067,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP07, 0x25, 0x00000207, 0x06)
+                Device (CP07)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x07)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP07")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -8130,10 +8117,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP08, 0x25, 0x00000208, 0x06)
+                Device (CP08)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x08)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP08")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -8180,10 +8167,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP09, 0x25, 0x00000209, 0x06)
+                Device (CP09)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x09)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP09")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -8230,10 +8217,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP0A, 0x25, 0x0000020A, 0x06)
+                Device (CP0A)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x0A)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP0A")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -8280,10 +8267,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP0B, 0x25, 0x0000020B, 0x06)
+                Device (CP0B)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x0B)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP0B")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -8330,10 +8317,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP0C, 0x25, 0x0000020C, 0x06)
+                Device (CP0C)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x0C)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP0C")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -8380,10 +8367,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP0D, 0x25, 0x0000020D, 0x06)
+                Device (CP0D)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x0D)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP0D")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -8430,10 +8417,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP0E, 0x25, 0x0000020E, 0x06)
+                Device (CP0E)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x0E)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP0E")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -8480,10 +8467,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP0F, 0x25, 0x0000020F, 0x06)
+                Device (CP0F)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x0F)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP0F")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -8530,10 +8517,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP10, 0x25, 0x00000210, 0x06)
+                Device (CP10)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x10)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP10")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -8580,10 +8567,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP11, 0x25, 0x00000211, 0x06)
+                Device (CP11)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x11)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP11")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -8630,10 +8617,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP12, 0x25, 0x00000212, 0x06)
+                Device (CP12)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x12)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP12")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -8680,10 +8667,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP13, 0x25, 0x00000213, 0x06)
+                Device (CP13)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x13)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP13")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -8730,10 +8717,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP14, 0x25, 0x00000214, 0x06)
+                Device (CP14)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x14)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP14")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -8780,10 +8767,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP15, 0x25, 0x00000215, 0x06)
+                Device (CP15)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x15)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP15")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -8830,10 +8817,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP16, 0x25, 0x00000216, 0x06)
+                Device (CP16)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x16)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP16")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -8880,10 +8867,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP17, 0x25, 0x00000217, 0x06)
+                Device (CP17)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x17)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP17")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -8930,10 +8917,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP18, 0x25, 0x00000218, 0x06)
+                Device (CP18)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x18)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP18")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -8980,10 +8967,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP19, 0x25, 0x00000219, 0x06)
+                Device (CP19)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x19)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP19")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -9030,10 +9017,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP1A, 0x25, 0x0000021A, 0x06)
+                Device (CP1A)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x1A)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP1A")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -9080,10 +9067,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP1B, 0x25, 0x0000021B, 0x06)
+                Device (CP1B)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x1B)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP1B")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -9130,10 +9117,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP1C, 0x25, 0x0000021C, 0x06)
+                Device (CP1C)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x1C)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP1C")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -9180,10 +9167,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP1D, 0x25, 0x0000021D, 0x06)
+                Device (CP1D)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x1D)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP1D")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -9230,10 +9217,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP1E, 0x25, 0x0000021E, 0x06)
+                Device (CP1E)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x1E)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP1E")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -9280,10 +9267,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP1F, 0x25, 0x0000021F, 0x06)
+                Device (CP1F)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x1F)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP1F")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -9330,10 +9317,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP20, 0x25, 0x00000220, 0x06)
+                Device (CP20)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x20)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP20")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -9380,10 +9367,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP21, 0x25, 0x00000221, 0x06)
+                Device (CP21)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x21)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP21")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -9430,10 +9417,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP22, 0x25, 0x00000222, 0x06)
+                Device (CP22)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x22)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP22")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -9480,10 +9467,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP23, 0x25, 0x00000223, 0x06)
+                Device (CP23)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x23)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP23")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -9530,10 +9517,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP24, 0x25, 0x00000224, 0x06)
+                Device (CP24)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x24)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP24")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -9580,10 +9567,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP25, 0x25, 0x00000225, 0x06)
+                Device (CP25)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x25)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP25")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -9630,10 +9617,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP26, 0x25, 0x00000226, 0x06)
+                Device (CP26)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x26)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP26")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -9680,10 +9667,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP27, 0x25, 0x00000227, 0x06)
+                Device (CP27)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x27)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP27")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -9730,10 +9717,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP28, 0x25, 0x00000228, 0x06)
+                Device (CP28)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x28)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP28")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -9780,10 +9767,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP29, 0x25, 0x00000229, 0x06)
+                Device (CP29)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x29)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP29")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -9830,10 +9817,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP2A, 0x25, 0x0000022A, 0x06)
+                Device (CP2A)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x2A)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP2A")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -9880,10 +9867,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP2B, 0x25, 0x0000022B, 0x06)
+                Device (CP2B)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x2B)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP2B")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -9930,10 +9917,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP2C, 0x25, 0x0000022C, 0x06)
+                Device (CP2C)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x2C)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP2C")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -9980,10 +9967,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP2D, 0x25, 0x0000022D, 0x06)
+                Device (CP2D)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x2D)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP2D")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -10030,10 +10017,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP2E, 0x25, 0x0000022E, 0x06)
+                Device (CP2E)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x2E)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP2E")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -10080,10 +10067,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP2F, 0x25, 0x0000022F, 0x06)
+                Device (CP2F)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x2F)  // _UID: Unique ID
+                    Name (_UID, "SCK2-CP2F")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -10166,10 +10153,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Return ((0x0300 | Local0))
                 }
 
-                Processor (CP00, 0x25, 0x00000300, 0x06)
+                Device (CP00)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, Zero)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP00")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -10216,10 +10203,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP01, 0x25, 0x00000301, 0x06)
+                Device (CP01)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, One)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP01")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -10266,10 +10253,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP02, 0x25, 0x00000302, 0x06)
+                Device (CP02)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x02)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP02")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -10316,10 +10303,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP03, 0x25, 0x00000303, 0x06)
+                Device (CP03)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x03)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP03")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -10366,10 +10353,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP04, 0x25, 0x00000304, 0x06)
+                Device (CP04)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x04)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP04")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -10416,10 +10403,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP05, 0x25, 0x00000305, 0x06)
+                Device (CP05)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x05)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP05")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -10466,10 +10453,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP06, 0x25, 0x00000306, 0x06)
+                Device (CP06)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x06)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP06")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -10516,10 +10503,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP07, 0x25, 0x00000307, 0x06)
+                Device (CP07)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x07)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP07")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -10566,10 +10553,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP08, 0x25, 0x00000308, 0x06)
+                Device (CP08)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x08)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP08")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -10616,10 +10603,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP09, 0x25, 0x00000309, 0x06)
+                Device (CP09)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x09)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP09")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -10666,10 +10653,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP0A, 0x25, 0x0000030A, 0x06)
+                Device (CP0A)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x0A)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP0A")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -10716,10 +10703,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP0B, 0x25, 0x0000030B, 0x06)
+                Device (CP0B)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x0B)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP0B")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -10766,10 +10753,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP0C, 0x25, 0x0000030C, 0x06)
+                Device (CP0C)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x0C)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP0C")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -10816,10 +10803,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP0D, 0x25, 0x0000030D, 0x06)
+                Device (CP0D)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x0D)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP0D")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -10866,10 +10853,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP0E, 0x25, 0x0000030E, 0x06)
+                Device (CP0E)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x0E)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP0E")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -10916,10 +10903,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP0F, 0x25, 0x0000030F, 0x06)
+                Device (CP0F)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x0F)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP0F")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -10966,10 +10953,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP10, 0x25, 0x00000310, 0x06)
+                Device (CP10)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x10)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP10")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -11016,10 +11003,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP11, 0x25, 0x00000311, 0x06)
+                Device (CP11)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x11)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP11")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -11066,10 +11053,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP12, 0x25, 0x00000312, 0x06)
+                Device (CP12)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x12)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP12")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -11116,10 +11103,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP13, 0x25, 0x00000313, 0x06)
+                Device (CP13)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x13)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP13")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -11166,10 +11153,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP14, 0x25, 0x00000314, 0x06)
+                Device (CP14)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x14)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP14")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -11216,10 +11203,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP15, 0x25, 0x00000315, 0x06)
+                Device (CP15)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x15)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP15")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -11266,10 +11253,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP16, 0x25, 0x00000316, 0x06)
+                Device (CP16)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x16)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP16")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -11316,10 +11303,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP17, 0x25, 0x00000317, 0x06)
+                Device (CP17)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x17)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP17")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -11366,10 +11353,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP18, 0x25, 0x00000318, 0x06)
+                Device (CP18)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x18)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP18")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -11416,10 +11403,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP19, 0x25, 0x00000319, 0x06)
+                Device (CP19)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x19)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP19")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -11466,10 +11453,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP1A, 0x25, 0x0000031A, 0x06)
+                Device (CP1A)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x1A)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP1A")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -11516,10 +11503,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP1B, 0x25, 0x0000031B, 0x06)
+                Device (CP1B)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x1B)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP1B")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -11566,10 +11553,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP1C, 0x25, 0x0000031C, 0x06)
+                Device (CP1C)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x1C)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP1C")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -11616,10 +11603,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP1D, 0x25, 0x0000031D, 0x06)
+                Device (CP1D)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x1D)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP1D")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -11666,10 +11653,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP1E, 0x25, 0x0000031E, 0x06)
+                Device (CP1E)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x1E)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP1E")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -11716,10 +11703,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP1F, 0x25, 0x0000031F, 0x06)
+                Device (CP1F)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x1F)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP1F")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -11766,10 +11753,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP20, 0x25, 0x00000320, 0x06)
+                Device (CP20)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x20)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP20")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -11816,10 +11803,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP21, 0x25, 0x00000321, 0x06)
+                Device (CP21)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x21)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP21")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -11866,10 +11853,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP22, 0x25, 0x00000322, 0x06)
+                Device (CP22)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x22)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP22")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -11916,10 +11903,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP23, 0x25, 0x00000323, 0x06)
+                Device (CP23)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x23)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP23")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -11966,10 +11953,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP24, 0x25, 0x00000324, 0x06)
+                Device (CP24)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x24)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP24")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -12016,10 +12003,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP25, 0x25, 0x00000325, 0x06)
+                Device (CP25)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x25)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP25")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -12066,10 +12053,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP26, 0x25, 0x00000326, 0x06)
+                Device (CP26)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x26)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP26")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -12116,10 +12103,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP27, 0x25, 0x00000327, 0x06)
+                Device (CP27)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x27)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP27")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -12166,10 +12153,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP28, 0x25, 0x00000328, 0x06)
+                Device (CP28)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x28)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP28")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -12216,10 +12203,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP29, 0x25, 0x00000329, 0x06)
+                Device (CP29)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x29)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP29")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -12266,10 +12253,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP2A, 0x25, 0x0000032A, 0x06)
+                Device (CP2A)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x2A)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP2A")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -12316,10 +12303,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP2B, 0x25, 0x0000032B, 0x06)
+                Device (CP2B)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x2B)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP2B")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -12366,10 +12353,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP2C, 0x25, 0x0000032C, 0x06)
+                Device (CP2C)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x2C)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP2C")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -12416,10 +12403,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP2D, 0x25, 0x0000032D, 0x06)
+                Device (CP2D)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x2D)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP2D")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -12466,10 +12453,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP2E, 0x25, 0x0000032E, 0x06)
+                Device (CP2E)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x2E)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP2E")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -12516,10 +12503,10 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
                 }
 
-                Processor (CP2F, 0x25, 0x0000032F, 0x06)
+                Device (CP2F)
                 {
                     Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
-                    Name (_UID, 0x2F)  // _UID: Unique ID
+                    Name (_UID, "SCK3-CP2F")  // _UID: Unique ID
                     Method (_PXM, 0, NotSerialized)  // _PXM: Device Proximity
                     {
                         If ((CLOD == Zero))
@@ -15227,9 +15214,9 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                 WordBusNumber (ResourceProducer, MinFixed, MaxFixed, PosDecode,
                     0x0000,             // Granularity
                     0x0000,             // Range Minimum
-                    0x00FE,             // Range Maximum
+                    0x007E,             // Range Maximum
                     0x0000,             // Translation Offset
-                    0x00FF,             // Length
+                    0x007F,             // Length
                     ,, )
                 IO (Decode16,
                     0x0CF8,             // Range Minimum
@@ -15247,9 +15234,9 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                 WordIO (ResourceProducer, MinFixed, MaxFixed, PosDecode, EntireRange,
                     0x0000,             // Granularity
                     0x1000,             // Range Minimum
-                    0xFFFF,             // Range Maximum
+                    0x7FFF,             // Range Maximum
                     0x0000,             // Translation Offset
-                    0xF000,             // Length
+                    0x7000,             // Length
                     ,, , TypeStatic, DenseTranslation)
                 DWordMemory (ResourceProducer, PosDecode, MinFixed, MaxFixed, Cacheable, ReadWrite,
                     0x00000000,         // Granularity
@@ -15261,9 +15248,9 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                 DWordMemory (ResourceProducer, PosDecode, MinFixed, MaxFixed, NonCacheable, ReadWrite,
                     0x00000000,         // Granularity
                     0x90000000,         // Range Minimum
-                    0xFBFFBFFF,         // Range Maximum
+                    0xC7FFBFFF,         // Range Maximum
                     0x00000000,         // Translation Offset
-                    0x6BFFC000,         // Length
+                    0x37FFC000,         // Length
                     ,, _Y00, AddressRangeMemory, TypeStatic)
                 QWordMemory (ResourceProducer, PosDecode, MinFixed, MaxFixed, NonCacheable, ReadWrite,
                     0x0000000000000000, // Granularity
@@ -15505,7 +15492,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     })
                 }
 
-                Device (RTC0)
+                Device (RTC)
                 {
                     Name (_HID, EisaId ("PNP0B00") /* AT Real-Time Clock */)  // _HID: Hardware ID
                     Name (_CRS, ResourceTemplate ()  // _CRS: Current Resource Settings
@@ -15523,17 +15510,6 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                             0x04,               // Length
                             )
                     })
-                    Method (_STA, 0, NotSerialized)  // _STA: Status
-                    {
-                        If (_OSI ("Darwin"))
-                        {
-                            Return (Zero)
-                        }
-                        Else
-                        {
-                            Return (0x0F)
-                        }
-                    }
                 }
 
                 Device (PIC)
@@ -15626,6 +15602,11 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
 
                     Method (_STA, 0, NotSerialized)  // _STA: Status
                     {
+                        If (_OSI ("Darwin"))
+                        {
+                            Return (0x0F)
+                        }
+
                         If (HPTE)
                         {
                             Return (0x0F)
@@ -15636,23 +15617,72 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                         }
                     }
 
-                    Name (CRS, ResourceTemplate ()
+                    Name (CRS0, ResourceTemplate ()
                     {
-                        IRQNoFlags ()
-                            {0}
-                        IRQNoFlags ()
-                            {8}
                         Memory32Fixed (ReadWrite,
                             0xFED00000,         // Address Base
                             0x00000400,         // Address Length
-                            _Y01)
+                            )
                     })
-                    Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
+                    Name (CRS1, ResourceTemplate ()
                     {
-                        CreateDWordField (CRS, \_SB.PCI0.LPC0.HPET._Y01._BAS, HTBS)  // _BAS: Base Address
-                        Local0 = (HPTS * 0x1000)
-                        HTBS = (Local0 + 0xFED00000)
-                        Return (CRS) /* \_SB_.PCI0.LPC0.HPET.CRS_ */
+                        Memory32Fixed (ReadWrite,
+                            0xFED01000,         // Address Base
+                            0x00000400,         // Address Length
+                            )
+                    })
+                    Name (CRS2, ResourceTemplate ()
+                    {
+                        Memory32Fixed (ReadWrite,
+                            0xFED02000,         // Address Base
+                            0x00000400,         // Address Length
+                            )
+                    })
+                    Name (CRS3, ResourceTemplate ()
+                    {
+                        Memory32Fixed (ReadWrite,
+                            0xFED03000,         // Address Base
+                            0x00000400,         // Address Length
+                            )
+                    })
+                    Name (BUFX, ResourceTemplate ()
+                    {
+                        IRQNoFlags ()
+                            {0,8}
+                        Memory32Fixed (ReadWrite,
+                            0xFED00000,         // Address Base
+                            0x00000400,         // Address Length
+                            )
+                    })
+                    Method (_CRS, 0, Serialized)  // _CRS: Current Resource Settings
+                    {
+                        If (_OSI ("Darwin"))
+                        {
+                            Return (BUFX) /* \_SB_.PCI0.LPC0.HPET.BUFX */
+                        }
+
+                        Switch (ToInteger (HPTS))
+                        {
+                            Case (Zero)
+                            {
+                                Return (CRS0) /* \_SB_.PCI0.LPC0.HPET.CRS0 */
+                            }
+                            Case (One)
+                            {
+                                Return (CRS1) /* \_SB_.PCI0.LPC0.HPET.CRS1 */
+                            }
+                            Case (0x02)
+                            {
+                                Return (CRS2) /* \_SB_.PCI0.LPC0.HPET.CRS2 */
+                            }
+                            Case (0x03)
+                            {
+                                Return (CRS3) /* \_SB_.PCI0.LPC0.HPET.CRS3 */
+                            }
+
+                        }
+
+                        Return (CRS0) /* \_SB_.PCI0.LPC0.HPET.CRS0 */
                     }
                 }
 
@@ -16108,6 +16138,12 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                             0x0000,             // Range Maximum
                             0x00,               // Alignment
                             0x00,               // Length
+                            _Y01)
+                        IO (Decode16,
+                            0x0000,             // Range Minimum
+                            0x0000,             // Range Maximum
+                            0x00,               // Alignment
+                            0x00,               // Length
                             _Y02)
                         IO (Decode16,
                             0x0000,             // Range Minimum
@@ -16127,20 +16163,14 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                             0x00,               // Alignment
                             0x00,               // Length
                             _Y05)
-                        IO (Decode16,
-                            0x0000,             // Range Minimum
-                            0x0000,             // Range Maximum
-                            0x00,               // Alignment
-                            0x00,               // Length
-                            _Y06)
                     })
                     Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
                     {
                         If (((SP1O < 0x03F0) && (SP1O > 0xF0)))
                         {
-                            CreateWordField (CRS, \_SB.PCI0.LPC0.SIO1._Y02._MIN, GPI0)  // _MIN: Minimum Base Address
-                            CreateWordField (CRS, \_SB.PCI0.LPC0.SIO1._Y02._MAX, GPI1)  // _MAX: Maximum Base Address
-                            CreateByteField (CRS, \_SB.PCI0.LPC0.SIO1._Y02._LEN, GPIL)  // _LEN: Length
+                            CreateWordField (CRS, \_SB.PCI0.LPC0.SIO1._Y01._MIN, GPI0)  // _MIN: Minimum Base Address
+                            CreateWordField (CRS, \_SB.PCI0.LPC0.SIO1._Y01._MAX, GPI1)  // _MAX: Maximum Base Address
+                            CreateByteField (CRS, \_SB.PCI0.LPC0.SIO1._Y01._LEN, GPIL)  // _LEN: Length
                             GPI0 = SP1O /* \SP1O */
                             GPI1 = SP1O /* \SP1O */
                             GPIL = 0x02
@@ -16148,9 +16178,9 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
 
                         If (IO1B)
                         {
-                            CreateWordField (CRS, \_SB.PCI0.LPC0.SIO1._Y03._MIN, GP10)  // _MIN: Minimum Base Address
-                            CreateWordField (CRS, \_SB.PCI0.LPC0.SIO1._Y03._MAX, GP11)  // _MAX: Maximum Base Address
-                            CreateByteField (CRS, \_SB.PCI0.LPC0.SIO1._Y03._LEN, GPL1)  // _LEN: Length
+                            CreateWordField (CRS, \_SB.PCI0.LPC0.SIO1._Y02._MIN, GP10)  // _MIN: Minimum Base Address
+                            CreateWordField (CRS, \_SB.PCI0.LPC0.SIO1._Y02._MAX, GP11)  // _MAX: Maximum Base Address
+                            CreateByteField (CRS, \_SB.PCI0.LPC0.SIO1._Y02._LEN, GPL1)  // _LEN: Length
                             GP10 = IO1B /* \IO1B */
                             GP11 = IO1B /* \IO1B */
                             GPL1 = IO1L /* \IO1L */
@@ -16158,9 +16188,9 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
 
                         If (IO2B)
                         {
-                            CreateWordField (CRS, \_SB.PCI0.LPC0.SIO1._Y04._MIN, GP20)  // _MIN: Minimum Base Address
-                            CreateWordField (CRS, \_SB.PCI0.LPC0.SIO1._Y04._MAX, GP21)  // _MAX: Maximum Base Address
-                            CreateByteField (CRS, \_SB.PCI0.LPC0.SIO1._Y04._LEN, GPL2)  // _LEN: Length
+                            CreateWordField (CRS, \_SB.PCI0.LPC0.SIO1._Y03._MIN, GP20)  // _MIN: Minimum Base Address
+                            CreateWordField (CRS, \_SB.PCI0.LPC0.SIO1._Y03._MAX, GP21)  // _MAX: Maximum Base Address
+                            CreateByteField (CRS, \_SB.PCI0.LPC0.SIO1._Y03._LEN, GPL2)  // _LEN: Length
                             GP20 = IO2B /* \IO2B */
                             GP21 = IO2B /* \IO2B */
                             GPL2 = IO2L /* \IO2L */
@@ -16168,9 +16198,9 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
 
                         If (IO3B)
                         {
-                            CreateWordField (CRS, \_SB.PCI0.LPC0.SIO1._Y05._MIN, GP30)  // _MIN: Minimum Base Address
-                            CreateWordField (CRS, \_SB.PCI0.LPC0.SIO1._Y05._MAX, GP31)  // _MAX: Maximum Base Address
-                            CreateByteField (CRS, \_SB.PCI0.LPC0.SIO1._Y05._LEN, GPL3)  // _LEN: Length
+                            CreateWordField (CRS, \_SB.PCI0.LPC0.SIO1._Y04._MIN, GP30)  // _MIN: Minimum Base Address
+                            CreateWordField (CRS, \_SB.PCI0.LPC0.SIO1._Y04._MAX, GP31)  // _MAX: Maximum Base Address
+                            CreateByteField (CRS, \_SB.PCI0.LPC0.SIO1._Y04._LEN, GPL3)  // _LEN: Length
                             GP30 = IO3B /* \IO3B */
                             GP31 = IO3B /* \IO3B */
                             GPL3 = IO3L /* \IO3L */
@@ -16178,9 +16208,9 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
 
                         If (IO4B)
                         {
-                            CreateWordField (CRS, \_SB.PCI0.LPC0.SIO1._Y06._MIN, GP40)  // _MIN: Minimum Base Address
-                            CreateWordField (CRS, \_SB.PCI0.LPC0.SIO1._Y06._MAX, GP41)  // _MAX: Maximum Base Address
-                            CreateByteField (CRS, \_SB.PCI0.LPC0.SIO1._Y06._LEN, GPL4)  // _LEN: Length
+                            CreateWordField (CRS, \_SB.PCI0.LPC0.SIO1._Y05._MIN, GP40)  // _MIN: Minimum Base Address
+                            CreateWordField (CRS, \_SB.PCI0.LPC0.SIO1._Y05._MAX, GP41)  // _MAX: Maximum Base Address
+                            CreateByteField (CRS, \_SB.PCI0.LPC0.SIO1._Y05._LEN, GPL4)  // _LEN: Length
                             GP40 = IO4B /* \IO4B */
                             GP41 = IO4B /* \IO4B */
                             GPL4 = IO4L /* \IO4L */
@@ -16386,17 +16416,17 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                             0x0000,             // Range Maximum
                             0x01,               // Alignment
                             0x00,               // Length
-                            _Y09)
-                        IRQNoFlags (_Y07)
+                            _Y08)
+                        IRQNoFlags (_Y06)
                             {}
-                        DMA (Compatibility, NotBusMaster, Transfer8, _Y08)
+                        DMA (Compatibility, NotBusMaster, Transfer8, _Y07)
                             {}
                     })
-                    CreateWordField (CRS1, \_SB.PCI0.LPC0.SIO1._Y07._INT, IRQM)  // _INT: Interrupts
-                    CreateByteField (CRS1, \_SB.PCI0.LPC0.SIO1._Y08._DMA, DMAM)  // _DMA: Direct Memory Access
-                    CreateWordField (CRS1, \_SB.PCI0.LPC0.SIO1._Y09._MIN, IO11)  // _MIN: Minimum Base Address
-                    CreateWordField (CRS1, \_SB.PCI0.LPC0.SIO1._Y09._MAX, IO12)  // _MAX: Maximum Base Address
-                    CreateByteField (CRS1, \_SB.PCI0.LPC0.SIO1._Y09._LEN, LEN1)  // _LEN: Length
+                    CreateWordField (CRS1, \_SB.PCI0.LPC0.SIO1._Y06._INT, IRQM)  // _INT: Interrupts
+                    CreateByteField (CRS1, \_SB.PCI0.LPC0.SIO1._Y07._DMA, DMAM)  // _DMA: Direct Memory Access
+                    CreateWordField (CRS1, \_SB.PCI0.LPC0.SIO1._Y08._MIN, IO11)  // _MIN: Minimum Base Address
+                    CreateWordField (CRS1, \_SB.PCI0.LPC0.SIO1._Y08._MAX, IO12)  // _MAX: Maximum Base Address
+                    CreateByteField (CRS1, \_SB.PCI0.LPC0.SIO1._Y08._LEN, LEN1)  // _LEN: Length
                     Name (CRS2, ResourceTemplate ()
                     {
                         IO (Decode16,
@@ -16404,26 +16434,26 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                             0x0000,             // Range Maximum
                             0x01,               // Alignment
                             0x00,               // Length
-                            _Y0C)
+                            _Y0B)
                         IO (Decode16,
                             0x0000,             // Range Minimum
                             0x0000,             // Range Maximum
                             0x01,               // Alignment
                             0x00,               // Length
-                            _Y0D)
-                        IRQNoFlags (_Y0A)
+                            _Y0C)
+                        IRQNoFlags (_Y09)
                             {}
-                        DMA (Compatibility, NotBusMaster, Transfer8, _Y0B)
+                        DMA (Compatibility, NotBusMaster, Transfer8, _Y0A)
                             {}
                     })
-                    CreateWordField (CRS2, \_SB.PCI0.LPC0.SIO1._Y0A._INT, IRQE)  // _INT: Interrupts
-                    CreateByteField (CRS2, \_SB.PCI0.LPC0.SIO1._Y0B._DMA, DMAE)  // _DMA: Direct Memory Access
-                    CreateWordField (CRS2, \_SB.PCI0.LPC0.SIO1._Y0C._MIN, IO21)  // _MIN: Minimum Base Address
-                    CreateWordField (CRS2, \_SB.PCI0.LPC0.SIO1._Y0C._MAX, IO22)  // _MAX: Maximum Base Address
-                    CreateByteField (CRS2, \_SB.PCI0.LPC0.SIO1._Y0C._LEN, LEN2)  // _LEN: Length
-                    CreateWordField (CRS2, \_SB.PCI0.LPC0.SIO1._Y0D._MIN, IO31)  // _MIN: Minimum Base Address
-                    CreateWordField (CRS2, \_SB.PCI0.LPC0.SIO1._Y0D._MAX, IO32)  // _MAX: Maximum Base Address
-                    CreateByteField (CRS2, \_SB.PCI0.LPC0.SIO1._Y0D._LEN, LEN3)  // _LEN: Length
+                    CreateWordField (CRS2, \_SB.PCI0.LPC0.SIO1._Y09._INT, IRQE)  // _INT: Interrupts
+                    CreateByteField (CRS2, \_SB.PCI0.LPC0.SIO1._Y0A._DMA, DMAE)  // _DMA: Direct Memory Access
+                    CreateWordField (CRS2, \_SB.PCI0.LPC0.SIO1._Y0B._MIN, IO21)  // _MIN: Minimum Base Address
+                    CreateWordField (CRS2, \_SB.PCI0.LPC0.SIO1._Y0B._MAX, IO22)  // _MAX: Maximum Base Address
+                    CreateByteField (CRS2, \_SB.PCI0.LPC0.SIO1._Y0B._LEN, LEN2)  // _LEN: Length
+                    CreateWordField (CRS2, \_SB.PCI0.LPC0.SIO1._Y0C._MIN, IO31)  // _MIN: Minimum Base Address
+                    CreateWordField (CRS2, \_SB.PCI0.LPC0.SIO1._Y0C._MAX, IO32)  // _MAX: Maximum Base Address
+                    CreateByteField (CRS2, \_SB.PCI0.LPC0.SIO1._Y0C._LEN, LEN3)  // _LEN: Length
                     Name (CRS3, ResourceTemplate ()
                     {
                         IO (Decode16,
@@ -16431,18 +16461,18 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                             0x0000,             // Range Maximum
                             0x01,               // Alignment
                             0x00,               // Length
-                            _Y10)
-                        IRQ (Level, ActiveLow, Shared, _Y0E)
+                            _Y0F)
+                        IRQ (Level, ActiveLow, Shared, _Y0D)
                             {}
-                        DMA (Compatibility, NotBusMaster, Transfer8, _Y0F)
+                        DMA (Compatibility, NotBusMaster, Transfer8, _Y0E)
                             {}
                     })
-                    CreateWordField (CRS3, \_SB.PCI0.LPC0.SIO1._Y0E._INT, IRQT)  // _INT: Interrupts
-                    CreateBitField (CRS3, \_SB.PCI0.LPC0.SIO1._Y0E._HE, IRQS)  // _HE_: High-Edge
-                    CreateByteField (CRS3, \_SB.PCI0.LPC0.SIO1._Y0F._DMA, DMAT)  // _DMA: Direct Memory Access
-                    CreateWordField (CRS3, \_SB.PCI0.LPC0.SIO1._Y10._MIN, IO41)  // _MIN: Minimum Base Address
-                    CreateWordField (CRS3, \_SB.PCI0.LPC0.SIO1._Y10._MAX, IO42)  // _MAX: Maximum Base Address
-                    CreateByteField (CRS3, \_SB.PCI0.LPC0.SIO1._Y10._LEN, LEN4)  // _LEN: Length
+                    CreateWordField (CRS3, \_SB.PCI0.LPC0.SIO1._Y0D._INT, IRQT)  // _INT: Interrupts
+                    CreateByteField (CRS3, \_SB.PCI0.LPC0.SIO1._Y0D._HE, IRQS)  // _HE_: High-Edge
+                    CreateByteField (CRS3, \_SB.PCI0.LPC0.SIO1._Y0E._DMA, DMAT)  // _DMA: Direct Memory Access
+                    CreateWordField (CRS3, \_SB.PCI0.LPC0.SIO1._Y0F._MIN, IO41)  // _MIN: Minimum Base Address
+                    CreateWordField (CRS3, \_SB.PCI0.LPC0.SIO1._Y0F._MAX, IO42)  // _MAX: Maximum Base Address
+                    CreateByteField (CRS3, \_SB.PCI0.LPC0.SIO1._Y0F._LEN, LEN4)  // _LEN: Length
                     Method (DCRS, 2, NotSerialized)
                     {
                         ENFG (CGLD (Arg0))
@@ -22309,16 +22339,12 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                 }
             }
 
-            Device (HDEF)
+            Device (ALZA)
             {
                 Name (_ADR, 0x001B0000)  // _ADR: Address
-                Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
-                {
-                    Return (GPRW (0x09, 0x04))
-                }
             }
 
-            Device (IMEI)
+            Device (HECI)
             {
                 Name (_ADR, 0x00160000)  // _ADR: Address
             }
@@ -30078,31 +30104,6 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             {
                 Name (_ADR, 0x00040007)  // _ADR: Address
             }
-
-            Device (IOC0)
-            {
-                Name (_ADR, 0x00050000)  // _ADR: Address
-            }
-
-            Device (IOC1)
-            {
-                Name (_ADR, 0x00050001)  // _ADR: Address
-            }
-
-            Device (IOC2)
-            {
-                Name (_ADR, 0x00050002)  // _ADR: Address
-            }
-
-            Device (IOC3)
-            {
-                Name (_ADR, 0x00050003)  // _ADR: Address
-            }
-
-            Device (IOC4)
-            {
-                Name (_ADR, 0x00050004)  // _ADR: Address
-            }
         }
 
         Device (PCI1)
@@ -30472,17 +30473,25 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             {
                 WordBusNumber (ResourceProducer, MinFixed, MaxFixed, PosDecode,
                     0x0000,             // Granularity
-                    0x0000,             // Range Minimum
+                    0x0080,             // Range Minimum
                     0x00FE,             // Range Maximum
                     0x0000,             // Translation Offset
-                    0x00FF,             // Length
+                    0x007F,             // Length
                     ,, )
-                IO (Decode16,
-                    0x0CF8,             // Range Minimum
-                    0x0CF8,             // Range Maximum
-                    0x01,               // Alignment
-                    0x08,               // Length
-                    )
+                DWordMemory (ResourceProducer, PosDecode, MinFixed, MaxFixed, Cacheable, ReadWrite,
+                    0x00000000,         // Granularity
+                    0x000A0000,         // Range Minimum
+                    0x000BFFFF,         // Range Maximum
+                    0x00000000,         // Translation Offset
+                    0x00020000,         // Length
+                    ,, , AddressRangeMemory, TypeStatic)
+                WordIO (ResourceProducer, MinFixed, MaxFixed, PosDecode, EntireRange,
+                    0x0000,             // Granularity
+                    0x8000,             // Range Minimum
+                    0xFFFF,             // Range Maximum
+                    0x0000,             // Translation Offset
+                    0x8000,             // Length
+                    ,, , TypeStatic, DenseTranslation)
                 WordIO (ResourceProducer, MinFixed, MaxFixed, PosDecode, EntireRange,
                     0x0000,             // Granularity
                     0x0000,             // Range Minimum
@@ -30497,24 +30506,17 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     0x0000,             // Translation Offset
                     0xF000,             // Length
                     ,, , TypeStatic, DenseTranslation)
-                DWordMemory (ResourceProducer, PosDecode, MinFixed, MaxFixed, Cacheable, ReadWrite,
-                    0x00000000,         // Granularity
-                    0x000A0000,         // Range Minimum
-                    0x000BFFFF,         // Range Maximum
-                    0x00000000,         // Translation Offset
-                    0x00020000,         // Length
-                    ,, , AddressRangeMemory, TypeStatic)
                 DWordMemory (ResourceProducer, PosDecode, MinFixed, MaxFixed, NonCacheable, ReadWrite,
                     0x00000000,         // Granularity
-                    0x90000000,         // Range Minimum
+                    0xC8000000,         // Range Minimum
                     0xFBFFBFFF,         // Range Maximum
                     0x00000000,         // Translation Offset
-                    0x6BFFC000,         // Length
+                    0x33FFC000,         // Length
                     ,, , AddressRangeMemory, TypeStatic)
                 QWordMemory (ResourceProducer, PosDecode, MinFixed, MaxFixed, NonCacheable, ReadWrite,
                     0x0000000000000000, // Granularity
-                    0x0000380000000000, // Range Minimum
-                    0x0000383FFFFFFFFF, // Range Maximum
+                    0x0000384000000000, // Range Minimum
+                    0x0000387FFFFFFFFF, // Range Maximum
                     0x0000000000000000, // Translation Offset
                     0x0000004000000000, // Length
                     ,, , AddressRangeMemory, TypeStatic)
@@ -37830,17 +37832,25 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             {
                 WordBusNumber (ResourceProducer, MinFixed, MaxFixed, PosDecode,
                     0x0000,             // Granularity
-                    0x0000,             // Range Minimum
+                    0x0080,             // Range Minimum
                     0x00FE,             // Range Maximum
                     0x0000,             // Translation Offset
-                    0x00FF,             // Length
+                    0x007F,             // Length
                     ,, )
-                IO (Decode16,
-                    0x0CF8,             // Range Minimum
-                    0x0CF8,             // Range Maximum
-                    0x01,               // Alignment
-                    0x08,               // Length
-                    )
+                DWordMemory (ResourceProducer, PosDecode, MinFixed, MaxFixed, Cacheable, ReadWrite,
+                    0x00000000,         // Granularity
+                    0x000A0000,         // Range Minimum
+                    0x000BFFFF,         // Range Maximum
+                    0x00000000,         // Translation Offset
+                    0x00020000,         // Length
+                    ,, , AddressRangeMemory, TypeStatic)
+                WordIO (ResourceProducer, MinFixed, MaxFixed, PosDecode, EntireRange,
+                    0x0000,             // Granularity
+                    0x8000,             // Range Minimum
+                    0xFFFF,             // Range Maximum
+                    0x0000,             // Translation Offset
+                    0x8000,             // Length
+                    ,, , TypeStatic, DenseTranslation)
                 WordIO (ResourceProducer, MinFixed, MaxFixed, PosDecode, EntireRange,
                     0x0000,             // Granularity
                     0x0000,             // Range Minimum
@@ -37855,24 +37865,17 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     0x0000,             // Translation Offset
                     0xF000,             // Length
                     ,, , TypeStatic, DenseTranslation)
-                DWordMemory (ResourceProducer, PosDecode, MinFixed, MaxFixed, Cacheable, ReadWrite,
-                    0x00000000,         // Granularity
-                    0x000A0000,         // Range Minimum
-                    0x000BFFFF,         // Range Maximum
-                    0x00000000,         // Translation Offset
-                    0x00020000,         // Length
-                    ,, , AddressRangeMemory, TypeStatic)
                 DWordMemory (ResourceProducer, PosDecode, MinFixed, MaxFixed, NonCacheable, ReadWrite,
                     0x00000000,         // Granularity
-                    0x90000000,         // Range Minimum
+                    0xC8000000,         // Range Minimum
                     0xFBFFBFFF,         // Range Maximum
                     0x00000000,         // Translation Offset
-                    0x6BFFC000,         // Length
+                    0x33FFC000,         // Length
                     ,, , AddressRangeMemory, TypeStatic)
                 QWordMemory (ResourceProducer, PosDecode, MinFixed, MaxFixed, NonCacheable, ReadWrite,
                     0x0000000000000000, // Granularity
-                    0x0000380000000000, // Range Minimum
-                    0x0000383FFFFFFFFF, // Range Maximum
+                    0x0000384000000000, // Range Minimum
+                    0x0000387FFFFFFFFF, // Range Maximum
                     0x0000000000000000, // Translation Offset
                     0x0000004000000000, // Length
                     ,, , AddressRangeMemory, TypeStatic)
@@ -45188,17 +45191,25 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
             {
                 WordBusNumber (ResourceProducer, MinFixed, MaxFixed, PosDecode,
                     0x0000,             // Granularity
-                    0x0000,             // Range Minimum
+                    0x0080,             // Range Minimum
                     0x00FE,             // Range Maximum
                     0x0000,             // Translation Offset
-                    0x00FF,             // Length
+                    0x007F,             // Length
                     ,, )
-                IO (Decode16,
-                    0x0CF8,             // Range Minimum
-                    0x0CF8,             // Range Maximum
-                    0x01,               // Alignment
-                    0x08,               // Length
-                    )
+                DWordMemory (ResourceProducer, PosDecode, MinFixed, MaxFixed, Cacheable, ReadWrite,
+                    0x00000000,         // Granularity
+                    0x000A0000,         // Range Minimum
+                    0x000BFFFF,         // Range Maximum
+                    0x00000000,         // Translation Offset
+                    0x00020000,         // Length
+                    ,, , AddressRangeMemory, TypeStatic)
+                WordIO (ResourceProducer, MinFixed, MaxFixed, PosDecode, EntireRange,
+                    0x0000,             // Granularity
+                    0x8000,             // Range Minimum
+                    0xFFFF,             // Range Maximum
+                    0x0000,             // Translation Offset
+                    0x8000,             // Length
+                    ,, , TypeStatic, DenseTranslation)
                 WordIO (ResourceProducer, MinFixed, MaxFixed, PosDecode, EntireRange,
                     0x0000,             // Granularity
                     0x0000,             // Range Minimum
@@ -45213,24 +45224,17 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     0x0000,             // Translation Offset
                     0xF000,             // Length
                     ,, , TypeStatic, DenseTranslation)
-                DWordMemory (ResourceProducer, PosDecode, MinFixed, MaxFixed, Cacheable, ReadWrite,
-                    0x00000000,         // Granularity
-                    0x000A0000,         // Range Minimum
-                    0x000BFFFF,         // Range Maximum
-                    0x00000000,         // Translation Offset
-                    0x00020000,         // Length
-                    ,, , AddressRangeMemory, TypeStatic)
                 DWordMemory (ResourceProducer, PosDecode, MinFixed, MaxFixed, NonCacheable, ReadWrite,
                     0x00000000,         // Granularity
-                    0x90000000,         // Range Minimum
+                    0xC8000000,         // Range Minimum
                     0xFBFFBFFF,         // Range Maximum
                     0x00000000,         // Translation Offset
-                    0x6BFFC000,         // Length
+                    0x33FFC000,         // Length
                     ,, , AddressRangeMemory, TypeStatic)
                 QWordMemory (ResourceProducer, PosDecode, MinFixed, MaxFixed, NonCacheable, ReadWrite,
                     0x0000000000000000, // Granularity
-                    0x0000380000000000, // Range Minimum
-                    0x0000383FFFFFFFFF, // Range Maximum
+                    0x0000384000000000, // Range Minimum
+                    0x0000387FFFFFFFFF, // Range Maximum
                     0x0000000000000000, // Translation Offset
                     0x0000004000000000, // Length
                     ,, , AddressRangeMemory, TypeStatic)
@@ -53977,49 +53981,129 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
 
     Scope (_SB)
     {
-        Device (PCI0.LPC0.RTC1)
+        If (_OSI ("Darwin"))
         {
-            Name (_HID, EisaId ("PNP0B00") /* AT Real-Time Clock */)  // _HID: Hardware ID
-            Name (_CRS, ResourceTemplate ()  // _CRS: Current Resource Settings
+            Method (PMPM, 4, NotSerialized)
             {
-                IO (Decode16,
-                    0x0070,             // Range Minimum
-                    0x0070,             // Range Maximum
-                    0x01,               // Alignment
-                    0x04,               // Length
-                    )
-                IO (Decode16,
-                    0x0074,             // Range Minimum
-                    0x0074,             // Range Maximum
-                    0x01,               // Alignment
-                    0x04,               // Length
-                    )
-            })
-            Method (_STA, 0, NotSerialized)  // _STA: Status
-            {
-                If (_OSI ("Darwin"))
+                If ((Arg2 == Zero))
                 {
-                    Return (0x0F)
+                    Return (Buffer (One)
+                    {
+                         0x03                                             // .
+                    })
                 }
-                Else
+
+                Return (Package (0x02)
                 {
-                    Return (Zero)
+                    "plugin-type", 
+                    One
+                })
+            }
+
+            If (CondRefOf (\_SB.SCK0.CP00))
+            {
+                If ((ObjectType (SCK0.CP00) == 0x0C))
+                {
+                    Scope (SCK0.CP00)
+                    {
+                        Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
+                        {
+                            Return (PMPM (Arg0, Arg1, Arg2, Arg3))
+                        }
+                    }
                 }
             }
         }
 
-        Device (EC)
+        If (_OSI ("Darwin"))
         {
-            Name (_HID, "ACID0001")  // _HID: Hardware ID
-            Method (_STA, 0, NotSerialized)  // _STA: Status
+            If (CondRefOf (\_SB.PCI0.LPC0.RTC))
             {
-                If (_OSI ("Darwin"))
+                Device (PCI0.LPC0.RTC1)
                 {
-                    Return (0x0F)
+                    Name (_HID, EisaId ("PNP0B00") /* AT Real-Time Clock */)  // _HID: Hardware ID
+                    Name (_CRS, ResourceTemplate ()  // _CRS: Current Resource Settings
+                    {
+                        IO (Decode16,
+                            0x0070,             // Range Minimum
+                            0x0070,             // Range Maximum
+                            0x01,               // Alignment
+                            0x04,               // Length
+                            )
+                        IO (Decode16,
+                            0x0074,             // Range Minimum
+                            0x0074,             // Range Maximum
+                            0x01,               // Alignment
+                            0x04,               // Length
+                            )
+                    })
+                    Method (_STA, 0, NotSerialized)  // _STA: Status
+                    {
+                        Return (0x0F)
+                    }
                 }
-                Else
+            }
+        }
+
+        If (_OSI ("Darwin"))
+        {
+            Scope (\_SB)
+            {
+                Device (EC)
                 {
-                    Return (Zero)
+                    Name (_HID, "ACID0001")  // _HID: Hardware ID
+                    Method (_STA, 0, NotSerialized)  // _STA: Status
+                    {
+                        Return (0x0F)
+                    }
+                }
+
+                Device (PMCR)
+                {
+                    Name (_HID, EisaId ("APP9876"))  // _HID: Hardware ID
+                    Method (_STA, 0, NotSerialized)  // _STA: Status
+                    {
+                        Return (0x0B)
+                    }
+
+                    Name (_CRS, ResourceTemplate ()  // _CRS: Current Resource Settings
+                    {
+                        Memory32Fixed (ReadWrite,
+                            0xFE000000,         // Address Base
+                            0x00010000,         // Address Length
+                            )
+                    })
+                }
+
+                Device (PCI0.SMBS.BUS0)
+                {
+                    Name (_CID, "smbus")  // _CID: Compatible ID
+                    Name (_ADR, Zero)  // _ADR: Address
+                    Method (_STA, 0, NotSerialized)  // _STA: Status
+                    {
+                        Return (0x0F)
+                    }
+                }
+
+                Device (USBX)
+                {
+                    Name (_ADR, Zero)  // _ADR: Address
+                    Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
+                    {
+                        Local0 = Package (0x08)
+                            {
+                                "kUSBSleepPowerSupply", 
+                                0x13EC, 
+                                "kUSBSleepPortCurrentLimit", 
+                                0x0834, 
+                                "kUSBWakePowerSupply", 
+                                0x13EC, 
+                                "kUSBWakePortCurrentLimit", 
+                                0x0834
+                            }
+                        DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
+                        Return (Local0)
+                    }
                 }
             }
         }
@@ -54043,7 +54127,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
         Mutex (MUTE, 0x00)
         Method (RBPE, 1, NotSerialized)
         {
-            Acquire (MUTE, 0x03E8)
+            Acquire (MUTE, 0xFFFF)
             Local0 = (Arg0 + PEBS) /* \PEBS */
             OperationRegion (PCFG, SystemMemory, Local0, One)
             Field (PCFG, ByteAcc, NoLock, Preserve)
@@ -54057,7 +54141,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
 
         Method (RWPE, 1, NotSerialized)
         {
-            Acquire (MUTE, 0x03E8)
+            Acquire (MUTE, 0xFFFF)
             Arg0 &= 0xFFFFFFFE
             Local0 = (Arg0 + PEBS) /* \PEBS */
             OperationRegion (PCFG, SystemMemory, Local0, 0x02)
@@ -54072,7 +54156,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
 
         Method (RDPE, 1, NotSerialized)
         {
-            Acquire (MUTE, 0x03E8)
+            Acquire (MUTE, 0xFFFF)
             Arg0 &= 0xFFFFFFFC
             Local0 = (Arg0 + PEBS) /* \PEBS */
             OperationRegion (PCFG, SystemMemory, Local0, 0x04)
@@ -54087,7 +54171,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
 
         Method (WBPE, 2, NotSerialized)
         {
-            Acquire (MUTE, 0x0FFF)
+            Acquire (MUTE, 0xFFFF)
             Local0 = (Arg0 + PEBS) /* \PEBS */
             OperationRegion (PCFG, SystemMemory, Local0, One)
             Field (PCFG, ByteAcc, NoLock, Preserve)
@@ -54101,7 +54185,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
 
         Method (WWPE, 2, NotSerialized)
         {
-            Acquire (MUTE, 0x03E8)
+            Acquire (MUTE, 0xFFFF)
             Arg0 &= 0xFFFFFFFE
             Local0 = (Arg0 + PEBS) /* \PEBS */
             OperationRegion (PCFG, SystemMemory, Local0, 0x02)
@@ -54116,7 +54200,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
 
         Method (WDPE, 2, NotSerialized)
         {
-            Acquire (MUTE, 0x03E8)
+            Acquire (MUTE, 0xFFFF)
             Arg0 &= 0xFFFFFFFC
             Local0 = (Arg0 + PEBS) /* \PEBS */
             OperationRegion (PCFG, SystemMemory, Local0, 0x04)
@@ -54131,7 +54215,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
 
         Method (RWDP, 3, NotSerialized)
         {
-            Acquire (MUTE, 0x03E8)
+            Acquire (MUTE, 0xFFFF)
             Arg0 &= 0xFFFFFFFC
             Local0 = (Arg0 + PEBS) /* \PEBS */
             OperationRegion (PCFG, SystemMemory, Local0, 0x04)
