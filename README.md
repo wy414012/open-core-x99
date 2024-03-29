@@ -112,3 +112,6 @@ EFI|
 
 1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
 
+#### 鸣谢！
+
+- 固件修补离不开实物调试，感谢赞助进行调试的各位。
