@@ -15,6 +15,7 @@
 - 集成`ext4`支持
 - 修复`macOS`所需要的`ACPI`补丁，完美不影响win系统
 ### 华南x99-f8d-plus 双路
+- [Fix-x99-f8d-plus-acpi-20240329.fd](./Fix-x99-f8d-plus-acpi-20240329.fd) 
 - 添加了`NTFS`U盘启动支持
 - 集成`hfs`驱动
 - 集成`exfat`驱动
