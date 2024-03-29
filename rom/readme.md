@@ -14,3 +14,10 @@
 - 集成`exfat`驱动
 - 集成`ext4`支持
 - 修复`macOS`所需要的`ACPI`补丁，完美不影响win系统
+### 华南x99-f8d-plus 双路
+- 添加了`NTFS`U盘启动支持
+- 集成`hfs`驱动
+- 集成`exfat`驱动
+- 集成`ext4`支持
+- 修复`macOS`所需要的`ACPI`补丁，完美不影响win系统
+- ALC897声卡版本
