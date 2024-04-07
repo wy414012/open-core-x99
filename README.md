@@ -95,11 +95,35 @@ EFI|
 | 1 | BANK 10 | ChannelC-DIMM0 | 1 | C |
 | 1 | BANK 11 | ChannelC-DIMM1 | 2 | C |
 
-#### 关于刷新ROM后EFI保留什么的说明
-- 删除ACPI所有补丁
-- hfsplus.efi驱动可以删除
-- 关闭说明的设置，默认固件未进行关闭操作，固件均基于华南官网最新版本修改。
- 
+#### 关于刷新ROM后EFI和未刷新ROM区别如下
+- 未刷新
+```mermaid
+graph TD;
+    EFI-->BOOT-->BOOTx64.efi;
+    EFI-->OC-->OpenCore.efi;
+	EFI-->OC-->config.plist;
+    OC-->ACPI-->*.aml;
+    OC-->Drivers-->*.efi;
+    OC-->Kexts-->*.kext;
+	OC-->Resources-->Audio音频资源;
+	Resources-->Font字体资源;
+	Resources-->Image主题图片资源;
+	Resources-->Label主题窗体资源;
+```
+
+- 刷新后的结构`ACPI`目录完全移除不在需要
+```mermaid
+graph TD;
+    EFI-->BOOT-->BOOTx64.efi;
+    EFI-->OC-->OpenCore.efi;
+	EFI-->OC-->config.plist;
+    OC-->Drivers-->*.efi;
+    OC-->Kexts-->*.kext;
+	OC-->Resources-->Audio音频资源;
+	Resources-->Font字体资源;
+	Resources-->Image主题图片资源;
+	Resources-->Label主题窗体资源;
+``` 
 #### 参与贡献
 
 1.  Fork 本仓库
