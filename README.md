@@ -101,7 +101,7 @@ EFI|
 graph TD;
     EFI-->BOOT-->BOOTx64.efi;
     EFI-->OC-->OpenCore.efi;
-	EFI-->OC-->config.plist;
+	OC-->config.plist;
     OC-->ACPI-->*.aml;
     OC-->Drivers-->*.efi;
     OC-->Kexts-->*.kext;
@@ -116,7 +116,7 @@ graph TD;
 graph TD;
     EFI-->BOOT-->BOOTx64.efi;
     EFI-->OC-->OpenCore.efi;
-	EFI-->OC-->config.plist;
+	OC-->config.plist;
     OC-->Drivers-->*.efi;
     OC-->Kexts-->*.kext;
 	OC-->Resources-->Audio音频资源;
