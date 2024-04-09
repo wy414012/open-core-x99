@@ -467,7 +467,7 @@
 			<key>PowerTimeoutKernelPanic</key>
 			<true/>
 			<key>ProvideCurrentCpuInfo</key>
-			<true/>
+			<false/>
 			<key>SetApfsTrimTimeout</key>
 			<integer>0</integer>
 			<key>ThirdPartyDrives</key>
@@ -681,7 +681,7 @@
 			</array>
 		</dict>
 		<key>LegacyOverwrite</key>
-		<true/>
+		<false/>
 		<key>LegacySchema</key>
 		<dict>
 			<key>7C436110-AB2A-4BBB-A880-FE41995C9F82</key>
